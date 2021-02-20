@@ -1,0 +1,185 @@
+#+LATEX_HEADER: \newenvironment{lequation}{\begin{equation}\Large}{\end{equation}}
+#+OPTIONS: ^:nil
+#+ATTR_LATEX: :width 5cm :options angle=90
+#+TITLE: org 测试
+#+AUTHOR: 杨 睿
+#+EMAIL: yangruipis@163.com
+#+KEYWORDS:
+#+OPTIONS: H:4 toc:t
+#+OPTIONS: tex:t
+#+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
+#+PRE_EVAL: (setq make-backup-files nil) (setq org-html-checkbox-type 'html)
+
+#+HTML_HEAD: <link href="https://raw.githubusercontent.com/kaushalmodi/.emacs.d/master/misc/css/leuven_theme.css" rel="stylesheet">
+
+
+* adadad
+
+balabala
+
+* test                                                                 :test:
+
+balabala
+
+- [X] Checked.
+- [-] Half-checked.
+- [ ] Not checked.
+- Normal list item.
+
+#+BEGIN_SRC latex
+a = b^2_1
+#+END_SRC
+
+\begin{equation}
+x=\sqrt{b}
+\end{equation}
+
+
+#+begin_warning
+Be careful!  Check that you have...
+#+end_warning
+
+
+#+begin_note
+This is a useful note.
+#+end_note
+
+#+begin_tip
+Try doing it this way...
+#+end_tip
+
+- testdasdad :: dadadasd
+
+#+begin_seealso
+- [[http://en.wikipedia.org/wiki/Apple][Apples]] ::
+     A kind of [[http://en.wikipedia.org/wiki/Fruit][fruit]].
+#+end_seealso
+
+
+#+begin_example
+10/17/97   9:04         <DIR>    bin
+10/16/97  14:11         <DIR>    DOS
+10/16/97  14:46         <DIR>    TEMP
+10/16/97  14:37         <DIR>    WINNT
+10/16/97  14:25             119  AUTOEXEC.BAT
+ 2/13/94   6:21          54,619  COMMAND.COM
+#+end_example
+
+
+The formula \(a^2 + b^2 = c^2\) has been discovered by Pythagoras.
+
+Let \(a=\sin(x) + \cos(x)\). Then \(a^2 = 2\sin(x)\cos(x)\) because \(\sin^2x +
+\cos^2x = 1\).
+
+It is possible to define named footnotes[fn:myfootnote], or ones with automatic
+anchors[fn:2].
+
+
+
+#+BEGIN_SRC python :results output
+  a = 1
+  b = 2
+  print(a+b)
+#+END_SRC
+
+#+RESULTS:
+: 3
+#+BEGIN_SRC go
+  var (
+    AIOInstStatusUnknown uint32 = 0
+    AIOInstStatusRunning uint32 = 1
+    AIOInstStatusStopped uint32 = 2
+    AIOInstStatusFailed uint32 = 3
+
+    AIOInstStatusInitializing     uint32 = 11
+    AIOInstStatusInitializeFailed uint32 = 12
+    AIOInstStatusQueueing         uint32 = 13
+
+    AIOInstStatusStopping   uint32 = 21
+    AIOInstStatusStopFailed uint32 = 22
+
+    AIOExportRunning uint32 = 31
+    AIOExportSuccess uint32 = 32
+    AIOExportFailed uint32 = 33
+  )
+#+END_SRC
+
+#+BEGIN_SRC python
+  # -*- coding: utf-8 -*-
+  # @File : gen_index.py
+  # @Author : r.yang
+  # @Date : Fri Feb 19 18:11:08 2021
+  # @Description : format string
+
+  import os
+  import sys
+  from collections import defaultdict
+  import datetime
+
+  CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+  HEADER = """
+  ,#+OPTIONS: ^:nil
+  ,#+ATTR_LATEX: :width 5cm :options angle=90
+  ,#+TITLE: 索引
+  ,#+AUTHOR: 杨 睿
+  ,#+EMAIL: yangruipis@163.com
+  ,#+KEYWORDS: index
+  ,#+OPTIONS: H:4 toc:t
+  ,#+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
+  """
+
+
+  def extract_abs(path):
+      lines = open(path).read().splitlines()
+      newlines = []
+      for line in lines:
+          if line.startswith("*") or line.startswith("#") or line.strip() == "":
+              continue
+          else:
+              newlines.append(line)
+      newlines = newlines[:3]
+      if newlines:
+          return "\n".join(newlines)[:200]
+      return ""
+
+
+  def main():
+      index_txt = HEADER
+      src_dir = os.path.join(CURRENT_DIR, '../src')
+
+      for root, dirs, files in os.walk(src_dir):
+          eles = root.split("src")[-1].split("/")
+          eles = [i for i in eles if i.strip()]
+          if eles:
+              index_txt += ("*" * (len(eles)) + " {}".format(eles[-1]) + "\n")
+
+          star_len = len(eles) + 1
+          for file_ in files:
+              if file_.endswith(".org"):
+                  path = os.path.join(root, file_)
+                  ts = os.stat(path).st_mtime
+                  date = datetime.datetime.fromtimestamp(ts)
+
+                  title = " [{}] {}".format(date.strftime("%Y-%m-%d"),
+                                            file_.replace(".org", ""))
+
+                  index_txt += "*" * star_len + " [[file:{}][{}]]".format(
+                      "/".join(["./src"] + eles + [file_]), title)
+                  index_txt += "\n"
+                  index_txt += extract_abs(os.path.join(root, file_))
+                  index_txt += "\n"
+      with open("./index.org", "w") as f:
+          f.write(index_txt)
+
+
+  if __name__ == "__main__":
+      main()
+
+#+END_SRC
+
+
+[fn:myfootnote] Extensively used in large documents.
+
+[fn:2] Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+

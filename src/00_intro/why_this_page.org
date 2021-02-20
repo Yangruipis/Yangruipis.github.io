@@ -1,0 +1,19 @@
+#+LATEX_HEADER: \newenvironment{lequation}{\begin{equation}\Large}{\end{equation}}
+#+OPTIONS: ^:nil
+#+ATTR_LATEX: :width 5cm :options angle=90
+#+TITLE: 简介
+#+AUTHOR: 杨 睿
+#+EMAIL: yangruipis@163.com
+#+KEYWORDS: 
+#+OPTIONS: H:4 toc:t
+#+SETUPFILE: /Users/yangrui/git_repos_v2/private/blogs/lib/theme-readtheorg.setup
+
+
+* About me
+
+balabala
+
+* Why this page
+
+
+balabala

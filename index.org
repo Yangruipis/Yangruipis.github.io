@@ -1,0 +1,13 @@
+
+#+OPTIONS: ^:nil
+#+ATTR_LATEX: :width 5cm :options angle=90
+#+TITLE: 索引
+#+AUTHOR: 杨 睿
+#+EMAIL: yangruipis@163.com
+#+KEYWORDS: index
+#+OPTIONS: H:4 toc:t
+#+SETUPFILE: /Users/yangrui/.local/lib/theme-readtheorg.setup
+* 00_intro
+** [[file:./src/00_intro/why_this_page.org][ [2021-02-20] why_this_page]]
+balabala
+balabala

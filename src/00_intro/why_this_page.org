@@ -6,7 +6,7 @@
 #+EMAIL: yangruipis@163.com
 #+KEYWORDS: 
 #+OPTIONS: H:4 toc:t
-#+SETUPFILE: /Users/yangrui/git_repos_v2/private/blogs/lib/theme-readtheorg.setup
+#+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
 
 
 * About me

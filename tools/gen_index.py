@@ -18,7 +18,7 @@ HEADER = """
 #+EMAIL: yangruipis@163.com
 #+KEYWORDS: index
 #+OPTIONS: H:4 toc:t
-#+SETUPFILE: SETUP_FILE
+#+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
 """
 
 

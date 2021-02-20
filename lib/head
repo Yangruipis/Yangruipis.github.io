@@ -1,21 +1,17 @@
+# -*- mode: snippet -*-
+# name: head
+# key: head
+# --
 #+LATEX_HEADER: \newenvironment{lequation}{\begin{equation}\Large}{\end{equation}}
 #+OPTIONS: ^:nil
 #+ATTR_LATEX: :width 5cm :options angle=90
-#+TITLE: 简介
+#+TITLE: $1
 #+AUTHOR: 杨 睿
 #+EMAIL: yangruipis@163.com
-#+KEYWORDS:
+#+KEYWORDS: $2
 #+OPTIONS: H:4 toc:t
 #+OPTIONS: tex:t
 #+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
 #+PRE_EVAL: (setq make-backup-files nil) (setq org-html-checkbox-type 'html)
-#+HTML_HEAD: <link href="https://raw.githubusercontent.com/kaushalmodi/.emacs.d/master/misc/css/leuven_theme.css" rel="stylesheet">
 
-
-* About me
-
-balabala
-
-* Why this page                                                        :test:
-
-balabala
+$0

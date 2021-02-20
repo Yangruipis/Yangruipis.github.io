@@ -3,4 +3,6 @@
 
 python tools/gen_index.py
 
-find . -name "*.org" | xargs -I {} emacs {} --batch --eval '(setq make-backup-files nil)' -l $PWD/lib/htmlize.el -f org-html-export-to-html
+emacs index.org --batch --eval '(setq make-backup-files nil)' --eval "(setq org-html-checkbox-type 'html)" -l $PWD/lib/htmlize.el -f org-html-export-to-html
+
+# find . -name "*.org" | xargs -I {} emacs {} --batch --eval '(setq make-backup-files nil)' --eval "(setq org-html-checkbox-type 'html)" -l $PWD/lib/htmlize.el -f org-html-export-to-html

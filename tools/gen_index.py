@@ -30,6 +30,7 @@ def extract_abs(path):
             continue
         else:
             newlines.append(line)
+    newlines = newlines[:3]
     if newlines:
         return "\n".join(newlines)[:200]
     return ""

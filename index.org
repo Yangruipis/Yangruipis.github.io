@@ -11,3 +11,7 @@
 ** [[file:./src/00_intro/why_this_page.org][ [2021-02-20] why_this_page]]
 balabala
 balabala
+** [[file:./src/00_intro/org_test.org][ [2021-02-20] org_test]]
+balabala
+balabala
+- [X] Checked.

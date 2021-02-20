@@ -18,7 +18,7 @@ HEADER = """
 #+EMAIL: yangruipis@163.com
 #+KEYWORDS: index
 #+OPTIONS: H:4 toc:t
-#+SETUPFILE: /Users/yangrui/.local/lib/theme-readtheorg.setup
+#+SETUPFILE: SETUP_FILE
 """
 
 

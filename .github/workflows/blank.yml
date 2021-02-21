@@ -29,8 +29,9 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
         
-      - name: install emacs
-        run: sudo apt-get update && sudo apt-get install -y emacs
+      - uses: purcell/setup-emacs@master
+        with:
+          version: 27.1
         
       - name: build
         run: bash +x ./tools/build.sh

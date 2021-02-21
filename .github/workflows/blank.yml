@@ -34,3 +34,7 @@ jobs:
         
       - name: build
         run: bash +x ./tools/build.sh
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+	  commit_message: auto build

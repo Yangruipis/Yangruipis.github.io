@@ -1,21 +1,56 @@
 #+LATEX_HEADER: \newenvironment{lequation}{\begin{equation}\Large}{\end{equation}}
 #+OPTIONS: ^:nil
 #+ATTR_LATEX: :width 5cm :options angle=90
-#+TITLE: 简介
+#+TITLE: 为什么会有本站
 #+AUTHOR: 杨 睿
 #+EMAIL: yangruipis@163.com
 #+KEYWORDS:
 #+OPTIONS: H:4 toc:t
 #+OPTIONS: tex:t
 #+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
-#+PRE_EVAL: (setq make-backup-files nil) (setq org-html-checkbox-type 'html)
-#+HTML_HEAD: <link href="https://raw.githubusercontent.com/kaushalmodi/.emacs.d/master/misc/css/leuven_theme.css" rel="stylesheet">
+
+* 说点什么
+
+截至今天（2021年2月21日），如果从提前实习开始，已经工作两年多了。这两年自己做了什么，付出了什么，收获了什么？我想大概也只有钉钉年报的统计数据能告诉我了，是的，我自己也说不清楚。
+
+但我有很多想说的。
 
 
-* About me
+** 关于博客
 
-balabala
+有写技术博客的习惯，嗯，曾经有。5年前吧，博客园、github、gitee、石墨笔记等等平台。乱七八糟，ID 也是五花八门（yangruipis、yangruiutf-8、yangruigit、yangruiGB2312...），一开始需求很简单，能记东西就行。后来日趋复杂：Markdown 语法、Latex公式渲染、GTD管理、代码高亮、图片外链、云端同步、跨平台。再后来渐渐发现，很难找到一个“大一统”的工具链和平台，满足我一切需求。反而在这一过程中，陷入了工具的泥潭里，以至于被自己的努力和折腾感动。
 
-* Why this page                                                        :test:
+一路走来看到很多容易被自己感动的人了，包括自己。有的人一上来和我说：
 
-balabala
+- “学长你好！我热爱算法和编程，balabala，想请教一下后续职业规划的问题”
+- “好啊，参加过什么比赛不，有什么项目不？”
+- 。。。
+- 。。。
+
+不好意思扯远了。博客在我看来，应该是内容远大于形式的东西。当然追求好的形式也说明你有一个好习惯，但是如果终日在想着形式，而没有动笔写一篇文字，那博客对你来说可能是可有可无的，有这个时间大可以干别的事情。
+
+
+博客是一种沉淀，大部分时间自己看，极小部分时间归对你感兴趣的人看。你不会指望在搜索引擎上用非指向性的关键词搜索到你博客页面，大V如王垠[fn:yinwangorg]也不行。你的博客入口只会在你的简历和 github 主页上。
+
+
+** 关于这篇博客
+
+- 这是一个很随意的博客，随意到连意识流都不算 :: 意识流好歹也是顺着自己想的走，我是跳着走，随机游走
+- 这是一个 org-mode 语法、Emacs htmlize lib 为渲染后端，readtheorg 主题的博客 :: 笔者大四时通过陈斌大大的《一年成为Emacs高手(像神一样使用编辑器)》[fn:chenbin] 入门 emacs，如今已过五年，还是没有成为Emacs高手，但是Emacs已经成为我不可或缺的一部分，当然这是后话了。
+  - 博客源码地址：[[https://github.com/Yangruipis/Yangruipis.github.io]]
+  - 本地编译方式： ~./tools/build.sh~
+  - CI： github actions
+
+* 问自己的问题
+
+
+** 知识的流量与存量
+
+
+** (Toolkits & Methodology) vs. Ideas
+
+* 给自己的方寸天地
+
+
+[fn:yinwangorg] [[https://www.yinwang.org/][当然我在扯淡 https://www.yinwang.org/]]
+[fn:chenbin] [[https://github.com/redguardtoo/mastering-emacs-in-one-year-guide]]

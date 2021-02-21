@@ -22,6 +22,14 @@ HEADER = """
 """
 
 
+def extract_title(path):
+    lines = open(path).read().splitlines()
+    lines = [l for l in lines if "+TITLE" in l]
+    if not lines:
+        return path.split("/")[-1].split(".")[0]
+    return ":".join(lines[0].split(":")[1:]).strip()
+
+
 def extract_abs(path):
     lines = open(path).read().splitlines()
     newlines = []
@@ -53,14 +61,14 @@ def main():
                 ts = os.stat(path).st_mtime
                 date = datetime.datetime.fromtimestamp(ts)
 
-                title = " [{}] {}".format(date.strftime("%Y-%m-%d"),
-                                          file_.replace(".org", ""))
+                title = extract_title(os.path.join(root, file_))
+                title = " [{}] {}".format(date.strftime("%Y-%m-%d"), title)
 
                 index_txt += "*" * star_len + " [[file:{}][{}]]".format(
                     "/".join(["./src"] + eles + [file_]), title)
                 index_txt += "\n"
                 index_txt += extract_abs(os.path.join(root, file_))
-                index_txt += "\n"
+                index_txt += "\n... ... \n"
     with open("./index.org", "w") as f:
         f.write(index_txt)
 

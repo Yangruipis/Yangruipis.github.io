@@ -8,16 +8,13 @@
 #+OPTIONS: H:4 toc:t
 #+OPTIONS: tex:t
 #+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
-#+PRE_EVAL: (setq make-backup-files nil) (setq org-html-checkbox-type 'html)
-
-#+HTML_HEAD: <link href="https://raw.githubusercontent.com/kaushalmodi/.emacs.d/master/misc/css/leuven_theme.css" rel="stylesheet">
 
 
-* adadad
+* 标题测试
 
-balabala
+这是一级标题里的内容
 
-* test                                                                 :test:
+* 其他测试                                                             :test:
 
 balabala
 

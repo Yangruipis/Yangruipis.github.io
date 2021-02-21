@@ -30,4 +30,7 @@ jobs:
         run: echo Hello, world!
         
       - name: install emacs
-        run: apt-get update && apt-get install -y emacs
+        run: sudo apt-get update && sudo apt-get install -y emacs
+        
+      - name: build
+        run: bash +x ./tools/build.sh

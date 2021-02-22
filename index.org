@@ -28,14 +28,6 @@
 
 ... ... 
 #+end_verse
-** [[file:./src/01_intro/org_test.org][ [2021-02-21] org 测试]]
-    **摘要** ： 
- #+begin_verse
-这是一级标题里的内容
-balabala
-- [X] Checked.
-... ... 
-#+end_verse
 * 02_tech
 ** shell
 *** [[file:./src/02_tech/shell/brief.org][ [2021-02-22] Shell 脚本入门]]
@@ -46,3 +38,13 @@ balabala
 https://zhuanlan.zhihu.com/p/315294919
 ... ... 
 #+end_verse
+* 98_temp
+** [[file:./src/98_temp/org_test.org][ [2021-02-22] org 测试]]
+    **摘要** ： 
+ #+begin_verse
+这是一级标题里的内容
+balabala
+- [X] Checked.
+... ... 
+#+end_verse
+* 99_trash

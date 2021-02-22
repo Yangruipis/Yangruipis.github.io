@@ -18,6 +18,55 @@
 - shell 不是一堆 bash 命令的集合
 - shell 是一个脚本语言，类似 python， 充当浇水
 
-* 如何解决
+* 如何解决 90% 的问题
 
-https://zhuanlan.zhihu.com/p/315294919
+参考：[[https://zhuanlan.zhihu.com/p/264346586][一篇教会你写90%的shell脚本]]
+
+
+* 常用函数
+
+** 日志
+
+#+BEGIN_SRC shell
+    LOG_INFO() {
+        set +x
+        local msg=$*
+        printf '[\033[1;32mINFO \033[0m]'
+        printf '[\033[0;34m%-s\033[0m]' "$(date +'%Y-%m-%d %H:%M:%S')"
+        printf '[\033[0;32m%-s:%d\033[0m]' "$0" "$LINENO"
+        printf ' %-s\n' "${msg}"
+        [[ ${DEBUG_MODE} -gt 0 ]] && set -x || set +x
+    }
+
+
+    LOG_WARNING() {
+        set +x
+        local msg=$*
+        printf '[\033[1;33mWARN \033[0m]'
+        printf '[\033[0;34m%-s\033[0m]' "$(date +'%Y-%m-%d %H:%M:%S')"
+        printf '[\033[0;33m%-s:%d\033[0m]' "$0" "$LINENO"
+        printf ' %-s\n' "${msg}"
+        [[ ${DEBUG_MODE} -gt 0 ]] && set -x || set +x
+    }
+
+
+    LOG_ERROR() {
+        set +x
+        local msg=$*
+        printf '[\033[1;31mERROR\033[0m]'
+        printf '[\033[0;34m%-s\033[0m]' "$(date +'%Y-%m-%d %H:%M:%S')"
+        printf '[\033[0;31m%-s:%d\033[0m]' "$0" "$LINENO"
+        printf ' %-s\n' "${msg}"
+        [[ ${DEBUG_MODE} -gt 0 ]] && set -x || set +x
+    }
+
+  LOG_INFO "this is an info"
+  LOG_WARNING "this is a warning"
+  LOG_ERROR "this is an error"
+#+END_SRC
+
+
+效果：
+
+[[../../../assets/img/02_tech_shell_log_image.jpg]]
+

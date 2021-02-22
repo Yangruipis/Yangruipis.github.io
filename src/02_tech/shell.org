@@ -4,7 +4,7 @@
 #+TITLE: Shell 脚本入门
 #+AUTHOR: 杨 睿
 #+EMAIL: yangruipis@163.com
-#+KEYWORDS: 
+#+KEYWORDS:
 #+OPTIONS: H:4 toc:t
 #+OPTIONS: tex:t
 #+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
@@ -70,3 +70,30 @@
 
 [[../../../assets/img/02_tech_shell_log_image.jpg]]
 
+* 常用操作
+
+** 参数
+
+- 函数入参取值 :: =$N=
+- 函数入参取全部 :: =$*= ，空格分割
+- 函数入参偏移 :: =shift N= 偏移后取全部取的是偏移后的值，类似 python *args
+- 取入参数目 :: =$#=
+- 取shell内最近一个线程执行状态 :: =$?=
+- 取shell内最近一个线程的线程号 :: =$!=
+
+
+** 异常捕捉
+
+- 通过 =||= 或 =&&= 实现异常捕捉
+  #+BEGIN_SRC shell
+  echo ${input} || exit ${EXIT_INPUT_ERROR}
+  #+END_SRC
+  - 高级一点的方式，统计失败个数
+    #+BEGIN_SRC shell
+      FAIL_COUNT=0
+      echo ${input} || let "FAIL_COUNT+=1"
+    #+END_SRC
+- 通过 =trap= 异常捕捉[fn:trap]
+  
+
+[fn:trap] https://man.linuxde.net/trap

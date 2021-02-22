@@ -15,34 +15,30 @@
 
 * 01_intro
 ** [[file:./src/01_intro/why_this_page.org][ [2021-02-22] 为什么会有本站]]
-    **摘要** ： 
- #+begin_verse
-截至今天（2021年2月21日），如果从提前实习开始，已经工作两年多了。这两年自己做了什么，付出了什么，收获了什么？我想大概也只有钉钉年报的统计数据能告诉我了，是的，我自己也说不清楚。
+#+begin_verse
+ **摘要** : 截至今天（2021年2月21日），如果从提前实习开始，已经工作两年多了。这两年自己做了什么，付出了什么，收获了什么？我想大概也只有钉钉年报的统计数据能告诉我了，是的，我自己也说不清楚。
 但我有很多想说的。
 有写技术博客的习惯，嗯，曾经有。5年前吧，博客园、github、gitee、石墨笔记等等平台。乱七八糟，ID 也是五花八门（yangruipis、yangruiutf-8、yangruigit、
 ... ... 
 #+end_verse
 ** [[file:./src/01_intro/about_me.org][ [2021-02-22] 个人简介]]
-    **摘要** ： 
- #+begin_verse
-
+#+begin_verse
+ **摘要** : 
 ... ... 
 #+end_verse
 * 02_tech
 ** shell
 *** [[file:./src/02_tech/shell/brief.org][ [2021-02-22] Shell 脚本入门]]
-    **摘要** ： 
- #+begin_verse
-- shell 不是一堆 bash 命令的集合
+#+begin_verse
+ **摘要** : - shell 不是一堆 bash 命令的集合
 - shell 是一个脚本语言，类似 python， 充当浇水
-https://zhuanlan.zhihu.com/p/315294919
+参考：[[https://zhuanlan.zhihu.com/p/264346586][一篇教会你写90%的shell脚本]]
 ... ... 
 #+end_verse
 * 98_temp
 ** [[file:./src/98_temp/org_test.org][ [2021-02-22] org 测试]]
-    **摘要** ： 
- #+begin_verse
-这是一级标题里的内容
+#+begin_verse
+ **摘要** : 这是一级标题里的内容
 balabala
 - [X] Checked.
 ... ... 

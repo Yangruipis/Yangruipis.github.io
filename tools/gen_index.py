@@ -73,7 +73,7 @@ def main():
                 index_txt += "*" * star_len + " [[file:{}][{}]]".format(
                     "/".join(["./src"] + eles + [file_]), title)
                 index_txt += "\n"
-                index_txt += "    **摘要** ： \n #+begin_verse\n" + extract_abs(os.path.join(root, file_))
+                index_txt += "#+begin_verse\n **摘要** : " + extract_abs(os.path.join(root, file_))
                 index_txt += "\n... ... \n#+end_verse\n"
     with open("./index.org", "w") as f:
         f.write(index_txt)

@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ release ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -38,4 +38,6 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
+          branch: release
+          push_options: '--force'
           commit_message: auto build

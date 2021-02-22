@@ -27,8 +27,7 @@
 ... ... 
 #+end_verse
 * 02_tech
-** shell
-*** [[file:./src/02_tech/shell/brief.org][ [2021-02-22] Shell 脚本入门]]
+** [[file:./src/02_tech/shell.org][ [2021-02-22] Shell 脚本入门]]
 #+begin_verse
  **摘要** : - shell 不是一堆 bash 命令的集合
 - shell 是一个脚本语言，类似 python， 充当浇水

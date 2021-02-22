@@ -8,7 +8,7 @@
 #+OPTIONS: H:4 toc:t
 #+OPTIONS: tex:t
 #+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
-#+HTML_HEAD: <link rel="shortcut icon" type="image/x-icon" href="{{site.url}}/favicon.ico">
+#+HTML_HEAD: <link rel="shortcut icon" type="image/x-icon" href="https://gitee.com/yangruigit/my_blogs/raw/master/favicon.ico">
 #+html: <div align="right">
 #+html: <a href="javascript:history.back()">返回</a>
 #+html: </div>
@@ -69,7 +69,7 @@
 
 效果：
 
-[[../../../assets/img/02_tech_shell_log_image.jpg]]
+[[../../assets/img/02_tech_shell_log_image.jpg]]
 
 * 常用操作
 

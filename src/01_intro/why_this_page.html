@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-02-21 Sun 08:02 -->
+<!-- 2021-02-22 一 14:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>为什么会有本站</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="杨 睿" />
+<meta name="keywords" content="关于" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -253,25 +254,34 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd114185">1. 说点什么</a>
+<li><a href="#orgb25bde2">1. 说点什么</a>
 <ul>
-<li><a href="#org9ce73a2">1.1. 关于博客</a></li>
-<li><a href="#org98bddf6">1.2. 关于这篇博客</a></li>
+<li><a href="#org2a86ec7">1.1. 关于博客</a></li>
+<li><a href="#orgb2b8cd5">1.2. 关于此博客</a></li>
 </ul>
 </li>
-<li><a href="#org45ba024">2. 问自己的问题</a>
+<li><a href="#org567fcf0">2. 问自己的问题</a>
 <ul>
-<li><a href="#org4d8fb22">2.1. 知识的流量与存量</a></li>
-<li><a href="#org3ab2624">2.2. (Toolkits &amp; Methodology) vs. Ideas</a></li>
+<li><a href="#org0e4d139">2.1. 知识的流量与存量</a></li>
+<li><a href="#orgf2cf418">2.2. Trade-offs</a>
+<ul>
+<li><a href="#orgf1ad85b">2.2.1. Toolkits &amp; Methodology v.s. Ideas</a></li>
+<li><a href="#org3bda93e">2.2.2. Tech v.s. Life</a></li>
+<li><a href="#org97788f1">2.2.3. Content v.s. Layout</a></li>
+<li><a href="#org55eef21">2.2.4. Algorithm v.s. Engineering</a></li>
 </ul>
 </li>
-<li><a href="#orgeb74b3b">3. 给自己的方寸天地</a></li>
+</ul>
+</li>
 </ul>
 </div>
+</div>
+<div align="right">
+<a href="javascript:history.back()">返回</a>
 </div>
 
-<div id="outline-container-orgd114185" class="outline-2">
-<h2 id="orgd114185"><span class="section-number-2">1</span> 说点什么</h2>
+<div id="outline-container-orgb25bde2" class="outline-2">
+<h2 id="orgb25bde2"><span class="section-number-2">1</span> 说点什么</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 截至今天（2021年2月21日），如果从提前实习开始，已经工作两年多了。这两年自己做了什么，付出了什么，收获了什么？我想大概也只有钉钉年报的统计数据能告诉我了，是的，我自己也说不清楚。
@@ -283,8 +293,8 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org9ce73a2" class="outline-3">
-<h3 id="org9ce73a2"><span class="section-number-3">1.1</span> 关于博客</h3>
+<div id="outline-container-org2a86ec7" class="outline-3">
+<h3 id="org2a86ec7"><span class="section-number-3">1.1</span> 关于博客</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 有写技术博客的习惯，嗯，曾经有。5年前吧，博客园、github、gitee、石墨笔记等等平台。乱七八糟，ID 也是五花八门（yangruipis、yangruiutf-8、yangruigit、yangruiGB2312&#x2026;），一开始需求很简单，能记东西就行。后来日趋复杂：Markdown 语法、Latex公式渲染、GTD管理、代码高亮、图片外链、云端同步、跨平台。再后来渐渐发现，很难找到一个“大一统”的工具链和平台，满足我一切需求。反而在这一过程中，陷入了工具的泥潭里，以至于被自己的努力和折腾感动。
@@ -313,8 +323,8 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org98bddf6" class="outline-3">
-<h3 id="org98bddf6"><span class="section-number-3">1.2</span> 关于这篇博客</h3>
+<div id="outline-container-orgb2b8cd5" class="outline-3">
+<h3 id="orgb2b8cd5"><span class="section-number-3">1.2</span> 关于此博客</h3>
 <div class="outline-text-3" id="text-1-2">
 <dl class="org-dl">
 <dt>这是一个很随意的博客，随意到连意识流都不算</dt><dd>意识流好歹也是顺着自己想的走，我是跳着走，随机游走</dd>
@@ -322,30 +332,99 @@ for the JavaScript code in this tag.
 <ul class="org-ul">
 <li>博客源码地址：<a href="https://github.com/Yangruipis/Yangruipis.github.io">https://github.com/Yangruipis/Yangruipis.github.io</a></li>
 <li>本地编译方式： <code>./tools/build.sh</code></li>
-<li>CI： github actions</li>
+<li>CI 在线编译： 见 github actions</li>
 </ul></dd>
 </dl>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org45ba024" class="outline-2">
-<h2 id="org45ba024"><span class="section-number-2">2</span> 问自己的问题</h2>
+<div id="outline-container-org567fcf0" class="outline-2">
+<h2 id="org567fcf0"><span class="section-number-2">2</span> 问自己的问题</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org4d8fb22" class="outline-3">
-<h3 id="org4d8fb22"><span class="section-number-3">2.1</span> 知识的流量与存量</h3>
+<div id="outline-container-org0e4d139" class="outline-3">
+<h3 id="org0e4d139"><span class="section-number-3">2.1</span> 知识的流量与存量</h3>
+<div class="outline-text-3" id="text-2-1">
+<blockquote>
+<p>
+我们要关注知识的存量，
+而不是流量  &#x2013; ZT
+</p>
+</blockquote>
+
+<p>
+这是大三计量经济学老师第一堂课说的话，牢记到了现在，但是实际做到多少呢？在我看来，广义的知识存量，就是能以某种形式对自己产生影响的东西。不论什么形式，是记忆、网页书签、还是笔记，不论这个东西是什么，来自哪里，有关知识、技术、还是娱乐，不论是怎么样的影响，都是存量。
+</p>
+
+<p>
+我经常问自己，每天有多少知识的存量。在我看来：
+</p>
+
+<dl class="org-dl">
+<dt>看dota直播</dt><dd>是完全的流量</dd>
+<dt>看b站视频</dt><dd>如果我以后想起可以会心一笑，那就是存量（比如诸多镇站之宝），否则皆为流量</dd>
+<dt>工作</dt><dd>部分重复的复制粘贴或者越走越偏的钻研，也是流量，再次遇到类似的问题，可能依然需要从头开始。但是如果可以用东西记下来，这就是实打实的存量了。</dd>
+</dl>
+
+<div class="note">
+<p>
+博客是将知识流量转换为存量的一种手段
+</p>
+
 </div>
 
-
-<div id="outline-container-org3ab2624" class="outline-3">
-<h3 id="org3ab2624"><span class="section-number-3">2.2</span> (Toolkits &amp; Methodology) vs. Ideas</h3>
+<p>
+这也是会有此博客的原因
+</p>
 </div>
 </div>
 
-<div id="outline-container-orgeb74b3b" class="outline-2">
-<h2 id="orgeb74b3b"><span class="section-number-2">3</span> 给自己的方寸天地</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgf2cf418" class="outline-3">
+<h3 id="orgf2cf418"><span class="section-number-3">2.2</span> Trade-offs</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+学习的 trade-off 非常多，我会问自己，此博客是怎么样的呢？
+</p>
+</div>
+
+<div id="outline-container-orgf1ad85b" class="outline-4">
+<h4 id="orgf1ad85b"><span class="section-number-4">2.2.1</span> Toolkits &amp; Methodology v.s. Ideas</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<dl class="org-dl">
+<dt>工具和方法论会是本博客的重点</dt><dd>虽然对工具和方法论的追逐是不被提倡的</dd>
+<dt>个人的思考、感悟、想法只会占一小部分，但是却远比前者重要</dt><dd>工具和方法在哪里都可以查到，自己的思考只属于自己。</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org3bda93e" class="outline-4">
+<h4 id="org3bda93e"><span class="section-number-4">2.2.2</span> Tech v.s. Life</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+技术和生活是五五开的，再不记录自己的生活可能连自己都忘了自己存在过了
+</p>
+</div>
+</div>
+
+<div id="outline-container-org97788f1" class="outline-4">
+<h4 id="org97788f1"><span class="section-number-4">2.2.3</span> Content v.s. Layout</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<ul class="org-ul">
+<li>Layout 将 <b><b>永远</b></b> 采用 <code>readtheorg</code> ，往后不会再在展示上花时间</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org55eef21" class="outline-4">
+<h4 id="org55eef21"><span class="section-number-4">2.2.4</span> Algorithm v.s. Engineering</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<ul class="org-ul">
+<li>虽然是算法相关工作出身，但是后续会以工程为主</li>
+<li>算法前沿依然会持续跟进</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div id="footnotes">
@@ -365,7 +444,7 @@ for the JavaScript code in this tag.
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: 杨 睿</p>
-<p class="date">Created: 2021-02-21 Sun 08:02</p>
+<p class="date">Created: 2021-02-22 一 14:52</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

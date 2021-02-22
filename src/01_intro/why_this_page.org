@@ -4,10 +4,13 @@
 #+TITLE: 为什么会有本站
 #+AUTHOR: 杨 睿
 #+EMAIL: yangruipis@163.com
-#+KEYWORDS:
+#+KEYWORDS: 关于
 #+OPTIONS: H:4 toc:t
 #+OPTIONS: tex:t
 #+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
+#+html: <div align="right">
+#+html: <a href="javascript:history.back()">返回</a>
+#+html: </div>
 
 * 说点什么
 
@@ -33,23 +36,58 @@
 博客是一种沉淀，大部分时间自己看，极小部分时间归对你感兴趣的人看。你不会指望在搜索引擎上用非指向性的关键词搜索到你博客页面，大V如王垠[fn:yinwangorg]也不行。你的博客入口只会在你的简历和 github 主页上。
 
 
-** 关于这篇博客
+** 关于此博客
 
 - 这是一个很随意的博客，随意到连意识流都不算 :: 意识流好歹也是顺着自己想的走，我是跳着走，随机游走
 - 这是一个 org-mode 语法、Emacs htmlize lib 为渲染后端，readtheorg 主题的博客 :: 笔者大四时通过陈斌大大的《一年成为Emacs高手(像神一样使用编辑器)》[fn:chenbin] 入门 emacs，如今已过五年，还是没有成为Emacs高手，但是Emacs已经成为我不可或缺的一部分，当然这是后话了。
   - 博客源码地址：[[https://github.com/Yangruipis/Yangruipis.github.io]]
   - 本地编译方式： ~./tools/build.sh~
-  - CI： github actions
-
+  - CI 在线编译： 见 github actions
+    
 * 问自己的问题
-
 
 ** 知识的流量与存量
 
+#+begin_quote
+我们要关注知识的存量，
+而不是流量  -- ZT
+#+end_quote
 
-** (Toolkits & Methodology) vs. Ideas
+这是大三计量经济学老师第一堂课说的话，牢记到了现在，但是实际做到多少呢？在我看来，广义的知识存量，就是能以某种形式对自己产生影响的东西。不论什么形式，是记忆、网页书签、还是笔记，不论这个东西是什么，来自哪里，有关知识、技术、还是娱乐，不论是怎么样的影响，都是存量。
 
-* 给自己的方寸天地
+我经常问自己，每天有多少知识的存量。在我看来：
+
+- 看dota直播 :: 是完全的流量
+- 看b站视频 :: 如果我以后想起可以会心一笑，那就是存量（比如诸多镇站之宝），否则皆为流量
+- 工作 :: 部分重复的复制粘贴或者越走越偏的钻研，也是流量，再次遇到类似的问题，可能依然需要从头开始。但是如果可以用东西记下来，这就是实打实的存量了。
+
+#+begin_note
+博客是将知识流量转换为存量的一种手段
+#+end_note
+
+这也是会有此博客的原因
+
+** Trade-offs
+
+学习的 trade-off 非常多，我会问自己，此博客是怎么样的呢？
+
+*** Toolkits & Methodology v.s. Ideas
+
+- 工具和方法论会是本博客的重点 :: 虽然对工具和方法论的追逐是不被提倡的
+- 个人的思考、感悟、想法只会占一小部分，但是却远比前者重要 :: 工具和方法在哪里都可以查到，自己的思考只属于自己。  
+
+*** Tech v.s. Life
+
+技术和生活是五五开的，再不记录自己的生活可能连自己都忘了自己存在过了
+
+*** Content v.s. Layout
+
+- Layout 将 **永远** 采用 =readtheorg= ，往后不会再在展示上花时间
+
+*** Algorithm v.s. Engineering
+
+- 虽然是算法相关工作出身，但是后续会以工程为主
+- 算法前沿依然会持续跟进
 
 
 [fn:yinwangorg] [[https://www.yinwang.org/][当然我在扯淡 https://www.yinwang.org/]]

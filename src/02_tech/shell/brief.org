@@ -1,0 +1,28 @@
+#+LATEX_HEADER: \newenvironment{lequation}{\begin{equation}\Large}{\end{equation}}
+#+OPTIONS: ^:nil
+#+ATTR_LATEX: :width 5cm :options angle=90
+#+TITLE: Shell 脚本入门
+#+AUTHOR: 杨 睿
+#+EMAIL: yangruipis@163.com
+#+KEYWORDS: 
+#+OPTIONS: H:4 toc:t
+#+OPTIONS: tex:t
+#+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
+#+html: <div align="right">
+#+html: <a href="javascript:history.back()">返回</a>
+#+html: </div>
+
+
+* 关于 shell
+
+- shell 不是一堆 bash 命令的集合
+- shell 是一个脚本语言，类似 python， 充当浇水
+
+* 如何解决
+
+https://zhuanlan.zhihu.com/p/315294919
+
+  
+
+
+

@@ -13,12 +13,18 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 HEADER = """
 #+OPTIONS: ^:nil
 #+ATTR_LATEX: :width 5cm :options angle=90
-#+TITLE: 索引
+#+TITLE: 主页
 #+AUTHOR: 杨 睿
 #+EMAIL: yangruipis@163.com
 #+KEYWORDS: index
 #+OPTIONS: H:4 toc:t
 #+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
+
+#+html: <a href="https://github.com/Yangruipis/Yangruipis.github.io/actions">
+#+html:   <img src="https://github.com/Yangruipis/Yangruipis.github.io/workflows/CI/badge.svg"/>
+#+html: </a>
+#+html: <p>&nbsp;</p>
+
 """
 
 
@@ -48,7 +54,7 @@ def main():
     index_txt = HEADER
     src_dir = os.path.join(CURRENT_DIR, '../src')
 
-    for root, dirs, files in os.walk(src_dir):
+    for root, dirs, files in sorted(os.walk(src_dir)):
         eles = root.split("src")[-1].split("/")
         eles = [i for i in eles if i.strip()]
         if eles:
@@ -67,8 +73,8 @@ def main():
                 index_txt += "*" * star_len + " [[file:{}][{}]]".format(
                     "/".join(["./src"] + eles + [file_]), title)
                 index_txt += "\n"
-                index_txt += extract_abs(os.path.join(root, file_))
-                index_txt += "\n... ... \n"
+                index_txt += "    **摘要** ： \n #+begin_verse\n" + extract_abs(os.path.join(root, file_))
+                index_txt += "\n... ... \n#+end_verse\n"
     with open("./index.org", "w") as f:
         f.write(index_txt)
 

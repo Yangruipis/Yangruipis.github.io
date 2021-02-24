@@ -21,7 +21,113 @@
 | HOMEPAGE | [[https://yangruipis.github.io/]] |
 | LOCATION | Shanghai                      |
 
-* 
+* 其他
 
-  
+#+BEGIN_SRC latex
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
 
+\documentclass{resume}
+\usepackage{tabu}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{zh_CN-Adobefonts_external} % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)
+%\usepackage{zh_CN-Adobefonts_internal} % Simplified Chinese Support using system fonts
+\usepackage{linespacing_fix} % disable extra space before next section
+\usepackage{cite}
+
+\begin{document}
+\pagenumbering{gobble} % suppress displaying page number
+
+\Large{
+  \begin{tabu}{ l l l }
+   \multirow{6}{1in}{\includegraphics[width=1in]{small_1}} & & \\
+   & \ \ \scshape{\Huge{杨 睿}} &  \\
+    & \ \ \email{yangruipis@163.com} & \ \  \rsssquare[cnblogs.com/yangruiGB2312]{http://www.cnblogs.com/yangruiGB2312/}\\
+    & \ \ \phone{(+86) 188-1823-1378} & \ \ \github[github.com/Yangruipis]{https://github.com/Yangruipis} \\
+    &  \multicolumn{2}{l}{ \ \ \home{\scshape{上海市-长宁区}}} &
+  \end{tabu}
+}
+
+\ \ 
+
+
+
+\section{\faGraduationCap\ 教育经历}
+\datedsubsection{\textbf{\large{上海对外经贸大学}}}{2012.09 -- 2019.03}
+\normalsize{\textit{研究生（保研）}\quad  \quad \quad \  数量经济学专业，金融数据挖掘方向} \hfill GPA:3.90，专业排名：4/17
+
+\textit{本科} \quad \quad  \quad   \quad \quad  \quad \quad \quad 统计学 \hfill GPA:3.31，专业排名：2/54
+
+\section{\trophy\ 荣誉和奖项}
+\datedline{“东证期货杯”统计建模大赛 \quad \quad \ \  \quad \quad  \quad \   \textit{一等奖(top 10 in 1000+)} }{2018.03}
+\datedline{“华为杯”全国研究生数学建模大赛 \quad  \quad \ \ \  \textit{二等奖(top 15\%)} }{2017.09}
+\datedline{中国大数据创新行动大赛 \quad  \quad  \quad  \quad \quad  \quad \quad  \textit{一等奖(top\  1,奖金5万元)}}{2016.12}
+\datedline{上海市优秀毕业生、校十佳学术标兵、爱建企业奖学金一等奖(全校top10)}{}
+
+
+\section{\faUsers\ 工作经历}
+
+\datedsubsection{\textbf{上海依图网络科技有限公司}，\textit{研究部}， \textit{算法工程师}}{2019.01 -- 2020.07}
+%*小组介绍：负责基于检测和识别模型的上层算法，包括\textbf{人脸/人体图像聚类(归档)
+%\& 检索}算法，是公司安防算法落地的主要部门之一。
+\textbf{\ [人脸\&人体归档项目] \  \hfill 2019.01 -- 2020.04}
+\begin{itemize}
+  \item 人脸\&人体聚类算法维护和优化。在原有的二分图+层次聚类算法基础上引入新的策略（包括档案特征表示策略、多核心记录策略、去长尾策略等），同时完善了周边工具，包括 \textit{eval \& visualize} 工具、图片本地存储方案等。开发语言：\textit{C++}。
+  \item 将 GNN(图神经网络) 应用到当前聚类流程中。完整参与了\textbf{前期算法设计}、实验代码开发、实验设计和实操、标注迭代、\textbf{算法性能优化}、\textbf{实验代码处理性能优化、算法集成和加速}等。模型1v1性能 Recall@Fa=1e-6 提升7\textasciitilde23个点，人体归档 Average Recall 最大提升20个点，上线后QPS@8GPU(2080Ti) $\ge 10k$。开发语言：\textit{C++(+ CUDA)、Python}。
+  \item 2019年终绩效 3+（Research员工平均绩效为3）。
+\end{itemize}
+\textbf{\ [CV 实验平台项目] \  \hfill 2020.05 -- 2020.07}
+\begin{itemize}
+  \item CV 实验平台开发。参与开发了一个以 \textit{torch} 做后端，对多种 CV 任务（包括分类、检测等）通用的实验平台，并且支持 \textit{composite model} 和 \textit{multi-task} 训练。在其中负责 \textit{train、predict、eval、visualize、convert\_caffe} 等基本功能的开发和维护，新算法添加和适配（比如SSD multi-label），以及部分算法(比如 nms)的加速。
+  \item 分布式训练调研，熟悉 \textit{Ray、horovod、pytorch DDP}等分布式训练框架以及梯度同步算法。
+\end{itemize}
+% \datedsubsection{\textbf{上海天壤智能科技有限公司}，\textit{金融大脑}， \textit{后端研发工程师}}{2019.07 -- }
+% \textbf{\ [OCR训练平台] \  \hfill 2020.07 -- 2020.11}
+% \begin{itemize}
+%   \item 训练平台日常维护，算法模块镜像
+% \end{itemize}
+
+\section{\tasks\ 项目经历}
+
+% \datedsubsection{\textbf{依图GNN图像聚类算法}}{2019.11 -- 2020.05}
+% \begin{itemize}
+% \item \textbf{算法设计}：参与了前期算法设计，给出性能评估方案（1v1单模块和端到端聚类性能）。
+% \item \textbf{实验环境开发}：负责绝大部分\textit{pytorch} 实验代码开发和维护，并且后续不断对 training 和 inference 进行处理性能优化，方法包括了producer-consumer莫斯、稀疏矩阵、多卡处理、分卡IO优化等，熟练使用 nsight 进行 Profile。
+% \item \textbf{C++集成与TensorRT优化}：负责部分GNN聚类集成环境设计(30\%)、大部分集成代码开发(70\%)，以及所有torch转TensorRT优化的工作。在使用TRT过程中，借助邻接表对稀疏矩阵乘法进行进一步优化，避免了超大矩阵相乘。
+% \item \textbf{其他数据和实验工作}：负责一部分数据集制作、算法实验设计和实操的工作，其中效果最好的knn阈值实验，使当时recall@FA性能提高3个点左右\%。
+% \end{itemize}
+
+
+\datedsubsection{\textbf{Kaggle Home Credit Default Risk}}{2018.06 -- 2018.08}
+\begin{itemize}
+\item 负责特征工程，包括了数据预处理，多表聚合，特征选择(\textit{Lasso、LightGBM、FeatureTools})，非平衡数据处理(\textit{ENN、Tomek})，模型的选择和优化（\textit{GridSearch、BayesOpt、LightGBM、XGBoost})，以及团队模型融合(\textit{Stacking、Weighted Average Rank})
+\item 在7200+队伍中排名\textbf{137名}，位于\textbf{前2\%}
+\end{itemize}
+
+
+\datedsubsection{\textbf{机器学习库\textit{simple\_ml}开发}}{2017.12 -- 2018.06}
+\begin{itemize}
+\item 个人项目\github[simple\_ml: \ https://yangruipis.github.io/simple\_ml]{https://yangruipis.github.io/simple_ml/} ，开发环境：\textit{python3.6+Anaconda+Emacs}
+\item 仅依赖numpy实现了常用的特征工程、模型评价、分类(\textit{LR、KNN、NB、DT、SVM、SVR、BP、AdaBoost、GBDT、RF、stacking})与聚类(\textit{K-means、 层次、DBSCAN})算法、自动化数据预处理和特征选择方法。
+\end{itemize}
+
+\section{\faCogs\ \ 技能 \& \ 自我描述}
+\begin{itemize}
+    \item >4年\textit{python} 开发与建模经验，熟练使用 \textit{pytorch、numpy、pandas}等库进行数据处理、机器学习算法开发和实验等，熟悉\textit{Caffe、XGBoost、LightGBM}。
+    \item >3年\textit{Linux}使用经验，掌握基本bash命令和shell脚本编写，熟练使用\textit{Emacs}（可以写一些个性化指令）、\textit{Git、Awk}等工具。热衷 \LaTeX 写作，独立贡献了校毕业论文 \LaTeX 模板\github[SUIBEthesis]{https://github.com/Yangruipis/SUIBEthesis}。
+    \item 1.5年\textit{C++}开发经验，熟悉基本特性，熟练使用\textit{Scons}；0.5年\textit{CUDA}开发经验，熟悉核函数编写、以及常规的优化方法；了解 \textit{TensorRT} 和模型计算加速。
+    % \item 数理统计基础扎实，熟悉计量经济，多元统计，时间序列，贝叶斯统计等方面的知识，熟练掌握机器学习相关算法及原理。
+\end{itemize}
+
+\quad \quad 热爱编程，喜欢思考，追求新技术。英语读写流畅(CET6:541)，爱好有摄影（校摄影大赛二等奖）、骑行等。
+
+
+
+%% Reference
+%\newpage
+%\bibliographystyle{IEEETran}
+%\bibliography{mycite}
+\end{document}
+#+END_SRC

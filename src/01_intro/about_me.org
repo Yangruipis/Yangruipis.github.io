@@ -14,12 +14,14 @@
 
 
 * 基本信息
+
 | EMAIL    | yangruipis@163.com            |
 | TEL      | +86 188 182 31378             |
 | GITHUB   | [[https://github.com/Yangruipis][github.com/Yangruipis]]         |
 | HOMEPAGE | [[https://yangruipis.github.io/]] |
 | LOCATION | Shanghai                      |
 
+* 
 
   
 

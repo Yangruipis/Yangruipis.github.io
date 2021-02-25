@@ -228,7 +228,7 @@ Org-mode是所有事项的文本载体，Agenda从其中进行读取、归档、
 
 *** org-agenda查看每日任务
 
-[[https://images2018.cnblogs.com/blog/998084/201805/998084-20180529234449465-1207535428.gif]]
+[[../../assets/img/03_emacs_org_gtd_01.gif]]
 
 步骤：
 1.  ~C-c a~ 进入org-agenda
@@ -239,7 +239,7 @@ Org-mode是所有事项的文本载体，Agenda从其中进行读取、归档、
 
 *** org-agenda查看自定义模板
 
-[[https://images2018.cnblogs.com/blog/998084/201805/998084-20180529234459062-31643251.gif]]
+[[../../assets/img/03_emacs_org_gtd_02.gif]]
 
 步骤：
 
@@ -307,7 +307,7 @@ Org-mode是所有事项的文本载体，Agenda从其中进行读取、归档、
 
 *** 演示
 
-[[https://images2018.cnblogs.com/blog/998084/201805/998084-20180529234510999-2080877572.gif]]
+[[../../assets/img/03_emacs_org_gtd_03.gif]]
 
 步骤：
 

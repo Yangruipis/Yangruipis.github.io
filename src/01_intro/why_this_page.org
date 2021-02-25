@@ -8,6 +8,7 @@
 #+OPTIONS: H:4 toc:t
 #+OPTIONS: tex:t
 #+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
 #+html: <div align="right">
 #+html: <a href="javascript:history.back()">返回</a>
 #+html: </div>

@@ -8,6 +8,7 @@
 #+OPTIONS: H:4 toc:t
 #+OPTIONS: tex:t
 #+SETUPFILE: https://gitee.com/yangruigit/my_blogs/raw/master/lib/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;} </style>
 #+html: <div align="right">
 #+html: <a href="javascript:history.back()">返回</a>
 #+html: </div>
@@ -16,12 +17,58 @@
 * 基本信息
 
 | EMAIL    | yangruipis@163.com            |
-| TEL      | +86 188 182 31378             |
+| EEL      | +86 188 182 31378             |
 | GITHUB   | [[https://github.com/Yangruipis][github.com/Yangruipis]]         |
 | HOMEPAGE | [[https://yangruipis.github.io/]] |
 | LOCATION | Shanghai                      |
 
-* 其他
+* 教育经历
+
+- 上海对外经贸大学 (2016.09 -- 2019.03) :: 研究生（保研），数量经济学专业，金融数据挖掘方向
+- 上海对外经贸大学 (2012.09 -- 2016.06) :: 本科，统计学
+  
+
+* 荣誉和奖项
+
+- “东证期货杯”统计建模大赛(2018.03) :: 一等奖(top 10 in 1000+) 
+- “华为杯”全国研究生数学建模大赛(2017.09) :: 二等奖(top 15%)
+- 中国大数据创新行动大赛(2016.12) :: 一等奖(top  1,奖金5万元)
+- 其他 :: 上海市优秀毕业生、校十佳学术标兵、爱建企业奖学金一等奖(全校top10)
+
+* 工作经历
+
+
+** [2021-07~] 上海天壤智能有限公司
+
+- 部门：金融大脑
+- 职位：研发工程师
+
+项目：
+- 推荐系统
+  - 内容推荐
+  - 活动推荐
+- OCR
+  - 模型平台
+  - 容器平台
+  - 数据生成平台
+  
+
+** [2020-01~2021-07] 上海依图网络科技有限公司
+
+- 部门： 研究部
+- 职位： 算法工程师
+
+项目：
+
+1. 人脸&人体归档项目(2019.01 -- 2020.04)
+   - 人脸&人体聚类算法维护和优化。在原有的二分图+层次聚类算法基础上引入新的策略（包括档案特征表示策略、多核心记录策略、去长尾策略等），同时完善了周边工具，包括 eval & visualize 工具、图片本地存储方案等。开发语言：C++。
+   - 将 GNN(图神经网络) 应用到当前聚类流程中。完整参与了 **前期算法设计、实验代码开发、实验设计和实操、标注迭代、算法性能优化、实验代码处理性能优化、算法集成和加速等** 。模型1v1性能 Recall@Fa=1e-6 提升7~23个点，人体归档 Average Recall 最大提升20个点，上线后QPS@8GPU(2080Ti) > 10k。开发语言：C++(+ CUDA)、Python。
+   - 2019年终绩效 3+（Research员工平均绩效为3）。
+2. CV 实验平台项目(2020.05 -- 2020.07)
+   - CV 实验平台开发。参与开发了一个以 torch 做后端，对多种 CV 任务（包括分类、检测等）通用的实验平台，并且支持 composite model 和 multi-task 训练。在其中负责 train、predict、eval、visualize、convert\_caffe 等基本功能的开发和维护，新算法添加和适配（比如SSD multi-label），以及部分算法(比如 nms)的加速。
+   - 分布式训练调研，熟悉 Ray、horovod、pytorch DDP等分布式训练框架以及梯度同步算法。
+
+* 简历源码
 
 #+BEGIN_SRC latex
 % !TEX TS-program = xelatex

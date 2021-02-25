@@ -11,7 +11,7 @@ import datetime
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 HEADER = """
-#+OPTIONS: ^:nil
+#+OPTIONS: ^:nil num:nil
 #+ATTR_LATEX: :width 5cm :options angle=90
 #+TITLE: 主页
 #+AUTHOR: 杨 睿

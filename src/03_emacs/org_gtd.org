@@ -1,7 +1,7 @@
 #+LATEX_HEADER: \newenvironment{lequation}{\begin{equation}\Large}{\end{equation}}
 #+OPTIONS: ^:nil
 #+ATTR_LATEX: :width 5cm :options angle=90
-#+TITLE: 利用Emacs进行个人时间管理(GTD)
+#+TITLE: [MIGRATE]利用Emacs进行个人时间管理(GTD)
 #+AUTHOR: 杨 睿
 #+EMAIL: yangruipis@163.com
 #+KEYWORDS: 

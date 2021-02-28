@@ -28,12 +28,12 @@
 | GITHUB   | [[https://github.com/Yangruipis][github.com/Yangruipis]]         |
 ... ... 
 #+end_verse
-* 02_tech
-** [[file:./src/02_tech/shell.org][ [2021-02-25] Shell 脚本入门]]
+* 02_tools
+** [[file:./src/02_tools/manjaro_setup.org][ [2021-02-26] [MIGRATE]Majaro配置]]
 #+begin_verse
- **摘要** : - shell 不是一堆 bash 命令的集合
-- shell 是一个脚本语言，类似 python， 充当浇水
-参考：[[https://zhuanlan.zhihu.com/p/264346586][一篇教会你写90%的shell脚本]]
+ **摘要** : sudo pip install shadowsocks 
+我的位置是： ~/home/ray/Documents/shadowsocks/ss.json~
+{
 ... ... 
 #+end_verse
 * 03_emacs
@@ -45,11 +45,32 @@
 ... ... 
 #+end_verse
 * 04_algorithm
+** [[file:./src/04_algorithm/mcmc.org][ [2021-02-26] [MIGRATE] MCMC]]
+#+begin_verse
+ **摘要** : 蒙特卡洛方法（Monte Carlo）是一种通过特定分布下的随机数（或伪随机数）进行模拟的方法。典型的例子有蒲丰投针、定积分计算等等，其基础是大数定律。
+蒙特卡洛方法有哪些优缺点如下：
+- 优点：计算准确性由采样的均匀程度决定；大大简化问题复杂性
+... ... 
+#+end_verse
 ** [[file:./src/04_algorithm/bayes_opt.org][ [2021-02-26] [MIGRATE]贝叶斯调参]]
 #+begin_verse
  **摘要** : 他与常规的网格搜索或者随机搜索的区别是：
 - 贝叶斯调参采用高斯过程， **考虑之前的参数信息** ，不断地更新先验；网格搜索未考虑之前的参数信息
 - 贝叶斯调参 **迭代次数少，速度快** ；网格搜索速度慢,参数多时易导致维度爆炸
+... ... 
+#+end_verse
+** [[file:./src/04_algorithm/pca.org][ [2021-02-28] [MIGRATE] PCA主成分分析]]
+#+begin_verse
+ **摘要** : 　　主成分分析（Principal Components Analysis）是一种对特征进行降维的方法。由于观测指标间存在相关性，将导致信息的重叠与低效，我们倾向于用少量的、尽可能多能反映原特征的新特征来替代他们，主成分分析因此产生。主成分分析可以看成是高维空间通过旋转坐标系找到最佳投影(几何上)，生成新维度，其中新坐标轴每一个维度都是原维度的线性组合\\(\theta'X\\)(数学上),满足：
+... ... 
+#+end_verse
+* 05_engineer
+* 06_lang
+** [[file:./src/06_lang/shell.org][ [2021-02-25] Shell 脚本入门]]
+#+begin_verse
+ **摘要** : - shell 不是一堆 bash 命令的集合
+- shell 是一个脚本语言，类似 python， 充当浇水
+参考：[[https://zhuanlan.zhihu.com/p/264346586][一篇教会你写90%的shell脚本]]
 ... ... 
 #+end_verse
 * 98_temp

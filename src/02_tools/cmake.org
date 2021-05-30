@@ -13,8 +13,195 @@
 #+html: <a href="javascript:history.back()">返回</a>
 #+html: </div>
 
-* cmake 简介
+* 何为构建工具，何为 cmake
+
+#+begin_warning
+- 本文不是 cmake 教程
+- 本文仅是个人使用 cmake 的记录和心得
+#+end_warning
+
+在依图的时候，横贯整个 Res 和 Eng，都在 =ficus= 这个项目中开发，整个项目估计得有几百万行代码、几千个内部 lib，当时是使用 ~Scons~ 进行构建的，个人觉得 ~Scons~ 最大的优点有：
+
+- 纯 python 代码编写，无需再去学一门语法
+- 针对大型项目的快速依赖解析
+  
+#+begin_note
+所谓构建工具，简单的说，就是帮助开发者整合代码库和依赖关系，并最终编译代码文件，产出lib或可执行文件的工具
+#+end_note
+
+来下家公司后，开始接触 cmake，作为相对古老的构建工具，cmake有自己的闪光点，也有着时代的局限性。这里不讨论为什么会选择 cmake 而不是 scons 或者是 blaze，这里仅介绍 cmake。
+
+#+begin_quote
+CMake 是个一个开源的跨平台自动化建构系统，用来管理软件建置的程序，并不依赖于某特定编译器，并可支持多层目录、多个应用程序与多个库。
+#+end_quote
+
+废话不多说，多了我也不知道，开始整理心得(坑)吧！
 
 * CMakeLists.txt 编写准则
 
+** 起手势
+
+相比 scons 对应的文件为 Sconscript，cmake 对应的文件名为 ~CMakeLists.txt~ ，首先，这个名字就很难记，几个地方大写，最后要加 =s= 还要加上毫无意义的后缀 =.txt= ，痛苦如斯！
+
+新开一个项目时，我们需要定义项目根的 ~CMakeLists.txt~ , 一个项目最基本的，需要有名字和 cmake、CXX 指定版本。
+
+#+BEGIN_SRC cmake
+  cmake_minimum_required(VERSION 3.15)
+  project(demo)
+
+  set(CMAKE_CXX_STANDARD 11)
+
+  # ...
+#+END_SRC
+
+接下来和项目结构有关了，最常用的命令为：
+
+#+BEGIN_SRC cmake
+  # 添加子目录 main，子目录内部包含 CMakeLists.txt，执行完这一句，你就可以用子目
+  # 录中的所有 lib 等成员
+  # 注意这里用了 shell 取值符 ${} cmake 中用法一致，但是 set value 的时候有区别
+  set(DIR_NAME main)
+  add_subdirectory(${DIR_NAME})
+
+  # 执行子 cmake，和 add_subdirectory 区别是一个给 cmake 文件，一个给目录，且
+  # include 的文件位置无要求，可以在项目外
+  include(${CMAKE_DIR}/test.cmake)
+#+END_SRC
+
+** 指定库和可执行文件
+
+编译的目的是什么，为了生成 target 文件，这个 target 包括了 lib、bin 等，需要通过如下命令指定
+
+#+BEGIN_SRC cmake
+  # 遍历 demo 目录下所有文件
+  file(GLOB DEMO_SRC
+    "${PROJECT_NAME}/demo/*.h"
+    "${PROJECT_NAME}/demo/*.cpp"
+    )
+
+  # 指定 lib，以及该 lib 的所有文件（用了上面的 DEMO_SRC）
+  # 默认为 STATIC
+  add_library(${PROJECT_NAME} [STATIC | SHARED | MODULE] ${DEMO_SRC})
+  # 指定头文件目录，SCOPE 可以为 PRIVATE INTERFACE 或 PUBLIC，区别是
+  #     - PRIVATE: 在 .cpp 中用到该lib，在 .h 中没用到该lib
+  #     - INTERFACE: 在 .cpp 中没用到该lib，在 .h 中用到该lib
+  #     - PUBLIC: 在 .cpp 中用到该lib，在 .h 中也用到该lib
+  target_include_directories(${PROJECT_NAME} ${SCOPE} ${头文件目录})
+  # 链接 lib
+  target_link_libraries(${PROJECT_NAME} ${SCOPE} ${lib名称})
+
+  # 指定可执行文件名称和代码
+  add_executable(run_test ${maincpp名称})
+  # 链接 lib
+  target_link_libraries(${PROJECT_NAME} ${SCOPE} ${lib名称})
+#+END_SRC
+
+** 编译选项
+
+*** cmake 选项
+
+#+BEGIN_SRC cmake
+    option(BUILD_TEST "Option: BUILD Test" OFF)
+    if(BUILD_TEST)
+      message("enable TEST")
+      add_subdirectory(test)
+    endif()
+#+END_SRC
+
+*** 条件编译选项
+
+cmake 文件中：
+#+BEGIN_SRC cmake
+      set_property(DIRECTORY
+        ${CMAKE_SOURCE_DIR} APPEND PROPERTY COMPILE_DEFINITIONS
+        "__DEVICE_MODE__=1")
+#+END_SRC
+
+cpp 文件中：
+
+#+BEGIN_SRC cpp
+  #define ANDROID 1
+  #define APPLE 2
+
+  int main()
+  {
+  #if __DEVICE_MODE__ == ANDROID
+      return build_android();
+  #elif __DEVICE_MODE__ == APPLE
+      return build_apple();
+  #else
+      return build();
+  }
+#+END_SRC
+
 * 使用 FetchContent 高效配置依赖
+
+cpp 的依赖管理一直是很头痛的问题，我们希望：
+
+1. 在编译不同平台时候，可以自动切换该平台的依赖
+2. 依赖支持多种形式，可以是 submodule 编译，也可以是预编译的压缩包（可以在本地或云上）
+3. 方便的版本控制
+
+cmake(>=3.11a) 的 FetchContent 模块可以用来解决以上问题
+
+** 目录结构
+
+以 opencv 为例，我们只需要在每个架构 abi 目录下面，添加一个 opencv.cmake 文件，目录结构如下
+
+#+BEGIN_SRC
+.
+├── CMakeLists.txt
+├── cmake
+│   └── Android
+│       ├── aarch64
+│       │   └── opencv.cmake
+│       └── armv7-a
+│           └── opencv.cmake
+└── demo
+#+END_SRC
+
+** 根目录 CMakeLists.txt
+
+指定 SUB_CMAKE_ROOT，该变量根据编译平台不同自动切换
+#+BEGIN_SRC cmake
+  set(SUB_CMAKE_ROOT ${CMAKE_SOURCE_DIR}/cmake/${CMAKE_SYSTEM_NAME}/${CMAKE_SYSTEM_PROCESSOR})
+
+  # include opencv.cmake 
+  include(${SUB_CMAKE_ROOT}/opencv.cmake)
+#+END_SRC
+
+** opencv.cmake
+
+*** 从预编译包下载 opencv
+#+BEGIN_SRC cmake
+cmake_minimum_required(VERSION 3.11)
+include(FetchContent)
+
+set(LIB_NAME opencv)
+FetchContent_Declare(
+  ${LIB_NAME}
+  URL https://nexus-h.tianrang-inc.com/repository/assets/opencv/opencv-mobile-3.4.13-android.zip
+  )
+
+FetchContent_GetProperties(opencv)
+if (NOT ${LIB_NAME}_POPULATED)
+  FetchContent_Populate(${LIB_NAME})
+  FetchContent_MakeAvailable(${LIB_NAME})
+
+  set(OpenCV_DIR ${${LIB_NAME}_SOURCE_DIR}/sdk/native/jni)
+  find_package(OpenCV REQUIRED)
+  target_link_libraries(${PROJECT_NAME} PUBLIC ${OpenCV_LIBS})
+endif()
+#+END_SRC
+
+其中，find_package 会去 OpenCV_DIR 中找对应的 cmake 文件并执行，该步骤可以替换为直接 link lib 和 include dir（如果我们事先知道的话），比如：
+
+#+BEGIN_SRC cmake
+  file(GLOB OPENCV_LIBS
+    "${${LIB_NAME}_SOURCE_DIR}/sdk/libs/lib*.a"
+  )
+  target_link_libraries(${PROJECT_NAME} PUBLIC ${OPENCV_LIBS})
+  target_include_directories(${PROJECT_NAME} PUBLIC ${${LIB_NAME}_SOURCE_DIR}/Headers/)
+#+END_SRC
+
+当然，如果事先不知道，那么久交给 find_package 好了

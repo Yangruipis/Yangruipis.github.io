@@ -1,7 +1,7 @@
 # -*- mode: org; -*-
 
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/htmlize.css"/>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/asciidoctor-admonition.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://yangruipis.github.io/lib/themes/asciidoctor-admonition.css"/>
 
 #+HTML_HEAD: <script src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.min.js"></script>
 #+HTML_HEAD: <script src="https://yangruigit.gitee.io/my_blogs/lib/themes/bootstrap.min.js"></script>

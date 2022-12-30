@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-12-30 Fri 10:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[MIGRATE]利用Emacs进行个人时间管理(GTD)</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="杨 睿" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.css"/>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.min.js"></script>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">[MIGRATE]利用Emacs进行个人时间管理(GTD)</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orge7e81dc">1. 简介</a>
+<ul>
+<li><a href="#org1f143f7">1.1. 什么是GTD</a></li>
+<li><a href="#org0e065a6">1.2. 什么是Emacs</a></li>
+<li><a href="#org453c324">1.3. 什么是番茄工作法</a></li>
+</ul>
+</li>
+<li><a href="#org7a27e67">2. Emacs Org-mode 的GTD配置</a>
+<ul>
+<li><a href="#org954e835">2.1. Org Agenda</a>
+<ul>
+<li><a href="#org6f25aa4">2.1.1. 添加Agenda路径</a></li>
+<li><a href="#org15dd555">2.1.2. 自定义agenda模板</a></li>
+</ul>
+</li>
+<li><a href="#org004a3d4">2.2. 添加Agenda目录下的.org文件</a>
+<ul>
+<li><a href="#org1bafeb6">2.2.1. ORG文件简介</a>
+<ul>
+<li><a href="#org2f3b79b">2.2.1.1. 任务关键词</a></li>
+<li><a href="#org4c447c1">2.2.1.2. 任务优先级</a></li>
+<li><a href="#org4137c60">2.2.1.3. 子任务完成情况</a></li>
+<li><a href="#orgb480b00">2.2.1.4. 插入时间戳</a></li>
+<li><a href="#org73e7427">2.2.1.5. 一个例子</a></li>
+</ul>
+</li>
+<li><a href="#orgdd9c587">2.2.2. ORG文件与GTD</a></li>
+</ul>
+</li>
+<li><a href="#orgeaa31d8">2.3. org-agenda演示</a>
+<ul>
+<li><a href="#orgb9c7f05">2.3.1. org-agenda查看每日任务</a></li>
+<li><a href="#org884a060">2.3.2. org-agenda查看自定义模板</a></li>
+</ul>
+</li>
+<li><a href="#orgce62ed4">2.4. org-capture配置</a>
+<ul>
+<li><a href="#org8972225">2.4.1. 如何配置</a></li>
+<li><a href="#orge215414">2.4.2. 演示</a></li>
+</ul>
+</li>
+<li><a href="#orgaad9cdb">2.5. 自定义转接 org-refile</a></li>
+</ul>
+</li>
+<li><a href="#orgc617fa6">3. 番茄工作法插件： pomodoro</a>
+<ul>
+<li><a href="#org482df08">3.1. 如何使用</a></li>
+<li><a href="#org67b3115">3.2. 3.2 调整提示音音量</a></li>
+</ul>
+</li>
+<li><a href="#org38f7424">4. 后记</a></li>
+</ul>
+</div>
+</div>
+<div align="right">
+<a href="javascript:history.back()">返回</a>
+</div>
+
+<div id="outline-container-orge7e81dc" class="outline-2">
+<h2 id="orge7e81dc"><span class="section-number-2">1</span> 简介</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org1f143f7" class="outline-3">
+<h3 id="org1f143f7"><span class="section-number-3">1.1</span> 什么是GTD</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Get Things Done(GTD)，是一套时间管理方法，面对生活中如下情况：
+</p>
+
+<ul class="org-ul">
+<li>有很多事情要做</li>
+<li>每件事情有主次之分</li>
+<li>个人精力有限</li>
+</ul>
+
+<p>
+我们需要随时很方便的了解我们下一步要做什么，合理的安排我们有限的时间，集中精力完成更重要的事情。
+</p>
+
+<blockquote>
+<p>
+GTD通过帮助你更好的跟踪和管理你的思绪、需要做的和想做的事，从而使你能在合适的情境中静下心，集中精神完成最重要的任务。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+GTD不是一蹴而就的。GTD是一套持续的系统，需要不断地实践才能让你更好的掌握，从而成为你信任的系统。
+</p>
+</blockquote>
+
+<p>
+GTD原则：
+</p>
+<ul class="org-ul">
+<li>收集</li>
+<li>处理</li>
+<li>管理</li>
+<li>执行</li>
+<li>回顾</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0e065a6" class="outline-3">
+<h3 id="org0e065a6"><span class="section-number-3">1.2</span> 什么是Emacs</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Emacs是一款开源跨平台的编辑器，功能非常之强大，参见陈斌大神的 <a href="https://github.com/redguardtoo/mastering-emacs-in-one-year-guide/blob/master/guide-zh.org">《一年成为Emacs高手(像神一样使用编辑器)</a>
+</p>
+
+<p>
+而借助丰富的插件，Emacs可以说是目前最为强大的GTD工具没有之一， <b><b>本文将重点介绍拿到Emacs后如何配置为一个可以用的GTD系统</b></b> 。如果你想知道一些详细的Emacs-GTD方法，见 <a href="https://www.cnblogs.com/holbrook/archive/2012/04/17/2454619.html">用Org-mode实现GTD</a> 。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org453c324" class="outline-3">
+<h3 id="org453c324"><span class="section-number-3">1.3</span> 什么是番茄工作法</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+说道GTD一定要提番茄工作法，番茄工作法的核心是 <b><b>专注</b></b> ，具体做法是：
+</p>
+
+<ul class="org-ul">
+<li>设定番茄钟，一个番茄钟包括了25分钟持续工作时间和5分钟休息时间</li>
+<li>对每项任务估计番茄钟数目</li>
+<li>在番茄钟的25分钟工作时间，强迫自己必须极其专注，放弃手机、知乎、微信等等</li>
+<li>在番茄钟的5分钟休息时间，翻看微信消息、邮件等
+<ul class="org-ul">
+<li>如果有3分钟内能解决的事情，立马解决</li>
+<li>如果需要较多时间解决，则加入GTD代办事项</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7a27e67" class="outline-2">
+<h2 id="org7a27e67"><span class="section-number-2">2</span> Emacs Org-mode 的GTD配置</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+笔者使用的环境是：
+</p>
+
+<ul class="org-ul">
+<li>Manjaro 17.1.10</li>
+<li>Gnome 3.28.2</li>
+<li>Emacs 25.3.1</li>
+<li><b><b>Spacemacs</b></b> 配置文件</li>
+</ul>
+</div>
+
+
+<div id="outline-container-org954e835" class="outline-3">
+<h3 id="org954e835"><span class="section-number-3">2.1</span> Org Agenda</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org6f25aa4" class="outline-4">
+<h4 id="org6f25aa4"><span class="section-number-4">2.1.1</span> 添加Agenda路径</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+我们Emacs做GTD工具的核心功能就是Agenda功能，他是一个可以实时查看自己有哪些任务，以及每个任务完成进度的功能，我们可以通过 <code>M-x org-agenda</code> 来打开，也可以自定义快捷键（我的是 <code>C-c a</code> ，借助 <code>(define-key global-map "\C-ca" 'org-agenda)</code> ），不过首先你需要建立一个专门存放你的GTD文件的目录，并且将 <code>org-agenda</code> 的目录指定为该目录。
+</p>
+
+<p>
+笔者使用的是Spacemacs配置，因此需要在 <code>.spacemacs</code> 文件中的 <code>dotspacemacs/user-config</code> 函数中加入如下命令：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(setq org-agenda-files '(<span class="org-string">"/Path/To/Your/GTD/File/"</span>))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org15dd555" class="outline-4">
+<h4 id="org15dd555"><span class="section-number-4">2.1.2</span> 自定义agenda模板</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+打开agenda可以发现，当前仅有自带的几个展示途径：
+</p>
+<ul class="org-ul">
+<li>列出每天、每周的Agenda</li>
+<li>列出所有TODO事项</li>
+<li>按Tag搜索</li>
+<li>按关键词搜索</li>
+<li>。。。</li>
+</ul>
+
+<p>
+我们可以添加一些展示的模板进去，这里参考  <b><b>子龙山人</b></b> 在 [Spacemacs Rocks](<a href="http://v.youku.com/v_show/id_XMTM2MjM5OTU5Ng==.html?spm=a2hzp.8253869.0.0.DqiSC6&amp;from=y1.7-2">http://v.youku.com/v_show/id_XMTM2MjM5OTU5Ng==.html?spm=a2hzp.8253869.0.0.DqiSC6&amp;from=y1.7-2</a>)的配置方法，将任务按照不同的级别进行展示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(setq org-agenda-custom-commands
+        '(
+          (<span class="org-string">"w"</span> . <span class="org-string">"&#20219;&#21153;&#23433;&#25490;"</span>)
+          (<span class="org-string">"wa"</span> <span class="org-string">"&#37325;&#35201;&#19988;&#32039;&#24613;&#30340;&#20219;&#21153;"</span> tags-todo <span class="org-string">"+PRIORITY=\"A\""</span>)
+          (<span class="org-string">"wb"</span> <span class="org-string">"&#37325;&#35201;&#19988;&#19981;&#32039;&#24613;&#30340;&#20219;&#21153;"</span> tags-todo <span class="org-string">"-weekly-monthly-daily+PRIORITY=\"B\""</span>)
+          (<span class="org-string">"wc"</span> <span class="org-string">"&#19981;&#37325;&#35201;&#19988;&#32039;&#24613;&#30340;&#20219;&#21153;"</span> tags-todo <span class="org-string">"+PRIORITY=\"C\""</span>)
+          (<span class="org-string">"W"</span> <span class="org-string">"Weekly Review"</span>
+           ((stuck <span class="org-string">""</span>) <span class="org-comment-delimiter">;; </span><span class="org-comment">review stuck projects as designated by org-stuck-projects</span>
+            (tags-todo <span class="org-string">"project"</span>)
+            (tags-todo <span class="org-string">"daily"</span>)
+            (tags-todo <span class="org-string">"weekly"</span>)
+            (tags-todo <span class="org-string">"school"</span>)
+            (tags-todo <span class="org-string">"code"</span>)
+            (tags-todo <span class="org-string">"theory"</span>)
+            ))
+          ))
+</pre>
+</div>
+
+<p>
+其中的指令其实很好理解，比如：
+</p>
+<ul class="org-ul">
+<li>("w" . "任务安排") 表示了设置快捷键"w"展示任务安排</li>
+<li>("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"") 表示设置快捷键 "wa"展示重要且紧急的任务，筛选条件是 优先级等于"A"</li>
+<li>("wb" "重要且不紧急的任务" tags-todo "-weekly-monthly-daily+PRIORITY=\"B\"") 筛选条件是：排除每周、每月、每日标签、且优先级等于B</li>
+<li>((stuck "") 表示显示尚未进行管理的任务</li>
+<li>下面的"project", "daily"表示展现该类标签下的任务</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org004a3d4" class="outline-3">
+<h3 id="org004a3d4"><span class="section-number-3">2.2</span> 添加Agenda目录下的.org文件</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org1bafeb6" class="outline-4">
+<h4 id="org1bafeb6"><span class="section-number-4">2.2.1</span> ORG文件简介</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+Emacs org-mode常用来进行富文本写作，非常的强大，我目前觉得相对于Markdown最有优势的地方是：
+</p>
+<ul class="org-ul">
+<li>结构可展开和收缩，非常清晰</li>
+<li>代码块功能，直接文本内运行（我承认有些md插件也行，但是没这个好用）</li>
+<li>latex公式，渲染非常漂亮，行内显示</li>
+<li>导出方便且类型多样</li>
+<li>所有继承自Emacs的优点</li>
+</ul>
+</div>
+
+<div id="outline-container-org2f3b79b" class="outline-5">
+<h5 id="org2f3b79b"><span class="section-number-5">2.2.1.1</span> 任务关键词</h5>
+<div class="outline-text-5" id="text-2-2-1-1">
+<p>
+用.org文件可以进行很方便的GTD，他的正文可以添加每个任务的 <b><b>关键词标注</b></b> ，比如TODO表示将要做，DONE表示做完了等，快捷键是  <code>C-c C-t</code>  ，我们可以在init.el文件中添加如下命令来自定义关键词：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(setq org-todo-keywords
+    '((sequence <span class="org-string">"BUG(b!)"</span> <span class="org-string">"|"</span> <span class="org-string">"FIXED(f!)"</span>)
+      (sequence <span class="org-string">"TODO(t!)"</span> <span class="org-string">"SOMEDAY(s)"</span> <span class="org-string">"|"</span> <span class="org-string">"DONE(d!)"</span> <span class="org-string">"CANCELED(c @/!)"</span>)
+     ))
+</pre>
+</div>
+
+<p>
+可以在 () 中定义附加选项,包括:
+</p>
+<ul class="org-ul">
+<li>字符:该状态的快捷键</li>
+<li>! : 切换到该状态时会自动添加时间戳</li>
+<li>@ : 切换到该状态时要求输入文字说明</li>
+<li>如果同时设定@和!,使用@/!</li>
+</ul>
+
+<p>
+你也可以通过  <code>S-左方向键</code>  和  <code>S-右方向键</code> 进行调整，S表示super键，即shift键
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4c447c1" class="outline-5">
+<h5 id="org4c447c1"><span class="section-number-5">2.2.1.2</span> 任务优先级</h5>
+<div class="outline-text-5" id="text-2-2-1-2">
+<p>
+其次，他还可以添加每个任务的优先级， 上文中展示了A B C三个优先级，你可以通过 <code>S-UP/DOWN</code> 来进行调整
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4137c60" class="outline-5">
+<h5 id="org4137c60"><span class="section-number-5">2.2.1.3</span> 子任务完成情况</h5>
+<div class="outline-text-5" id="text-2-2-1-3">
+<p>
+在每级标题后插入 <code>[%]</code> 或 <code>[/]</code> 即可追踪其子标题的完成情况，前者表示任务完成百分比，后者表示完成进度，当任务发生变化时，该值也会跟着改变
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb480b00" class="outline-5">
+<h5 id="orgb480b00"><span class="section-number-5">2.2.1.4</span> 插入时间戳</h5>
+<div class="outline-text-5" id="text-2-2-1-4">
+<p>
+ORG中你可以对每个任务插入时间戳， <code>C-c C-s</code>  插入Schedule时间，  <code>C-c C-t</code>  插入Deadline时间, 或者直接 <code>C-c .</code> 插入一般时间。
+</p>
+
+<p>
+时间戳中可以添加具体时间，如：
+</p>
+
+<blockquote>
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-05-29 Tue 10:00&gt;</span></span>
+</p>
+</blockquote>
+
+<p>
+也可以添加时间范围，如：
+</p>
+
+<blockquote>
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-05-29 Tue 10:00&gt;&#x2013;&lt;2018-05-29 Tue 11:00&gt;</span></span>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-05-29 Tue 10:00&gt;</span></span>-<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-05-30 Wed 10:00&gt;</span></span>
+</p>
+</blockquote>
+
+<p>
+也可以添加需要重复的时间，如：
+</p>
+
+<blockquote>
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-05-29 Tue 10:00 +1d&gt;&#x2013;&lt;2018-05-29 Tue 11:00 +1d&gt;</span></span>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-05-29 Tue 10:00 +1w&gt;&#x2013;&lt;2018-05-29 Tue 11:00 +1w&gt;</span></span>
+</p>
+</blockquote>
+
+<p>
+分别表示每天重复和每周重复一次
+</p>
+</div>
+</div>
+
+<div id="outline-container-org73e7427" class="outline-5">
+<h5 id="org73e7427"><span class="section-number-5">2.2.1.5</span> 一个例子</h5>
+<div class="outline-text-5" id="text-2-2-1-5">
+<p>
+下面是一个简单的例子，包括了主任务，子任务，子任务状态，子任务优先级，子任务deadline，主任务完成进度，以及每个状态的修改时间
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-org"><span class="org-org-level-1">* </span><span class="org-org-todo">TODO</span><span class="org-org-level-1"> Work</span><span class="org-org-checkbox-statistics-todo">[1/3]</span>
+- State "TODO"       from ""           <span class="org-org-date">[2018-05-29 &#20108; 09:51]</span>
+
+<span class="org-org-level-2">** </span><span class="org-org-todo">TODO</span><span class="org-org-level-2"> </span><span class="org-org-priority">[#B]</span><span class="org-org-level-2"> &#20195;&#21150;&#20107;&#39033;1                                          </span><span class="org-org-level-2"><span class="org-org-tag">:school:</span></span>
+<span class="org-org-special-keyword">DEADLINE:</span> <span class="org-org-date">&lt;2018-06-10 &#26085;&gt;</span>
+- State "TODO"       from "FIXED"      <span class="org-org-date">[2018-05-28 &#19968; 23:28]</span>
+- State "FIXED"      from "TODO"       <span class="org-org-date">[2018-05-28 &#19968; 23:28]</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdd9c587" class="outline-4">
+<h4 id="orgdd9c587"><span class="section-number-4">2.2.2</span> ORG文件与GTD</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+Org-mode是所有事项的文本载体，Agenda从其中进行读取、归档、汇总、统计。我在我的GTD文件夹中添加了如下的.org文件:
+</p>
+
+<ul class="org-ul">
+<li>task  用来存放临时的任务</li>
+<li>calendar  用来存放每日，每周， 每月固定的任务</li>
+<li>notes    用来存放平时记得一些笔记，等待归档</li>
+<li>finished  用来存放已经完成的任务</li>
+<li>canceled  用来存放已经取消的任务</li>
+</ul>
+
+<p>
+<b><b>org-mode的配置可以在头文件中实现</b></b> 以task为例，我的org头文件如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \setmainfont{<span class="org-string">"&#24494;&#36719;&#38597;&#40657;"</span>}
+#+ATTR_LATEX: <span class="org-builtin">:width</span> 5cm <span class="org-builtin">:options</span> angle=90
+#+TITLE: Task
+#+AUTHOR: &#26472; &#30591;
+#+EMAIL: yangruipis@163.com
+#+KEYWORDS: GTD
+#+OPTIONS: H:4 toc:t 
+#+PROPERTY: CLOCK_INTO_DRAWER t
+#+TAGS: { code(c) theory(t) school(s) easy(e) project(p) }
+</pre>
+</div>
+
+<p>
+其中最后一行指定了标签类别， 倒数第二行将所有时间信息放在一个抽屉(:LOGBOOK)中，其他的无关紧要(你想知道也可以额,前两行保证了我到处latex时可以输出中文,第三行设置了我的latex格式,后面几行是文档的基本信息,倒数第三行表明需要自动生成目录)。
+</p>
+
+<p>
+完成之后，只需要在每一类文件中添加相应的任务，以及TODO等关键词，再运行  <code>M-x org-agenda</code> 即可，我将org-agenda绑定至了快捷键 <code>C-c a</code> ，下面是一个org-agenda演示。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeaa31d8" class="outline-3">
+<h3 id="orgeaa31d8"><span class="section-number-3">2.3</span> org-agenda演示</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-orgb9c7f05" class="outline-4">
+<h4 id="orgb9c7f05"><span class="section-number-4">2.3.1</span> org-agenda查看每日任务</h4>
+<div class="outline-text-4" id="text-2-3-1">
+
+<div class="figure">
+<p><img src="../../assets/img/03_emacs_org_gtd_01.gif" alt="03_emacs_org_gtd_01.gif" />
+</p>
+</div>
+
+<p>
+步骤：
+</p>
+<ol class="org-ol">
+<li><code>C-c a</code> 进入org-agenda</li>
+<li><code>a</code>  进入每日、每周任务</li>
+<li>默认展示的是一周内每天的任务，按 <code>d</code> 进入当天任务，按 <code>w</code> 返回每周任务</li>
+<li>按 <code>R</code>  (注意大写)查看当天每个任务的完成时间情况</li>
+<li>按 <code>r</code>  刷新状态</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org884a060" class="outline-4">
+<h4 id="org884a060"><span class="section-number-4">2.3.2</span> org-agenda查看自定义模板</h4>
+<div class="outline-text-4" id="text-2-3-2">
+
+<div class="figure">
+<p><img src="../../assets/img/03_emacs_org_gtd_02.gif" alt="03_emacs_org_gtd_02.gif" />
+</p>
+</div>
+
+<p>
+步骤：
+</p>
+
+<ol class="org-ol">
+<li><code>C-c a</code>  进入org-agenda</li>
+<li><code>w</code>  进入自定义的模板</li>
+<li><code>a</code>  选择优先级为a的任务列出</li>
+<li><code>C-c a</code> ,  <code>wb</code>  选择优先级为b的任务列出</li>
+<li><code>C-c a</code> ,  <code>W</code>  (大写)列出所有模板中的代办任务</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgce62ed4" class="outline-3">
+<h3 id="orgce62ed4"><span class="section-number-3">2.4</span> org-capture配置</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-org8972225" class="outline-4">
+<h4 id="org8972225"><span class="section-number-4">2.4.1</span> 如何配置</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+我们经常会遇到一些临时产生的任务、安排、想法等等，我们需要以最快的方法将其添加到我们的GTD系统中去，而 <code>org-capture</code> 提供了这个功能。
+</p>
+
+<p>
+你可通过 <code>M-x org-capture</code> 打开，也可以绑定快捷键，我是 <code>C-c c</code> 。打开后可以发现，默认可以添加的任务类型非常少，我在配置文件中加入了：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">&#32465;&#23450;&#38190;&#20301;</span>
+  (define-key global-map <span class="org-string">"\C-cc"</span> 'org-capture)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#36825;&#36793;&#23601;&#26159;&#20026;&#36335;&#24452;&#36171;&#20540;</span>
+(<span class="org-keyword">defvar</span> <span class="org-variable-name">org-agenda-dir</span> <span class="org-string">""</span> <span class="org-doc">"gtd org files location"</span>)
+  (setq-default org-agenda-dir <span class="org-string">"/Path/To/Your/GTD/File/"</span>)
+  (setq org-agenda-file-note (expand-file-name <span class="org-string">"notes.org"</span> org-agenda-dir))
+  (setq org-agenda-file-task (expand-file-name <span class="org-string">"task.org"</span> org-agenda-dir))
+  (setq org-agenda-file-calendar (expand-file-name <span class="org-string">"calendar.org"</span> org-agenda-dir))
+  (setq org-agenda-file-finished (expand-file-name <span class="org-string">"finished.org"</span> org-agenda-dir))
+  (setq org-agenda-file-canceled (expand-file-name <span class="org-string">"canceled.org"</span> org-agenda-dir))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">&#28155;&#21152;&#27599;&#27425;&#25171;&#24320;&#26102;&#21487;&#28155;&#21152;&#30340;&#20219;&#21153;&#31867;&#22411;</span>
+  (setq org-capture-templates
+        '(
+          (<span class="org-string">"t"</span> <span class="org-string">"Todo"</span> entry (file+headline org-agenda-file-task <span class="org-string">"Work"</span>)
+           <span class="org-string">"* TODO [#B] %?\n  %i\n"</span>
+           <span class="org-builtin">:empty-lines</span> 1)
+          (<span class="org-string">"l"</span> <span class="org-string">"Tolearn"</span> entry (file+headline org-agenda-file-task <span class="org-string">"Learning"</span>)
+           <span class="org-string">"* TODO [#B] %?\n  %i\n"</span>
+           <span class="org-builtin">:empty-lines</span> 1)
+          (<span class="org-string">"h"</span> <span class="org-string">"Toplay"</span> entry (file+headline org-agenda-file-task <span class="org-string">"Hobbies"</span>)
+           <span class="org-string">"* TODO [#C] %?\n  %i\n"</span>
+           <span class="org-builtin">:empty-lines</span> 1)
+          (<span class="org-string">"o"</span> <span class="org-string">"Todo_others"</span> entry (file+headline org-agenda-file-task <span class="org-string">"Others"</span>)
+           <span class="org-string">"* TODO [#C] %?\n  %i\n"</span>
+           <span class="org-builtin">:empty-lines</span> 1)
+          (<span class="org-string">"n"</span> <span class="org-string">"notes"</span> entry (file+headline org-agenda-file-note <span class="org-string">"Quick notes"</span>)
+           <span class="org-string">"* %?\n  %i\n %U"</span>
+           <span class="org-builtin">:empty-lines</span> 1)
+          (<span class="org-string">"i"</span> <span class="org-string">"ideas"</span> entry (file+headline org-agenda-file-note <span class="org-string">"Quick ideas"</span>)
+           <span class="org-string">"* %?\n  %i\n %U"</span>
+           <span class="org-builtin">:empty-lines</span> 1)
+          )
+        )
+</pre>
+</div>
+
+<p>
+笔者添加了如下任务类型：
+</p>
+<ul class="org-ul">
+<li>Todo：需要完成的任务</li>
+<li>Tolearn：需要学习的知识点</li>
+<li>Toplay：需要玩的工具等等，优先级最低</li>
+<li>Todo_other：其他一些不知道归什么类的任务</li>
+<li>notes：临时产生的待整理的笔记</li>
+<li>ideas：临时产生的想法，等待细细研究</li>
+</ul>
+
+<p>
+代码中每个任务都给定了归档的文件路径，以及在对应的org文件中的一级标题名称（如Work，Hobbies等）
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge215414" class="outline-4">
+<h4 id="orge215414"><span class="section-number-4">2.4.2</span> 演示</h4>
+<div class="outline-text-4" id="text-2-4-2">
+
+<div class="figure">
+<p><img src="../../assets/img/03_emacs_org_gtd_03.gif" alt="03_emacs_org_gtd_03.gif" />
+</p>
+</div>
+
+<p>
+步骤：
+</p>
+
+<ol class="org-ol">
+<li><code>C-c c</code>  打开org-capture</li>
+<li><code>t</code>  新建TODO任务</li>
+<li>填写你的任务名称</li>
+<li><code>C-c C-d</code>  增加Deadline</li>
+<li><code>C-c C-c</code>  确认添加，之后这条任务就出现在了task.org之中</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgaad9cdb" class="outline-3">
+<h3 id="orgaad9cdb"><span class="section-number-3">2.5</span> 自定义转接 org-refile</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+当你完成了一个任务，你希望将其从task.org移动到finish.org中，如何快速的实现呢，这时候需要借助 <code>M-x org-refile</code> 命令，默认是在本文件内部转移，如果要转移到其他文件需要进行自定义：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">&#32465;&#23450;&#38190;&#20301;</span>
+  (define-key global-map <span class="org-string">"\C-cr"</span> 'org-refile)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">&#28155;&#21152;finished&#21644;canceled&#20004;&#20010;&#25991;&#20214;&#36335;&#24452;&#65292;&#24182;&#19988;&#21482;&#36716;&#31227;&#21040;&#19968;&#32423;&#26631;&#39064;</span>
+  (setq org-refile-targets  '((org-agenda-file-finished <span class="org-builtin">:maxlevel</span> . 1)
+                             (org-agenda-file-canceled <span class="org-builtin">:maxlevel</span> . 1)
+                             ))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgc617fa6" class="outline-2">
+<h2 id="orgc617fa6"><span class="section-number-2">3</span> 番茄工作法插件： pomodoro</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org482df08" class="outline-3">
+<h3 id="org482df08"><span class="section-number-3">3.1</span> 如何使用</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Emacs提供了方便的番茄工作法插件，spacemacs自带，将光标移动到接下来要办的事情上，通过 <code>M-x org-pomodoro</code> 启动，之后你会看到你的spaceline上多了一个计时器，好了接下来25分钟啥也别干了，认真做你的事情吧。
+</p>
+
+<p>
+如果想要临时终止的话，可以通过 <code>M-x spaceline-toggle-org-pomodoro-off</code> 关闭番茄计时。
+</p>
+
+<p>
+当然，如果你不想选择番茄计时，而是随意的开始和终止，那么你可以在相应的任务下运行:
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-x C-i</code>  启动时钟（不会在spaceline上显示）</li>
+<li><code>C-c C-x C-o</code>  关闭时钟</li>
+</ul>
+
+<p>
+你会发现在对应的org文件任务下多出了一个计时信息：
+</p>
+
+<blockquote>
+nil</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org67b3115" class="outline-3">
+<h3 id="org67b3115"><span class="section-number-3">3.2</span> 3.2 调整提示音音量</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-lisp">(setq org-pomodoro-audio-player <span class="org-string">"mplayer"</span>)
+(setq org-pomodoro-finished-sound-args <span class="org-string">"-volume 0.7"</span>)
+(setq org-pomodoro-long-break-sound-args <span class="org-string">"-volume 0.7"</span>)
+(setq org-pomodoro-short-break-sound-args <span class="org-string">"-volume 0.7"</span>)
+(setq org-pomodoro-ticking-sound-args <span class="org-string">"-volume 0.3"</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org38f7424" class="outline-2">
+<h2 id="org38f7424"><span class="section-number-2">4</span> 后记</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+到此为止基本上介绍完我的GTD系统搭建过程了，后面还有可以继续添加，我的番茄钟要到时间了～～～
+</p>
+
+<p>
+如果需要我的spacemacs详细配置文件，可以访问[我的github中的spacemacs配置](<a href="https://github.com/Yangruipis/emacs_setting">https://github.com/Yangruipis/emacs_setting</a>)，觉得好用的话不要忘记给个Star哦～
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 杨 睿</p>
+<p class="date">Created: 2022-12-30 Fri 10:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-12-30 Fri 10:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>主页</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="杨 睿" />
+<meta name="keywords" content="index" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.css"/>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.min.js"></script>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">主页</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4078cba">01_intro</a>
+<ul>
+<li><a href="#org8a6dbe5"> [2022-12-30] 个人简介</a></li>
+<li><a href="#org9c31163"> [2022-12-30] 为什么会有本站</a></li>
+</ul>
+</li>
+<li><a href="#org2230a8a">02_tools</a>
+<ul>
+<li><a href="#org1bad300"> [2022-12-30] Cmake</a></li>
+<li><a href="#org2f805f1"> [2022-12-30] [MIGRATE]Majaro配置</a></li>
+</ul>
+</li>
+<li><a href="#org7dcd0bf">03_emacs</a>
+<ul>
+<li><a href="#orgacd0611"> [2022-12-30] CCLS as cpp lsp backend</a></li>
+<li><a href="#orga583463"> [2022-12-30] [MIGRATE]利用Emacs进行个人时间管理(GTD)</a></li>
+</ul>
+</li>
+<li><a href="#org0a0c1b7">04_algorithm</a>
+<ul>
+<li><a href="#org2c7881f"> [2022-12-30] [MIGRATE] PCA主成分分析</a></li>
+<li><a href="#org8677882"> [2022-12-30] [MIGRATE] MCMC</a></li>
+<li><a href="#orgcda702b"> [2022-12-30] [MIGRATE]贝叶斯调参</a></li>
+</ul>
+</li>
+<li><a href="#orgd59d97f">06_lang</a>
+<ul>
+<li><a href="#org1e39cb9"> [2022-12-30] Shell 脚本入门</a></li>
+</ul>
+</li>
+<li><a href="#org0594ac8">98_temp</a>
+<ul>
+<li><a href="#org58e1745"> [2022-12-30] org 测试</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<a href="https://github.com/Yangruipis/Yangruipis.github.io/actions">
+<img src="https://github.com/Yangruipis/Yangruipis.github.io/workflows/CI/badge.svg"/>
+</a>
+<p>&nbsp;</p>
+
+<div id="outline-container-org4078cba" class="outline-2">
+<h2 id="org4078cba">01_intro</h2>
+<div class="outline-text-2" id="text-org4078cba">
+</div>
+<div id="outline-container-org8a6dbe5" class="outline-3">
+<h3 id="org8a6dbe5"><a href="./src/01_intro/about_me.html"> [2022-12-30] 个人简介</a></h3>
+<div class="outline-text-3" id="text-org8a6dbe5">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> : | EMAIL    | yangruipis@163.com            |<br />
+| EEL      | +86 188 182 31378             |<br />
+| GITHUB   | <a href="https://github.com/Yangruipis">github.com/Yangruipis</a>         |<br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org9c31163" class="outline-3">
+<h3 id="org9c31163"><a href="./src/01_intro/why_this_page.html"> [2022-12-30] 为什么会有本站</a></h3>
+<div class="outline-text-3" id="text-org9c31163">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> : 截至今天（2021年2月21日），如果从提前实习开始，已经工作两年多了。这两年自己做了什么，付出了什么，收获了什么？我想大概也只有钉钉年报的统计数据能告诉我了，是的，我自己也说不清楚。<br />
+但我有很多想说的。<br />
+有写技术博客的习惯，嗯，曾经有。5年前吧，博客园、github、gitee、石墨笔记等等平台。乱七八糟，ID 也是五花八门（yangruipis、yangruiutf-8、yangruigit、<br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2230a8a" class="outline-2">
+<h2 id="org2230a8a">02_tools</h2>
+<div class="outline-text-2" id="text-org2230a8a">
+</div>
+<div id="outline-container-org1bad300" class="outline-3">
+<h3 id="org1bad300"><a href="./src/02_tools/cmake.html"> [2022-12-30] Cmake</a></h3>
+<div class="outline-text-3" id="text-org1bad300">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> : - 本文不是 cmake 教程<br />
+- 本文仅是个人使用 cmake 的记录和心得<br />
+在依图的时候，横贯整个 Res 和 Eng，都在 <code>ficus</code> 这个项目中开发，整个项目估计得有几百万行代码、几千个内部 lib，当时是使用 <code>Scons</code> 进行构建的，个人觉得 <code>Scons</code> 最大的优点有：<br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org2f805f1" class="outline-3">
+<h3 id="org2f805f1"><a href="./src/02_tools/manjaro_setup.html"> [2022-12-30] [MIGRATE]Majaro配置</a></h3>
+<div class="outline-text-3" id="text-org2f805f1">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> : sudo pip install shadowsocks<br />
+我的位置是： <code>/home/ray/Documents/shadowsocks/ss.json</code><br />
+{<br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7dcd0bf" class="outline-2">
+<h2 id="org7dcd0bf">03_emacs</h2>
+<div class="outline-text-2" id="text-org7dcd0bf">
+</div>
+<div id="outline-container-orgacd0611" class="outline-3">
+<h3 id="orgacd0611"><a href="./src/03_emacs/ccls.html"> [2022-12-30] CCLS as cpp lsp backend</a></h3>
+<div class="outline-text-3" id="text-orgacd0611">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> :<br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orga583463" class="outline-3">
+<h3 id="orga583463"><a href="./src/03_emacs/org_gtd.html"> [2022-12-30] [MIGRATE]利用Emacs进行个人时间管理(GTD)</a></h3>
+<div class="outline-text-3" id="text-orga583463">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> : Get Things Done(GTD)，是一套时间管理方法，面对生活中如下情况：<br />
+- 有很多事情要做<br />
+- 每件事情有主次之分<br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0a0c1b7" class="outline-2">
+<h2 id="org0a0c1b7">04_algorithm</h2>
+<div class="outline-text-2" id="text-org0a0c1b7">
+</div>
+<div id="outline-container-org2c7881f" class="outline-3">
+<h3 id="org2c7881f"><a href="./src/04_algorithm/pca.html"> [2022-12-30] [MIGRATE] PCA主成分分析</a></h3>
+<div class="outline-text-3" id="text-org2c7881f">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> : 　　主成分分析（Principal Components Analysis）是一种对特征进行降维的方法。由于观测指标间存在相关性，将导致信息的重叠与低效，我们倾向于用少量的、尽可能多能反映原特征的新特征来替代他们，主成分分析因此产生。主成分分析可以看成是高维空间通过旋转坐标系找到最佳投影(几何上)，生成新维度，其中新坐标轴每一个维度都是原维度的线性组合 \(\theta'X\) (数学上),满足：<br />
+-<br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org8677882" class="outline-3">
+<h3 id="org8677882"><a href="./src/04_algorithm/mcmc.html"> [2022-12-30] [MIGRATE] MCMC</a></h3>
+<div class="outline-text-3" id="text-org8677882">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> : 蒙特卡洛方法（Monte Carlo）是一种通过特定分布下的随机数（或伪随机数）进行模拟的方法。典型的例子有蒲丰投针、定积分计算等等，其基础是大数定律。<br />
+蒙特卡洛方法有哪些优缺点如下：<br />
+- 优点：计算准确性由采样的均匀程度决定；大大简化问题复杂性<br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgcda702b" class="outline-3">
+<h3 id="orgcda702b"><a href="./src/04_algorithm/bayes_opt.html"> [2022-12-30] [MIGRATE]贝叶斯调参</a></h3>
+<div class="outline-text-3" id="text-orgcda702b">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> : 他与常规的网格搜索或者随机搜索的区别是：<br />
+- 贝叶斯调参采用高斯过程， <b><b>考虑之前的参数信息</b></b> ，不断地更新先验；网格搜索未考虑之前的参数信息<br />
+- 贝叶斯调参 <b><b>迭代次数少，速度快</b></b> ；网格搜索速度慢,参数多时易导致维度爆炸<br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd59d97f" class="outline-2">
+<h2 id="orgd59d97f">06_lang</h2>
+<div class="outline-text-2" id="text-orgd59d97f">
+</div>
+<div id="outline-container-org1e39cb9" class="outline-3">
+<h3 id="org1e39cb9"><a href="./src/06_lang/shell.html"> [2022-12-30] Shell 脚本入门</a></h3>
+<div class="outline-text-3" id="text-org1e39cb9">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> : - shell 不是一堆 bash 命令的集合<br />
+- shell 是一个脚本语言，类似 python， 充当浇水<br />
+参考：<a href="https://zhuanlan.zhihu.com/p/264346586">一篇教会你写90%的shell脚本</a><br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0594ac8" class="outline-2">
+<h2 id="org0594ac8">98_temp</h2>
+<div class="outline-text-2" id="text-org0594ac8">
+</div>
+<div id="outline-container-org58e1745" class="outline-3">
+<h3 id="org58e1745"><a href="./src/98_temp/org_test.html"> [2022-12-30] org 测试</a></h3>
+<div class="outline-text-3" id="text-org58e1745">
+<p class="verse">
+&#xa0;<b><b>摘要</b></b> : 这是一级标题里的内容<br />
+balabala<br />
+- [X] Checked.<br />
+&#x2026; &#x2026;<br />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 杨 睿</p>
+<p class="date">Created: 2022-12-30 Fri 10:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

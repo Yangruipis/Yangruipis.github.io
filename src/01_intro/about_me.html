@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-12-30 Fri 10:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>个人简介</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="杨 睿" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.css"/>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.min.js"></script>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">个人简介</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb73cf8a">1. 基本信息</a></li>
+<li><a href="#org40d8b47">2. 教育经历</a></li>
+<li><a href="#org7353697">3. 荣誉和奖项</a></li>
+<li><a href="#org8ff98d8">4. 工作经历</a>
+<ul>
+<li><a href="#org0f1383b">4.1. [2021-07~] 上海天壤智能有限公司</a></li>
+<li><a href="#org02d816d">4.2. [2020-01~2021-07] 上海依图网络科技有限公司</a></li>
+</ul>
+</li>
+<li><a href="#orgefdef4a">5. 简历源码</a></li>
+</ul>
+</div>
+</div>
+<div align="right">
+<a href="javascript:history.back()">返回</a>
+</div>
+
+
+<div id="outline-container-orgb73cf8a" class="outline-2">
+<h2 id="orgb73cf8a"><span class="section-number-2">1</span> 基本信息</h2>
+<div class="outline-text-2" id="text-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">EMAIL</td>
+<td class="org-left">yangruipis@163.com</td>
+</tr>
+
+<tr>
+<td class="org-left">EEL</td>
+<td class="org-left">+86 188 182 31378</td>
+</tr>
+
+<tr>
+<td class="org-left">GITHUB</td>
+<td class="org-left"><a href="https://github.com/Yangruipis">github.com/Yangruipis</a></td>
+</tr>
+
+<tr>
+<td class="org-left">HOMEPAGE</td>
+<td class="org-left"><a href="https://yangruipis.github.io/">https://yangruipis.github.io/</a></td>
+</tr>
+
+<tr>
+<td class="org-left">LOCATION</td>
+<td class="org-left">Shanghai</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org40d8b47" class="outline-2">
+<h2 id="org40d8b47"><span class="section-number-2">2</span> 教育经历</h2>
+<div class="outline-text-2" id="text-2">
+<dl class="org-dl">
+<dt>上海对外经贸大学 (2016.09 &#x2013; 2019.03)</dt><dd>研究生（保研），数量经济学专业，金融数据挖掘方向</dd>
+<dt>上海对外经贸大学 (2012.09 &#x2013; 2016.06)</dt><dd>本科，统计学</dd>
+</dl>
+</div>
+</div>
+
+
+<div id="outline-container-org7353697" class="outline-2">
+<h2 id="org7353697"><span class="section-number-2">3</span> 荣誉和奖项</h2>
+<div class="outline-text-2" id="text-3">
+<dl class="org-dl">
+<dt>“东证期货杯”统计建模大赛(2018.03)</dt><dd>一等奖(top 10 in 1000+)</dd>
+<dt>“华为杯”全国研究生数学建模大赛(2017.09)</dt><dd>二等奖(top 15%)</dd>
+<dt>中国大数据创新行动大赛(2016.12)</dt><dd>一等奖(top  1,奖金5万元)</dd>
+<dt>其他</dt><dd>上海市优秀毕业生、校十佳学术标兵、爱建企业奖学金一等奖(全校top10)</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org8ff98d8" class="outline-2">
+<h2 id="org8ff98d8"><span class="section-number-2">4</span> 工作经历</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org0f1383b" class="outline-3">
+<h3 id="org0f1383b"><span class="section-number-3">4.1</span> [2021-07~] 上海天壤智能有限公司</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>部门：金融大脑</li>
+<li>职位：研发工程师</li>
+</ul>
+
+<p>
+项目：
+</p>
+<ul class="org-ul">
+<li>推荐系统
+<ul class="org-ul">
+<li>内容推荐</li>
+<li>活动推荐</li>
+</ul></li>
+<li>OCR
+<ul class="org-ul">
+<li>模型平台</li>
+<li>容器平台</li>
+<li>数据生成平台</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org02d816d" class="outline-3">
+<h3 id="org02d816d"><span class="section-number-3">4.2</span> [2020-01~2021-07] 上海依图网络科技有限公司</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>部门： 研究部</li>
+<li>职位： 算法工程师</li>
+</ul>
+
+<p>
+项目：
+</p>
+
+<ol class="org-ol">
+<li>人脸&amp;人体归档项目(2019.01 &#x2013; 2020.04)
+<ul class="org-ul">
+<li>人脸&amp;人体聚类算法维护和优化。在原有的二分图+层次聚类算法基础上引入新的策略（包括档案特征表示策略、多核心记录策略、去长尾策略等），同时完善了周边工具，包括 eval &amp; visualize 工具、图片本地存储方案等。开发语言：C++。</li>
+<li>将 GNN(图神经网络) 应用到当前聚类流程中。完整参与了 <b><b>前期算法设计、实验代码开发、实验设计和实操、标注迭代、算法性能优化、实验代码处理性能优化、算法集成和加速等</b></b> 。模型1v1性能 Recall@Fa=1e-6 提升7~23个点，人体归档 Average Recall 最大提升20个点，上线后QPS@8GPU(2080Ti) &gt; 10k。开发语言：C++(+ CUDA)、Python。</li>
+<li>2019年终绩效 3+（Research员工平均绩效为3）。</li>
+</ul></li>
+<li>CV 实验平台项目(2020.05 &#x2013; 2020.07)
+<ul class="org-ul">
+<li>CV 实验平台开发。参与开发了一个以 torch 做后端，对多种 CV 任务（包括分类、检测等）通用的实验平台，并且支持 composite model 和 multi-task 训练。在其中负责 train、predict、eval、visualize、convert\_caffe 等基本功能的开发和维护，新算法添加和适配（比如SSD multi-label），以及部分算法(比如 nms)的加速。</li>
+<li>分布式训练调研，熟悉 Ray、horovod、pytorch DDP等分布式训练框架以及梯度同步算法。</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgefdef4a" class="outline-2">
+<h2 id="orgefdef4a"><span class="section-number-2">5</span> 简历源码</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-latex"><span class="org-comment-delimiter">% </span><span class="org-comment">!TEX TS-program = xelatex</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">!TEX encoding = UTF-8 Unicode</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">!Mode:: "TeX:UTF-8"</span>
+
+<span class="org-keyword">\documentclass</span>{<span class="org-builtin">resume</span>}
+<span class="org-keyword">\usepackage</span>{<span class="org-builtin">tabu</span>}
+<span class="org-keyword">\usepackage</span>{<span class="org-builtin">graphicx</span>}
+<span class="org-keyword">\usepackage</span>{<span class="org-builtin">multirow</span>}
+<span class="org-keyword">\usepackage</span>{<span class="org-builtin">zh_CN-Adobefonts_external</span>} <span class="org-comment">% Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)</span>
+<span class="org-comment-delimiter">%</span><span class="org-comment">\usepackage{zh_CN-Adobefonts_internal} % Simplified Chinese Support using system fonts</span>
+<span class="org-keyword">\usepackage</span>{<span class="org-builtin">linespacing_fix</span>} <span class="org-comment">% disable extra space before next section</span>
+<span class="org-keyword">\usepackage</span>{<span class="org-builtin">cite</span>}
+
+<span class="org-keyword">\begin</span>{<span class="org-function-name">document</span>}
+<span class="org-keyword">\pagenumbering</span>{gobble} <span class="org-comment">% suppress displaying page number</span>
+
+<span class="org-keyword">\Large</span>{
+  <span class="org-keyword">\begin</span>{<span class="org-function-name">tabu</span>}{ l l l }
+   <span class="org-keyword">\multirow</span>{6}{1in}{<span class="org-keyword">\includegraphics</span>[width=1in]{<span class="org-builtin">small_1</span>}} &amp; &amp; <span class="org-warning">\\</span>
+   &amp; \ \ <span class="org-keyword">\scshape</span>{<span class="org-keyword">\Huge</span>{&#26472; &#30591;}} &amp;  <span class="org-warning">\\</span>
+    &amp; \ \ <span class="org-keyword">\email</span>{yangruipis@163.com} &amp; \ \  <span class="org-keyword">\rsssquare</span>[cnblogs.com/yangruiGB2312]{http://www.cnblogs.com/yangruiGB2312/}<span class="org-warning">\\</span>
+    &amp; \ \ <span class="org-keyword">\phone</span>{(+86) 188-1823-1378} &amp; \ \ <span class="org-keyword">\github</span>[github.com/Yangruipis]{https://github.com/Yangruipis} <span class="org-warning">\\</span>
+    &amp;  <span class="org-keyword">\multicolumn</span>{2}{l}{ \ \ <span class="org-keyword">\home</span>{<span class="org-keyword">\scshape</span>{&#19978;&#28023;&#24066;-&#38271;&#23425;&#21306;}}} &amp;
+  <span class="org-keyword">\end</span>{<span class="org-function-name">tabu</span>}
+}
+
+\ \ 
+
+
+
+<span class="org-keyword">\section</span>{<span class="org-function-name">\faGraduationCap\ &#25945;&#32946;&#32463;&#21382;</span>}
+<span class="org-keyword">\datedsubsection</span>{<span class="org-keyword">\textbf</span>{<span class="org-bold"><span class="org-keyword">\large</span></span><span class="org-bold">{&#19978;&#28023;&#23545;&#22806;&#32463;&#36152;&#22823;&#23398;}</span>}}{2012.09 -- 2019.03}
+<span class="org-keyword">\normalsize</span>{<span class="org-keyword">\textit</span>{<span class="org-italic">&#30740;&#31350;&#29983;&#65288;&#20445;&#30740;&#65289;</span>}<span class="org-keyword">\quad</span>  <span class="org-keyword">\quad</span> <span class="org-keyword">\quad</span> \  &#25968;&#37327;&#32463;&#27982;&#23398;&#19987;&#19994;&#65292;&#37329;&#34701;&#25968;&#25454;&#25366;&#25496;&#26041;&#21521;} <span class="org-keyword">\hfill</span> GPA:3.90&#65292;&#19987;&#19994;&#25490;&#21517;&#65306;4/17
+
+<span class="org-keyword">\textit</span>{<span class="org-italic">&#26412;&#31185;</span>} <span class="org-keyword">\quad</span> <span class="org-keyword">\quad</span>  <span class="org-keyword">\quad</span>   <span class="org-keyword">\quad</span> <span class="org-keyword">\quad</span>  <span class="org-keyword">\quad</span> <span class="org-keyword">\quad</span> <span class="org-keyword">\quad</span> &#32479;&#35745;&#23398; <span class="org-keyword">\hfill</span> GPA:3.31&#65292;&#19987;&#19994;&#25490;&#21517;&#65306;2/54
+
+<span class="org-keyword">\section</span>{<span class="org-function-name">\trophy\ &#33635;&#35465;&#21644;&#22870;&#39033;</span>}
+<span class="org-keyword">\datedline</span>{&#8220;&#19996;&#35777;&#26399;&#36135;&#26479;&#8221;&#32479;&#35745;&#24314;&#27169;&#22823;&#36187; <span class="org-keyword">\quad</span> <span class="org-keyword">\quad</span> \ \  <span class="org-keyword">\quad</span> <span class="org-keyword">\quad</span>  <span class="org-keyword">\quad</span> \   <span class="org-keyword">\textit</span>{<span class="org-italic">&#19968;&#31561;&#22870;(top 10 in 1000+)</span>} }{2018.03}
+<span class="org-keyword">\datedline</span>{&#8220;&#21326;&#20026;&#26479;&#8221;&#20840;&#22269;&#30740;&#31350;&#29983;&#25968;&#23398;&#24314;&#27169;&#22823;&#36187; <span class="org-keyword">\quad</span>  <span class="org-keyword">\quad</span> \ \ \  <span class="org-keyword">\textit</span>{<span class="org-italic">&#20108;&#31561;&#22870;(top 15</span><span class="org-italic"><span class="org-keyword">\%</span></span><span class="org-italic">)</span>} }{2017.09}
+<span class="org-keyword">\datedline</span>{&#20013;&#22269;&#22823;&#25968;&#25454;&#21019;&#26032;&#34892;&#21160;&#22823;&#36187; <span class="org-keyword">\quad</span>  <span class="org-keyword">\quad</span>  <span class="org-keyword">\quad</span>  <span class="org-keyword">\quad</span> <span class="org-keyword">\quad</span>  <span class="org-keyword">\quad</span> <span class="org-keyword">\quad</span>  <span class="org-keyword">\textit</span>{<span class="org-italic">&#19968;&#31561;&#22870;(top\  1,&#22870;&#37329;5&#19975;&#20803;)</span>}}{2016.12}
+<span class="org-keyword">\datedline</span>{&#19978;&#28023;&#24066;&#20248;&#31168;&#27605;&#19994;&#29983;&#12289;&#26657;&#21313;&#20339;&#23398;&#26415;&#26631;&#20853;&#12289;&#29233;&#24314;&#20225;&#19994;&#22870;&#23398;&#37329;&#19968;&#31561;&#22870;(&#20840;&#26657;top10)}{}
+
+
+<span class="org-keyword">\section</span>{<span class="org-function-name">\faUsers\ &#24037;&#20316;&#32463;&#21382;</span>}
+
+<span class="org-keyword">\datedsubsection</span>{<span class="org-keyword">\textbf</span>{<span class="org-bold">&#19978;&#28023;&#20381;&#22270;&#32593;&#32476;&#31185;&#25216;&#26377;&#38480;&#20844;&#21496;</span>}&#65292;<span class="org-keyword">\textit</span>{<span class="org-italic">&#30740;&#31350;&#37096;</span>}&#65292; <span class="org-keyword">\textit</span>{<span class="org-italic">&#31639;&#27861;&#24037;&#31243;&#24072;</span>}}{2019.01 -- 2020.07}
+<span class="org-comment-delimiter">%</span><span class="org-comment">*&#23567;&#32452;&#20171;&#32461;&#65306;&#36127;&#36131;&#22522;&#20110;&#26816;&#27979;&#21644;&#35782;&#21035;&#27169;&#22411;&#30340;&#19978;&#23618;&#31639;&#27861;&#65292;&#21253;&#25324;\textbf{&#20154;&#33080;/&#20154;&#20307;&#22270;&#20687;&#32858;&#31867;(&#24402;&#26723;)</span>
+<span class="org-comment-delimiter">%</span><span class="org-comment">\&amp; &#26816;&#32034;}&#31639;&#27861;&#65292;&#26159;&#20844;&#21496;&#23433;&#38450;&#31639;&#27861;&#33853;&#22320;&#30340;&#20027;&#35201;&#37096;&#38376;&#20043;&#19968;&#12290;</span>
+<span class="org-keyword">\textbf</span>{<span class="org-bold">\ [&#20154;&#33080;</span><span class="org-bold"><span class="org-keyword">\&amp;</span></span><span class="org-bold">&#20154;&#20307;&#24402;&#26723;&#39033;&#30446;] \  </span><span class="org-bold"><span class="org-keyword">\hfill</span></span><span class="org-bold"> 2019.01 -- 2020.04</span>}
+<span class="org-keyword">\begin</span>{<span class="org-function-name">itemize</span>}
+  <span class="org-keyword">\item</span> &#20154;&#33080;<span class="org-keyword">\&amp;</span>&#20154;&#20307;&#32858;&#31867;&#31639;&#27861;&#32500;&#25252;&#21644;&#20248;&#21270;&#12290;&#22312;&#21407;&#26377;&#30340;&#20108;&#20998;&#22270;+&#23618;&#27425;&#32858;&#31867;&#31639;&#27861;&#22522;&#30784;&#19978;&#24341;&#20837;&#26032;&#30340;&#31574;&#30053;&#65288;&#21253;&#25324;&#26723;&#26696;&#29305;&#24449;&#34920;&#31034;&#31574;&#30053;&#12289;&#22810;&#26680;&#24515;&#35760;&#24405;&#31574;&#30053;&#12289;&#21435;&#38271;&#23614;&#31574;&#30053;&#31561;&#65289;&#65292;&#21516;&#26102;&#23436;&#21892;&#20102;&#21608;&#36793;&#24037;&#20855;&#65292;&#21253;&#25324; <span class="org-keyword">\textit</span>{<span class="org-italic">eval </span><span class="org-italic"><span class="org-keyword">\&amp;</span></span><span class="org-italic"> visualize</span>} &#24037;&#20855;&#12289;&#22270;&#29255;&#26412;&#22320;&#23384;&#20648;&#26041;&#26696;&#31561;&#12290;&#24320;&#21457;&#35821;&#35328;&#65306;<span class="org-keyword">\textit</span>{<span class="org-italic">C++</span>}&#12290;
+  <span class="org-keyword">\item</span> &#23558; GNN(&#22270;&#31070;&#32463;&#32593;&#32476;) &#24212;&#29992;&#21040;&#24403;&#21069;&#32858;&#31867;&#27969;&#31243;&#20013;&#12290;&#23436;&#25972;&#21442;&#19982;&#20102;<span class="org-keyword">\textbf</span>{<span class="org-bold">&#21069;&#26399;&#31639;&#27861;&#35774;&#35745;</span>}&#12289;&#23454;&#39564;&#20195;&#30721;&#24320;&#21457;&#12289;&#23454;&#39564;&#35774;&#35745;&#21644;&#23454;&#25805;&#12289;&#26631;&#27880;&#36845;&#20195;&#12289;<span class="org-keyword">\textbf</span>{<span class="org-bold">&#31639;&#27861;&#24615;&#33021;&#20248;&#21270;</span>}&#12289;<span class="org-keyword">\textbf</span>{<span class="org-bold">&#23454;&#39564;&#20195;&#30721;&#22788;&#29702;&#24615;&#33021;&#20248;&#21270;&#12289;&#31639;&#27861;&#38598;&#25104;&#21644;&#21152;&#36895;</span>}&#31561;&#12290;&#27169;&#22411;1v1&#24615;&#33021; Recall@Fa=1e-6 &#25552;&#21319;7<span class="org-keyword">\textasciitilde</span>23&#20010;&#28857;&#65292;&#20154;&#20307;&#24402;&#26723; Average Recall &#26368;&#22823;&#25552;&#21319;20&#20010;&#28857;&#65292;&#19978;&#32447;&#21518;QPS@8GPU(2080Ti) <span class="org-tex-math">$\ge 10k$</span>&#12290;&#24320;&#21457;&#35821;&#35328;&#65306;<span class="org-keyword">\textit</span>{<span class="org-italic">C++(+ CUDA)&#12289;Python</span>}&#12290;
+  <span class="org-keyword">\item</span> 2019&#24180;&#32456;&#32489;&#25928; 3+&#65288;Research&#21592;&#24037;&#24179;&#22343;&#32489;&#25928;&#20026;3&#65289;&#12290;
+<span class="org-keyword">\end</span>{<span class="org-function-name">itemize</span>}
+<span class="org-keyword">\textbf</span>{<span class="org-bold">\ [CV &#23454;&#39564;&#24179;&#21488;&#39033;&#30446;] \  </span><span class="org-bold"><span class="org-keyword">\hfill</span></span><span class="org-bold"> 2020.05 -- 2020.07</span>}
+<span class="org-keyword">\begin</span>{<span class="org-function-name">itemize</span>}
+  <span class="org-keyword">\item</span> CV &#23454;&#39564;&#24179;&#21488;&#24320;&#21457;&#12290;&#21442;&#19982;&#24320;&#21457;&#20102;&#19968;&#20010;&#20197; <span class="org-keyword">\textit</span>{<span class="org-italic">torch</span>} &#20570;&#21518;&#31471;&#65292;&#23545;&#22810;&#31181; CV &#20219;&#21153;&#65288;&#21253;&#25324;&#20998;&#31867;&#12289;&#26816;&#27979;&#31561;&#65289;&#36890;&#29992;&#30340;&#23454;&#39564;&#24179;&#21488;&#65292;&#24182;&#19988;&#25903;&#25345; <span class="org-keyword">\textit</span>{<span class="org-italic">composite model</span>} &#21644; <span class="org-keyword">\textit</span>{<span class="org-italic">multi-task</span>} &#35757;&#32451;&#12290;&#22312;&#20854;&#20013;&#36127;&#36131; <span class="org-keyword">\textit</span>{<span class="org-italic">train&#12289;predict&#12289;eval&#12289;visualize&#12289;convert</span><span class="org-italic"><span class="org-keyword">\_</span></span><span class="org-italic">caffe</span>} &#31561;&#22522;&#26412;&#21151;&#33021;&#30340;&#24320;&#21457;&#21644;&#32500;&#25252;&#65292;&#26032;&#31639;&#27861;&#28155;&#21152;&#21644;&#36866;&#37197;&#65288;&#27604;&#22914;SSD multi-label&#65289;&#65292;&#20197;&#21450;&#37096;&#20998;&#31639;&#27861;(&#27604;&#22914; nms)&#30340;&#21152;&#36895;&#12290;
+  <span class="org-keyword">\item</span> &#20998;&#24067;&#24335;&#35757;&#32451;&#35843;&#30740;&#65292;&#29087;&#24713; <span class="org-keyword">\textit</span>{<span class="org-italic">Ray&#12289;horovod&#12289;pytorch DDP</span>}&#31561;&#20998;&#24067;&#24335;&#35757;&#32451;&#26694;&#26550;&#20197;&#21450;&#26799;&#24230;&#21516;&#27493;&#31639;&#27861;&#12290;
+<span class="org-keyword">\end</span>{<span class="org-function-name">itemize</span>}
+<span class="org-comment-delimiter">% </span><span class="org-comment">\datedsubsection{\textbf{&#19978;&#28023;&#22825;&#22756;&#26234;&#33021;&#31185;&#25216;&#26377;&#38480;&#20844;&#21496;}&#65292;\textit{&#37329;&#34701;&#22823;&#33041;}&#65292; \textit{&#21518;&#31471;&#30740;&#21457;&#24037;&#31243;&#24072;}}{2019.07 -- }</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">\textbf{\ [OCR&#35757;&#32451;&#24179;&#21488;] \  \hfill 2020.07 -- 2020.11}</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">\begin{itemize}</span>
+<span class="org-comment-delimiter">%   </span><span class="org-comment">\item &#35757;&#32451;&#24179;&#21488;&#26085;&#24120;&#32500;&#25252;&#65292;&#31639;&#27861;&#27169;&#22359;&#38236;&#20687;</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">\end{itemize}</span>
+
+<span class="org-keyword">\section</span>{<span class="org-function-name">\tasks\ &#39033;&#30446;&#32463;&#21382;</span>}
+
+<span class="org-comment-delimiter">% </span><span class="org-comment">\datedsubsection{\textbf{&#20381;&#22270;GNN&#22270;&#20687;&#32858;&#31867;&#31639;&#27861;}}{2019.11 -- 2020.05}</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">\begin{itemize}</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">\item \textbf{&#31639;&#27861;&#35774;&#35745;}&#65306;&#21442;&#19982;&#20102;&#21069;&#26399;&#31639;&#27861;&#35774;&#35745;&#65292;&#32473;&#20986;&#24615;&#33021;&#35780;&#20272;&#26041;&#26696;&#65288;1v1&#21333;&#27169;&#22359;&#21644;&#31471;&#21040;&#31471;&#32858;&#31867;&#24615;&#33021;&#65289;&#12290;</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">\item \textbf{&#23454;&#39564;&#29615;&#22659;&#24320;&#21457;}&#65306;&#36127;&#36131;&#32477;&#22823;&#37096;&#20998;\textit{pytorch} &#23454;&#39564;&#20195;&#30721;&#24320;&#21457;&#21644;&#32500;&#25252;&#65292;&#24182;&#19988;&#21518;&#32493;&#19981;&#26029;&#23545; training &#21644; inference &#36827;&#34892;&#22788;&#29702;&#24615;&#33021;&#20248;&#21270;&#65292;&#26041;&#27861;&#21253;&#25324;&#20102;producer-consumer&#33707;&#26031;&#12289;&#31232;&#30095;&#30697;&#38453;&#12289;&#22810;&#21345;&#22788;&#29702;&#12289;&#20998;&#21345;IO&#20248;&#21270;&#31561;&#65292;&#29087;&#32451;&#20351;&#29992; nsight &#36827;&#34892; Profile&#12290;</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">\item \textbf{C++&#38598;&#25104;&#19982;TensorRT&#20248;&#21270;}&#65306;&#36127;&#36131;&#37096;&#20998;GNN&#32858;&#31867;&#38598;&#25104;&#29615;&#22659;&#35774;&#35745;(30\%)&#12289;&#22823;&#37096;&#20998;&#38598;&#25104;&#20195;&#30721;&#24320;&#21457;(70\%)&#65292;&#20197;&#21450;&#25152;&#26377;torch&#36716;TensorRT&#20248;&#21270;&#30340;&#24037;&#20316;&#12290;&#22312;&#20351;&#29992;TRT&#36807;&#31243;&#20013;&#65292;&#20511;&#21161;&#37051;&#25509;&#34920;&#23545;&#31232;&#30095;&#30697;&#38453;&#20056;&#27861;&#36827;&#34892;&#36827;&#19968;&#27493;&#20248;&#21270;&#65292;&#36991;&#20813;&#20102;&#36229;&#22823;&#30697;&#38453;&#30456;&#20056;&#12290;</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">\item \textbf{&#20854;&#20182;&#25968;&#25454;&#21644;&#23454;&#39564;&#24037;&#20316;}&#65306;&#36127;&#36131;&#19968;&#37096;&#20998;&#25968;&#25454;&#38598;&#21046;&#20316;&#12289;&#31639;&#27861;&#23454;&#39564;&#35774;&#35745;&#21644;&#23454;&#25805;&#30340;&#24037;&#20316;&#65292;&#20854;&#20013;&#25928;&#26524;&#26368;&#22909;&#30340;knn&#38408;&#20540;&#23454;&#39564;&#65292;&#20351;&#24403;&#26102;recall@FA&#24615;&#33021;&#25552;&#39640;3&#20010;&#28857;&#24038;&#21491;\%&#12290;</span>
+<span class="org-comment-delimiter">% </span><span class="org-comment">\end{itemize}</span>
+
+
+<span class="org-keyword">\datedsubsection</span>{<span class="org-keyword">\textbf</span>{<span class="org-bold">Kaggle Home Credit Default Risk</span>}}{2018.06 -- 2018.08}
+<span class="org-keyword">\begin</span>{<span class="org-function-name">itemize</span>}
+<span class="org-keyword">\item</span> &#36127;&#36131;&#29305;&#24449;&#24037;&#31243;&#65292;&#21253;&#25324;&#20102;&#25968;&#25454;&#39044;&#22788;&#29702;&#65292;&#22810;&#34920;&#32858;&#21512;&#65292;&#29305;&#24449;&#36873;&#25321;(<span class="org-keyword">\textit</span>{<span class="org-italic">Lasso&#12289;LightGBM&#12289;FeatureTools</span>})&#65292;&#38750;&#24179;&#34913;&#25968;&#25454;&#22788;&#29702;(<span class="org-keyword">\textit</span>{<span class="org-italic">ENN&#12289;Tomek</span>})&#65292;&#27169;&#22411;&#30340;&#36873;&#25321;&#21644;&#20248;&#21270;&#65288;<span class="org-keyword">\textit</span>{<span class="org-italic">GridSearch&#12289;BayesOpt&#12289;LightGBM&#12289;XGBoost</span>})&#65292;&#20197;&#21450;&#22242;&#38431;&#27169;&#22411;&#34701;&#21512;(<span class="org-keyword">\textit</span>{<span class="org-italic">Stacking&#12289;Weighted Average Rank</span>})
+<span class="org-keyword">\item</span> &#22312;7200+&#38431;&#20237;&#20013;&#25490;&#21517;<span class="org-keyword">\textbf</span>{<span class="org-bold">137&#21517;</span>}&#65292;&#20301;&#20110;<span class="org-keyword">\textbf</span>{<span class="org-bold">&#21069;2</span><span class="org-bold"><span class="org-keyword">\%</span></span>}
+<span class="org-keyword">\end</span>{<span class="org-function-name">itemize</span>}
+
+
+<span class="org-keyword">\datedsubsection</span>{<span class="org-keyword">\textbf</span>{<span class="org-bold">&#26426;&#22120;&#23398;&#20064;&#24211;</span><span class="org-bold"><span class="org-keyword">\textit</span></span><span class="org-bold">{</span><span class="org-italic"><span class="org-bold">simple</span></span><span class="org-italic"><span class="org-bold"><span class="org-keyword">\_</span></span></span><span class="org-italic"><span class="org-bold">ml</span></span><span class="org-bold">}&#24320;&#21457;</span>}}{2017.12 -- 2018.06}
+<span class="org-keyword">\begin</span>{<span class="org-function-name">itemize</span>}
+<span class="org-keyword">\item</span> &#20010;&#20154;&#39033;&#30446;<span class="org-keyword">\github</span>[simple<span class="org-keyword">\_</span>ml: \ https://yangruipis.github.io/simple<span class="org-keyword">\_</span>ml]{https://yangruipis.github.io/simple_ml/} &#65292;&#24320;&#21457;&#29615;&#22659;&#65306;<span class="org-keyword">\textit</span>{<span class="org-italic">python3.6+Anaconda+Emacs</span>}
+<span class="org-keyword">\item</span> &#20165;&#20381;&#36182;numpy&#23454;&#29616;&#20102;&#24120;&#29992;&#30340;&#29305;&#24449;&#24037;&#31243;&#12289;&#27169;&#22411;&#35780;&#20215;&#12289;&#20998;&#31867;(<span class="org-keyword">\textit</span>{<span class="org-italic">LR&#12289;KNN&#12289;NB&#12289;DT&#12289;SVM&#12289;SVR&#12289;BP&#12289;AdaBoost&#12289;GBDT&#12289;RF&#12289;stacking</span>})&#19982;&#32858;&#31867;(<span class="org-keyword">\textit</span>{<span class="org-italic">K-means&#12289; &#23618;&#27425;&#12289;DBSCAN</span>})&#31639;&#27861;&#12289;&#33258;&#21160;&#21270;&#25968;&#25454;&#39044;&#22788;&#29702;&#21644;&#29305;&#24449;&#36873;&#25321;&#26041;&#27861;&#12290;
+<span class="org-keyword">\end</span>{<span class="org-function-name">itemize</span>}
+
+<span class="org-keyword">\section</span>{<span class="org-function-name">\faCogs\ \ &#25216;&#33021; \&amp; \ &#33258;&#25105;&#25551;&#36848;</span>}
+<span class="org-keyword">\begin</span>{<span class="org-function-name">itemize</span>}
+    <span class="org-keyword">\item</span> &gt;4&#24180;<span class="org-keyword">\textit</span>{<span class="org-italic">python</span>} &#24320;&#21457;&#19982;&#24314;&#27169;&#32463;&#39564;&#65292;&#29087;&#32451;&#20351;&#29992; <span class="org-keyword">\textit</span>{<span class="org-italic">pytorch&#12289;numpy&#12289;pandas</span>}&#31561;&#24211;&#36827;&#34892;&#25968;&#25454;&#22788;&#29702;&#12289;&#26426;&#22120;&#23398;&#20064;&#31639;&#27861;&#24320;&#21457;&#21644;&#23454;&#39564;&#31561;&#65292;&#29087;&#24713;<span class="org-keyword">\textit</span>{<span class="org-italic">Caffe&#12289;XGBoost&#12289;LightGBM</span>}&#12290;
+    <span class="org-keyword">\item</span> &gt;3&#24180;<span class="org-keyword">\textit</span>{<span class="org-italic">Linux</span>}&#20351;&#29992;&#32463;&#39564;&#65292;&#25484;&#25569;&#22522;&#26412;bash&#21629;&#20196;&#21644;shell&#33050;&#26412;&#32534;&#20889;&#65292;&#29087;&#32451;&#20351;&#29992;<span class="org-keyword">\textit</span>{<span class="org-italic">Emacs</span>}&#65288;&#21487;&#20197;&#20889;&#19968;&#20123;&#20010;&#24615;&#21270;&#25351;&#20196;&#65289;&#12289;<span class="org-keyword">\textit</span>{<span class="org-italic">Git&#12289;Awk</span>}&#31561;&#24037;&#20855;&#12290;&#28909;&#34935; <span class="org-keyword">\LaTeX</span> &#20889;&#20316;&#65292;&#29420;&#31435;&#36129;&#29486;&#20102;&#26657;&#27605;&#19994;&#35770;&#25991; <span class="org-keyword">\LaTeX</span> &#27169;&#26495;<span class="org-keyword">\github</span>[SUIBEthesis]{https://github.com/Yangruipis/SUIBEthesis}&#12290;
+    <span class="org-keyword">\item</span> 1.5&#24180;<span class="org-keyword">\textit</span>{<span class="org-italic">C++</span>}&#24320;&#21457;&#32463;&#39564;&#65292;&#29087;&#24713;&#22522;&#26412;&#29305;&#24615;&#65292;&#29087;&#32451;&#20351;&#29992;<span class="org-keyword">\textit</span>{<span class="org-italic">Scons</span>}&#65307;0.5&#24180;<span class="org-keyword">\textit</span>{<span class="org-italic">CUDA</span>}&#24320;&#21457;&#32463;&#39564;&#65292;&#29087;&#24713;&#26680;&#20989;&#25968;&#32534;&#20889;&#12289;&#20197;&#21450;&#24120;&#35268;&#30340;&#20248;&#21270;&#26041;&#27861;&#65307;&#20102;&#35299; <span class="org-keyword">\textit</span>{<span class="org-italic">TensorRT</span>} &#21644;&#27169;&#22411;&#35745;&#31639;&#21152;&#36895;&#12290;
+    <span class="org-comment">% \item &#25968;&#29702;&#32479;&#35745;&#22522;&#30784;&#25166;&#23454;&#65292;&#29087;&#24713;&#35745;&#37327;&#32463;&#27982;&#65292;&#22810;&#20803;&#32479;&#35745;&#65292;&#26102;&#38388;&#24207;&#21015;&#65292;&#36125;&#21494;&#26031;&#32479;&#35745;&#31561;&#26041;&#38754;&#30340;&#30693;&#35782;&#65292;&#29087;&#32451;&#25484;&#25569;&#26426;&#22120;&#23398;&#20064;&#30456;&#20851;&#31639;&#27861;&#21450;&#21407;&#29702;&#12290;</span>
+<span class="org-keyword">\end</span>{<span class="org-function-name">itemize</span>}
+
+<span class="org-keyword">\quad</span> <span class="org-keyword">\quad</span> &#28909;&#29233;&#32534;&#31243;&#65292;&#21916;&#27426;&#24605;&#32771;&#65292;&#36861;&#27714;&#26032;&#25216;&#26415;&#12290;&#33521;&#35821;&#35835;&#20889;&#27969;&#30021;(CET6:541)&#65292;&#29233;&#22909;&#26377;&#25668;&#24433;&#65288;&#26657;&#25668;&#24433;&#22823;&#36187;&#20108;&#31561;&#22870;&#65289;&#12289;&#39569;&#34892;&#31561;&#12290;
+
+
+
+<span class="org-comment-delimiter">%% </span><span class="org-comment">Reference</span>
+<span class="org-comment-delimiter">%</span><span class="org-comment">\newpage</span>
+<span class="org-comment-delimiter">%</span><span class="org-comment">\bibliographystyle{IEEETran}</span>
+<span class="org-comment-delimiter">%</span><span class="org-comment">\bibliography{mycite}</span>
+<span class="org-keyword">\end</span>{<span class="org-function-name">document</span>}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 杨 睿</p>
+<p class="date">Created: 2022-12-30 Fri 10:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

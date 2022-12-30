@@ -1,0 +1,1287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-12-30 Fri 10:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[MIGRATE]Majaro配置</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="杨 睿" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.css"/>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.min.js"></script>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">[MIGRATE]Majaro配置</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org796bd28">1. ss并且开机启动</a>
+<ul>
+<li><a href="#org7a64520">1.1. 安装shadowsocks</a></li>
+<li><a href="#org4e0888c">1.2. 建立配置文件ss.json</a></li>
+<li><a href="#org19d13a4">1.3. 建立sh文件，用以运行</a></li>
+<li><a href="#org7c40525">1.4. 开机自动启动</a>
+<ul>
+<li><a href="#org3906bd4">1.4.1. 首先载启动文件`/etc/rc.local`中加入</a></li>
+<li><a href="#org9ba4aee">1.4.2. 3.2 添加服务</a></li>
+</ul>
+</li>
+<li><a href="#org4c618ea">1.5. github代理</a></li>
+</ul>
+</li>
+<li><a href="#org2762430">2. 双硬盘时，机械硬盘挂载</a>
+<ul>
+<li><a href="#orgf559857">2.1. 格式化硬盘为EXT4</a></li>
+<li><a href="#org64ce24a">2.2. 分区</a></li>
+<li><a href="#org8657842">2.3. 挂载</a></li>
+<li><a href="#org046aa97">2.4. 开机自动挂载</a></li>
+</ul>
+</li>
+<li><a href="#org1f68c3d">3. 添加字体</a>
+<ul>
+<li><a href="#org5dd2320">3.1. 安装依赖</a></li>
+<li><a href="#org9292b88">3.2. 下载对应的字体文件，并且放到指定位置</a></li>
+<li><a href="#org6929754">3.3. 建立缓存</a></li>
+</ul>
+</li>
+<li><a href="#orgfe2cb6f">4. 安装 latex</a></li>
+<li><a href="#orgee3be24">5. 双显卡驱动</a>
+<ul>
+<li><a href="#org39011de">5.1. 安装</a></li>
+<li><a href="#org6f50bcf">5.2. 防止启动后无法进入图形界面</a></li>
+<li><a href="#orgcc8f25e">5.3. 测试</a></li>
+<li><a href="#orgfaedf24">5.4. 两种用法</a></li>
+</ul>
+</li>
+<li><a href="#org5028fab">6. docker + pyspark + jupyter 安装</a>
+<ul>
+<li><a href="#org21da67a">6.1. 本地安装docker</a>
+<ul>
+<li><a href="#orga64865d">6.1.1. 1.1 安装docker包</a></li>
+<li><a href="#orga6c7766">6.1.2. 1.2 防止权限问题，加入用户权限</a></li>
+<li><a href="#orgb7e1582">6.1.3. 1.3 重启服务（或者重启计算机）</a></li>
+<li><a href="#org88098c6">6.1.4. 1.4 查看安装是否成功</a></li>
+</ul>
+</li>
+<li><a href="#org3ab4ff1">6.2. 配置spark 镜像(images)和容器(containers)</a>
+<ul>
+<li><a href="#orgcf272e0">6.2.1. 首先，直接建立容器，如果镜像不存在，则会自动下载：</a></li>
+<li><a href="#org0baa8e8">6.2.2. 其次，查看docker状态</a></li>
+<li><a href="#org340cf1c">6.2.3. 最后，直接打开或是关闭</a></li>
+</ul>
+</li>
+<li><a href="#orgbf5f64d">6.3. 3 推荐的pyspark docker</a></li>
+<li><a href="#orga9e2cdc">6.4. 1. 安装zsh</a></li>
+<li><a href="#orgfd7f351">6.5. 2. 安装 oh-my-zsh</a></li>
+<li><a href="#orgdac9cdc">6.6. 3. 设置为默认shell</a></li>
+<li><a href="#org4fc0a64">6.7. 4. 添加powerline</a></li>
+</ul>
+</li>
+<li><a href="#org92301fd">7. tensorflow 环境搭建</a>
+<ul>
+<li><a href="#org42a9d2d">7.1. 1. 双显卡切换为独显</a></li>
+<li><a href="#org8daf68b">7.2. 2. 安装CUDA</a>
+<ul>
+<li><a href="#org6382e70">7.2.1. 2.1 yaourt 安装</a></li>
+<li><a href="#orgbb131fd">7.2.2. 2.2 加入环境变量</a></li>
+<li><a href="#org01d73a9">7.2.3. 2.3 验证安装</a></li>
+</ul>
+</li>
+<li><a href="#org4b9c279">7.3. 3. cuDNN安装</a></li>
+<li><a href="#org37b1d6f">7.4. 4. 安装tensorflow-gpu版本</a></li>
+<li><a href="#org903e04c">7.5. 5. 安装keras</a></li>
+</ul>
+</li>
+<li><a href="#org90f2f75">8. linux备份</a>
+<ul>
+<li><a href="#org85c1517">8.1. 0. 权限问题</a></li>
+<li><a href="#orgd6fe3cc">8.2. 1. 备份</a></li>
+<li><a href="#orga28f37f">8.3. 2. 恢复</a></li>
+</ul>
+</li>
+<li><a href="#org94e93b9">9. 连接鼠标</a>
+<ul>
+<li><a href="#orgc34fc55">9.1. 1. 蓝牙直连</a></li>
+<li><a href="#orgcc4d278">9.2. 2. 有线连接，安装驱动</a></li>
+<li><a href="#orgeac5acf">9.3. 每次打开终端时互换</a></li>
+<li><a href="#orgdcce190">9.4. 服务器端：</a></li>
+<li><a href="#org3fce96c">9.5. 本地端</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div align="right">
+<a href="javascript:history.back()">返回</a>
+</div>
+
+<div id="outline-container-org796bd28" class="outline-2">
+<h2 id="org796bd28"><span class="section-number-2">1</span> ss并且开机启动</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org7a64520" class="outline-3">
+<h3 id="org7a64520"><span class="section-number-3">1.1</span> 安装shadowsocks</h3>
+<div class="outline-text-3" id="text-1-1">
+<pre class="example">
+sudo pip install shadowsocks 
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4e0888c" class="outline-3">
+<h3 id="org4e0888c"><span class="section-number-3">1.2</span> 建立配置文件ss.json</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+我的位置是： <code>/home/ray/Documents/shadowsocks/ss.json</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-python">{
+    <span class="org-string">"server"</span>:<span class="org-string">"*.*.*.*"</span>,
+    <span class="org-string">"server_port"</span>:***,
+    <span class="org-string">"local_port"</span>:1081,
+    <span class="org-string">"password"</span>:<span class="org-string">"*****"</span>,
+    <span class="org-string">"timeout"</span>:600,
+    <span class="org-string">"method"</span>:<span class="org-string">"aes-256-cfb"</span>
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org19d13a4" class="outline-3">
+<h3 id="org19d13a4"><span class="section-number-3">1.3</span> 建立sh文件，用以运行</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+我的位置是： <code>/home/ray/Documents/shadowsocks/ss.sh</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span class="org-comment-delimiter">#</span><span class="org-comment">!/bin/</span><span class="org-keyword">bash</span>
+<span class="org-comment-delimiter">#</span><span class="org-comment">ss.sh</span>
+/home/ray/anaconda3/bin/sslocal -c /home/ray/Documents/shadowsocks/ss.json 
+
+<span class="org-builtin">echo</span> <span class="org-string">"connected!"</span>
+</pre>
+</div>
+<p>
+<b><b>注意</b></b> ，如果是开机启动会出现:"sslocal 未知的命令"的情况，一定要附上绝对路径，或者加入环境变量。
+</p>
+
+<p>
+不要忘记增加可执行权限：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">sudo chmod +x ss.sh
+</pre>
+</div>
+
+<p>
+测试：打开终端后，运行: sh /home/ray/Documents/shadowsocks/ss.sh，不报错就成功了
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7c40525" class="outline-3">
+<h3 id="org7c40525"><span class="section-number-3">1.4</span> 开机自动启动</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-org3906bd4" class="outline-4">
+<h4 id="org3906bd4"><span class="section-number-4">1.4.1</span> 首先载启动文件`/etc/rc.local`中加入</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<div class="org-src-container">
+<pre class="src src-bash">sh /home/ray/Documents/shadowsocks/ss.sh
+</pre>
+</div>
+
+<p>
+增加权限：
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">sudo chmod +x /etc/rc.local
+</pre>
+</div>
+<p>
+重启，如果可以翻墙最好，如果不行则考虑步骤3.2
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9ba4aee" class="outline-4">
+<h4 id="org9ba4aee"><span class="section-number-4">1.4.2</span> 3.2 添加服务</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+新建文件：`/usr/lib/systemd/system/rc-local.service`，在其中加入：
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">[Unit]
+<span class="org-variable-name">Description</span>=/etc/rc.local Compatibility
+<span class="org-variable-name">ConditionPathExists</span>=/etc/rc.local
+[Service]
+<span class="org-variable-name">ExecStart</span>=/etc/rc.local
+[Install]
+<span class="org-variable-name">WantedBy</span>=multi-user.target
+</pre>
+</div>
+
+<p>
+之后在终端运行：
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">systemctl enable rc-local.service    <span class="org-comment-delimiter"># </span><span class="org-comment">&#20801;&#35768;&#35813;&#26381;&#21153;&#65292;&#20351;&#20854;&#21487;&#20197;&#24320;&#26426;&#33258;&#36816;&#34892;</span>
+systemctl start rc-local.service    <span class="org-comment-delimiter"># </span><span class="org-comment">&#21551;&#21160;&#35813;&#26381;&#21153;</span>
+systemctl status rc-local.service   <span class="org-comment-delimiter"># </span><span class="org-comment">&#26597;&#30475;&#26381;&#21153;&#29366;&#24577;</span>
+</pre>
+</div>
+<p>
+如果发现服务状态没有异常，则搞定了，重启即可
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4c618ea" class="outline-3">
+<h3 id="org4c618ea"><span class="section-number-3">1.5</span> github代理</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-bash">git config --global http.proxy <span class="org-string">'socks5://127.0.0.1:1081'</span> 
+</pre>
+</div>
+<p>
+1081为本地端口号
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2762430" class="outline-2">
+<h2 id="org2762430"><span class="section-number-2">2</span> 双硬盘时，机械硬盘挂载</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgf559857" class="outline-3">
+<h3 id="orgf559857"><span class="section-number-3">2.1</span> 格式化硬盘为EXT4</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+如果时windows过来的NTFS，一定要进行格式化，否则无法写入
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">fdisk -l   <span class="org-comment-delimiter"># </span><span class="org-comment">&#21015;&#20986;&#25152;&#26377;&#20998;&#21306;&#65292;&#25214;&#21040;&#24819;&#35201;&#26684;&#24335;&#21270;&#30340;&#20998;&#21306;&#21517;&#65292;&#22914;/dev/sda1</span>
+sudo mkfs -t ext4 /dev/sda1   <span class="org-comment-delimiter"># </span><span class="org-comment">&#26684;&#24335;&#21270;&#23436;&#25104;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org64ce24a" class="outline-3">
+<h3 id="org64ce24a"><span class="section-number-3">2.2</span> 分区</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-bash">sudo fdisk /dev/sda     <span class="org-comment-delimiter">#</span><span class="org-comment">&#26684;&#24335;&#21270;&#21518;&#21517;&#31216;&#20026;/dev/sda</span>
+</pre>
+</div>
+<p>
+输入n、p、1、两下回车、wq、回车，分成一个区
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8657842" class="outline-3">
+<h3 id="org8657842"><span class="section-number-3">2.3</span> 挂载</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-bash"><span class="org-comment-delimiter"># </span><span class="org-comment">&#26032;&#24314;&#25991;&#20214;&#22841;&#20316;&#20026;&#25346;&#36733;&#28857;</span>
+mkdir /home/ray/Documents/Data
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#32473;&#23450;&#20889;&#20837;&#26435;&#38480;</span>
+chown -R 500:ray /run/media/ray/data/
+sudo chown ray:ray /run/media/ray/data/
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#25346;&#36733;</span>
+sudo mount -t ext4 /dev/sda1 /home/ray/Documents/Data/
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org046aa97" class="outline-3">
+<h3 id="org046aa97"><span class="section-number-3">2.4</span> 开机自动挂载</h3>
+<div class="outline-text-3" id="text-2-4">
+<div class="org-src-container">
+<pre class="src src-bash">sudo gedit /etc/fstab
+</pre>
+</div>
+
+<p>
+加入：
+#+END_SRC
+/dev/sda1 /home/ray/Documents/Data ext4 defaults 0 2 
+#+END_SRC
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1f68c3d" class="outline-2">
+<h2 id="org1f68c3d"><span class="section-number-2">3</span> 添加字体</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org5dd2320" class="outline-3">
+<h3 id="org5dd2320"><span class="section-number-3">3.1</span> 安装依赖</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-bash">sudo pacman -S fontconfig
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9292b88" class="outline-3">
+<h3 id="org9292b88"><span class="section-number-3">3.2</span> 下载对应的字体文件，并且放到指定位置</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>微软雅黑：<a href="https://pan.baidu.com/s/1pL5asEv">https://pan.baidu.com/s/1pL5asEv</a></li>
+<li>放入/usr/share/fonts/my_fonts/中</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6929754" class="outline-3">
+<h3 id="org6929754"><span class="section-number-3">3.3</span> 建立缓存</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+mkfontscale 
+mkfontdir 
+fc-cache -fv
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfe2cb6f" class="outline-2">
+<h2 id="orgfe2cb6f"><span class="section-number-2">4</span> 安装 latex</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<pre class="src src-bash"><span class="org-comment-delimiter"># </span><span class="org-comment">&#23433;&#35013;&#24213;&#23618;&#65288;&#26368;&#21518;&#19968;&#20010;&#29992;&#20110;&#35299;&#20915;bibtex&#30340;&#38382;&#39064;&#65289;</span>
+sudo pacman -S texlive-core texlive-langchinese texlive-latexextra texlive-publishers
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#23433;&#35013;IDE</span>
+sudo pacman -S texstudio
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#26356;&#26032;texlive</span>
+texhash
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgee3be24" class="outline-2">
+<h2 id="orgee3be24"><span class="section-number-2">5</span> 双显卡驱动</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+manjaro装机之后的显卡驱动切换程序：Bumblebee还是有点问题，我们重新安装
+</p>
+</div>
+<div id="outline-container-org39011de" class="outline-3">
+<h3 id="org39011de"><span class="section-number-3">5.1</span> 安装</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+<pre class="src src-bash"><span class="org-comment-delimiter"># </span><span class="org-comment">&#20381;&#36182;</span>
+sudo pacman -S virtualgl lib32-virtualgl lib32-primus primus
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#23433;&#35013;&#21452;&#26174;&#21345;&#20999;&#25442;&#31243;&#24207;bumblebee</span>
+sudo mhwd -f -i pci video-hybrid-intel-nvidia-bumblebee
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#20801;&#35768;&#26381;&#21153;</span>
+sudo systemctl enable bumblebeed
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#28155;&#21152;&#29992;&#25143;</span>
+sudo gpasswd -a $<span class="org-variable-name">USER</span> bumblebee
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6f50bcf" class="outline-3">
+<h3 id="org6f50bcf"><span class="section-number-3">5.2</span> 防止启动后无法进入图形界面</h3>
+<div class="outline-text-3" id="text-5-2">
+<ol class="org-ol">
+<li>打开 /etc/default/grub</li>
+<li>找到并且改为：GRUB_CMLINE_LINUX_DEFAULT="quiet <b><b>acpi_osi=! acpi_osi=Linux acpi_osi=’Windows 2015’ pcie_port_pm=off</b></b> resume=&#x2026;"</li>
+<li>运行sudo update-grub，重启</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgcc8f25e" class="outline-3">
+<h3 id="orgcc8f25e"><span class="section-number-3">5.3</span> 测试</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<pre class="src src-bash"><span class="org-comment-delimiter"># </span><span class="org-comment">&#23433;&#35013;&#27979;&#35797;&#36719;&#20214;</span>
+sudo pacman -S mesa-demos
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#38598;&#25104;&#26174;&#21345;&#24615;&#33021;</span>
+glxgears -info
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#29420;&#26174;&#24615;&#33021;</span>
+optirun glxgears -info
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#25110;&#32773;</span>
+primusrun glxgears -info
+</pre>
+</div>
+
+<p>
+之后所有需要用独显允许的程序，前面都要加上optirun或者primusrun允许
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span class="org-comment-delimiter"># </span><span class="org-comment">&#25171;&#24320;nvida&#38754;&#26495;</span>
+optirun -b none nvidia-settings -c :8
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#19981;&#20381;&#36182;Bumblebee&#26469;&#20351;&#29992;CUDA</span>
+sudo tee /proc/acpi/bbswitch &lt;&lt;&lt; <span class="org-string">'ON'</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#20351;&#29992;&#23436;CUDA &#20572;&#27490;NVIDIA&#26174;&#21345;</span>
+sudo rmmod nvidia_uvm nvidia &amp;&amp; sudo tee /proc/acpi/bbswitch &lt;&lt;&lt; OFF
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-bash">inxi -G <span class="org-comment-delimiter"># </span><span class="org-comment">&#26597;&#30475;&#26174;&#21345;&#24773;&#20917;</span>
+
+optirun nvidia-smi <span class="org-comment-delimiter"># </span><span class="org-comment">&#26597;&#30475;CPU&#24773;&#20917;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfaedf24" class="outline-3">
+<h3 id="orgfaedf24"><span class="section-number-3">5.4</span> 两种用法</h3>
+<div class="outline-text-3" id="text-5-4">
+<ol class="org-ol">
+<li>用bumblebee切换：</li>
+</ol>
+<p>
+命令前面加上 optirun 或者primusrun运行
+</p>
+<ol class="org-ol">
+<li>用bbswitch:</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span class="org-comment-delimiter"># </span><span class="org-comment">&#19968;&#30452;&#24320;&#21551;&#29420;&#26174;</span>
+sudo tee /proc/acpi/bbswitch &lt;&lt;&lt; <span class="org-string">'ON'</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#19968;&#30452;&#31105;&#29992;&#29420;&#26174;</span>
+sudo tee /proc/acpi/bbswitch &lt;&lt;&lt; <span class="org-string">'OFF'</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org5028fab" class="outline-2">
+<h2 id="org5028fab"><span class="section-number-2">6</span> docker + pyspark + jupyter 安装</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+参考： [<a href="http://maxmelnick.com/2016/06/04/spark-docker.html">http://maxmelnick.com/2016/06/04/spark-docker.html</a>](<a href="http://maxmelnick.com/2016/06/04/spark-docker.html">http://maxmelnick.com/2016/06/04/spark-docker.html</a>)
+</p>
+</div>
+<div id="outline-container-org21da67a" class="outline-3">
+<h3 id="org21da67a"><span class="section-number-3">6.1</span> 本地安装docker</h3>
+<div class="outline-text-3" id="text-6-1">
+</div>
+<div id="outline-container-orga64865d" class="outline-4">
+<h4 id="orga64865d"><span class="section-number-4">6.1.1</span> 1.1 安装docker包</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<div class="org-src-container">
+<pre class="src src-bash">sudo pacman -S docker
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga6c7766" class="outline-4">
+<h4 id="orga6c7766"><span class="section-number-4">6.1.2</span> 1.2 防止权限问题，加入用户权限</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<div class="org-src-container">
+<pre class="src src-bash">sudo usermod -aG docker ray
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb7e1582" class="outline-4">
+<h4 id="orgb7e1582"><span class="section-number-4">6.1.3</span> 1.3 重启服务（或者重启计算机）</h4>
+<div class="outline-text-4" id="text-6-1-3">
+<div class="org-src-container">
+<pre class="src src-bash">sudo systemctl restart docker
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org88098c6" class="outline-4">
+<h4 id="org88098c6"><span class="section-number-4">6.1.4</span> 1.4 查看安装是否成功</h4>
+<div class="outline-text-4" id="text-6-1-4">
+<div class="org-src-container">
+<pre class="src src-bash">sudo docker -info
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3ab4ff1" class="outline-3">
+<h3 id="org3ab4ff1"><span class="section-number-3">6.2</span> 配置spark 镜像(images)和容器(containers)</h3>
+<div class="outline-text-3" id="text-6-2">
+</div>
+<div id="outline-container-orgcf272e0" class="outline-4">
+<h4 id="orgcf272e0"><span class="section-number-4">6.2.1</span> 首先，直接建立容器，如果镜像不存在，则会自动下载：</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<pre class="example">
+sudo docker run -d -p 8888:8888 --name spark -v $PWD:/home/jovyan/work jupyter/all-spark-notebook start-notebook.sh --NotebookApp.password='sha1:5b1e121347e8:15266c00b25c2e497714de20a674d5b8935e09dd'
+</pre>
+
+<p>
+命令解释：
+</p>
+
+<ul class="org-ul">
+<li>docker run 载镜像基础上建立容器</li>
+<li>-d 后台运行</li>
+<li>-p 8888:8888 指定端口</li>
+<li>&#x2013; name spark 命名容器</li>
+<li>-v $PWD:/home/jovyan/work 挂载 all-spark-notebook的工作目录到当前目录，使得文件可以在docker内外共享（jovyan是该镜像内置的用户名，不要更改！）</li>
+<li>jupyter/all-spark-notebook 镜像名称，来自[<a href="https://hub.docker.com/r/jupyter/all-spark-notebook/">https://hub.docker.com/r/jupyter/all-spark-notebook/</a>](<a href="https://hub.docker.com/r/jupyter/all-spark-notebook/">https://hub.docker.com/r/jupyter/all-spark-notebook/</a>)</li>
+<li>start-notebook.sh &#x2013;NotebookApp.password='sha1:5b1e121347e8:15266c00b25c2e497714de20a674d5b8935e09dd' 指定密码而不是token，密码先得转为hash码（[怎么转](<a href="http://jupyter-notebook.readthedocs.io/en/latest/public_server.html#preparing-a-hashed-password">http://jupyter-notebook.readthedocs.io/en/latest/public_server.html#preparing-a-hashed-password</a>)）</li>
+</ul>
+
+
+<p>
+在浏览器中输入'http://localhost:8888'，即可打开容器对应的notebook
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0baa8e8" class="outline-4">
+<h4 id="org0baa8e8"><span class="section-number-4">6.2.2</span> 其次，查看docker状态</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<pre class="example">
+# 显示当前容器
+docker ps
+
+# 显示所有容器
+docker ps -a
+
+# 显示所有镜像 
+docker images
+
+# 删除容器
+docker rm container_name
+
+# 删除镜像，必须先删除依赖该镜像的容器
+docker rmi image_name
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org340cf1c" class="outline-4">
+<h4 id="org340cf1c"><span class="section-number-4">6.2.3</span> 最后，直接打开或是关闭</h4>
+<div class="outline-text-4" id="text-6-2-3">
+<pre class="example">
+# 关闭容器
+docker stop spark
+
+# 打开容器
+docker start spark
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbf5f64d" class="outline-3">
+<h3 id="orgbf5f64d"><span class="section-number-3">6.3</span> 3 推荐的pyspark docker</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li>[pyspark-notebook](<a href="https://hub.docker.com/r/jupyter/pyspark-notebook/">https://hub.docker.com/r/jupyter/pyspark-notebook/</a>)</li>
+<li>[all-spark-notebook](<a href="https://hub.docker.com/r/jupyter/all-spark-notebook/">https://hub.docker.com/r/jupyter/all-spark-notebook/</a>)</li>
+</ul>
+
+<p>
+zsh，shell中的极品（[为什么](<a href="https://www.zhihu.com/question/21418449">https://www.zhihu.com/question/21418449</a>)）
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga9e2cdc" class="outline-3">
+<h3 id="orga9e2cdc"><span class="section-number-3">6.4</span> 1. 安装zsh</h3>
+<div class="outline-text-3" id="text-6-4">
+<pre class="example">
+sudo pacman -S git, zsh
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfd7f351" class="outline-3">
+<h3 id="orgfd7f351"><span class="section-number-3">6.5</span> 2. 安装 oh-my-zsh</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+oh-my-zsh是zsh的一个封装，类似spacemacs和emacs的关系
+</p>
+
+<pre class="example">
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+</pre>
+
+<p>
+记着将`.bashrc`中添加的语句复制到`.zshrc`中
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdac9cdc" class="outline-3">
+<h3 id="orgdac9cdc"><span class="section-number-3">6.6</span> 3. 设置为默认shell</h3>
+<div class="outline-text-3" id="text-6-6">
+<pre class="example">
+chsh -s /bin/zsha
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4fc0a64" class="outline-3">
+<h3 id="org4fc0a64"><span class="section-number-3">6.7</span> 4. 添加powerline</h3>
+<div class="outline-text-3" id="text-6-7">
+<pre class="example">
+pip install git+git://github.com/powerline/powerline
+</pre>
+
+<p>
+然后将
+</p>
+<pre class="example">
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+</pre>
+<p>
+添加到`.zshrc`中，注意powerline的位置不一定是上面的，需要自行更改
+</p>
+
+<p>
+最后重启
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org92301fd" class="outline-2">
+<h2 id="org92301fd"><span class="section-number-2">7</span> tensorflow 环境搭建</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+我们的配置是：
+</p>
+
+<ul class="org-ul">
+<li>CUDA-8.0</li>
+<li>cuDNN-6</li>
+<li>tensorflow-gpu 1.4</li>
+</ul>
+</div>
+
+<div id="outline-container-org42a9d2d" class="outline-3">
+<h3 id="org42a9d2d"><span class="section-number-3">7.1</span> 1. 双显卡切换为独显</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+独显必须一直保持开着的状态，才可以稳定运行cuda等程序，我们通过`bbswitch`切换独显
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">sudo tee /proc/acpi/bbswitch &lt;&lt;&lt; &#8216;ON&#8217;
+</pre>
+</div>
+
+<p>
+注意，如果`nvidia-smi -pm`为1的话上述方法是无效的，必须变为0，即实时切换状态
+</p>
+
+<pre class="example">
+nvidia-smi -pm 0
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8daf68b" class="outline-3">
+<h3 id="org8daf68b"><span class="section-number-3">7.2</span> 2. 安装CUDA</h3>
+<div class="outline-text-3" id="text-7-2">
+</div>
+<div id="outline-container-org6382e70" class="outline-4">
+<h4 id="org6382e70"><span class="section-number-4">7.2.1</span> 2.1 yaourt 安装</h4>
+<div class="outline-text-4" id="text-7-2-1">
+<pre class="example">
+yaourt -S cuda-8.0
+</pre>
+
+<p>
+如果遇到yaourt报告空间不够，则：
+</p>
+
+<ol class="org-ol">
+<li>打开`/etc/yaourtrc`</li>
+<li>将 `#TMPDIR="/tmp"` 改为`TMPDIR="/home/$USER/tmp"即可`</li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-orgbb131fd" class="outline-4">
+<h4 id="orgbb131fd"><span class="section-number-4">7.2.2</span> 2.2 加入环境变量</h4>
+<div class="outline-text-4" id="text-7-2-2">
+<p>
+通过安装日志可以发现，yaourt将安装包迁移到了`/opt`中，因此我们在 `.bashrc`或`.zshrc`、以及`/etc/profile`中加入：
+</p>
+
+<pre class="example">
+export CUDA_HOME=/opt/cuda
+export PATH=/opt/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/opt/cuda/lib64:$LD_LIBRARY_PATH
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org01d73a9" class="outline-4">
+<h4 id="org01d73a9"><span class="section-number-4">7.2.3</span> 2.3 验证安装</h4>
+<div class="outline-text-4" id="text-7-2-3">
+<p>
+查看CUDA版本
+</p>
+<pre class="example">
+nvcc -V
+</pre>
+
+<p>
+编译samples，CUDA安装时自带了samples文件夹，进入该文件夹后直接编译（gcc啥的都给你装好了），但是一定记得用sudo，否则报错
+</p>
+
+<pre class="example">
+cd /opt/cuda/samples
+
+sudo make
+</pre>
+
+<p>
+查看编译结果：
+</p>
+
+<pre class="example">
+cd bin/x86_64/linux/release
+
+./deviceQuery    # 最后如果返回pass，则通过
+
+./bandwidthTest    # 最后如果返回pass，则通过
+
+reboot            # 最好重启一下
+</pre>
+
+
+<p>
+恭喜你，到了这一步，CUDA已经顺利安装完成啦！！
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4b9c279" class="outline-3">
+<h3 id="org4b9c279"><span class="section-number-3">7.3</span> 3. cuDNN安装</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+cuDNN是nivida提供的深度学习GPU库，在manjaro下非常好安装：
+</p>
+
+<pre class="example">
+# 先确定独显是开着的
+sudo tee /proc/acpi/bbswitch &lt;&lt;&lt; ‘ON’
+
+yaourt -S cudnn6
+</pre>
+
+<p>
+装好之后，将cudnn文件拷贝到cuda中：
+</p>
+
+<pre class="example">
+sudo cp /opt/cudnn6/include/cudnn.h /opt/cuda/include
+sudo cp cudnn6/lib64/libcudnn* /opt/cuda/lib64
+
+# 增加权限
+sudo chmod a+r cuda/include/cudnn.h
+sudo chmod a+r cuda/include/cudnn.h
+</pre>
+
+<p>
+恭喜，至此你已经完成了准备工作啦！
+</p>
+</div>
+</div>
+
+<div id="outline-container-org37b1d6f" class="outline-3">
+<h3 id="org37b1d6f"><span class="section-number-3">7.4</span> 4. 安装tensorflow-gpu版本</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+为了跟CUDA8兼容，我们安装1.4版本的tensorflow-gpu
+</p>
+
+<pre class="example">
+pip install tensorflow-gpu==1.4
+</pre>
+
+<p>
+<b><b>重启，很关键*</b></b>
+</p>
+
+<pre class="example">
+reboot 
+</pre>
+
+<p>
+重启之后，打开ipython，输入命令进行测试：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">import</span> tensorflow <span class="org-keyword">as</span> tf
+<span class="org-variable-name">hello</span> = tf.constant(<span class="org-string">'Hello, TensorFlow!'</span>)
+<span class="org-variable-name">sess</span> = tf.Session()
+</pre>
+</div>
+
+<p>
+如果提示中不包含`ERROR`或`FAIL`字样，且包含了你的独显名称，那么就是正确安装了。
+</p>
+
+
+<p>
+最后设置CPU按需求使用，在每次导入tf时：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-comment-delimiter"># </span><span class="org-comment">&#35774;&#32622;tendorflow&#23545;&#26174;&#23384;&#20351;&#29992;&#25353;&#38656;&#22686;&#38271;&#12290;</span>
+<span class="org-keyword">import</span> tensorflow <span class="org-keyword">as</span> tf
+<span class="org-variable-name">config</span>  = tf.ConfigProto()
+<span class="org-variable-name">config.gpu_options.allow_growth</span> = <span class="org-constant">True</span>
+<span class="org-variable-name">session</span> = tf.Session(config=config)
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org903e04c" class="outline-3">
+<h3 id="org903e04c"><span class="section-number-3">7.5</span> 5. 安装keras</h3>
+<div class="outline-text-3" id="text-7-5">
+<pre class="example">
+pip install keras
+</pre>
+
+<p>
+keras默认使用tensorflow后端，并且会直接调用其GPU，因此无需做任何改动
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org90f2f75" class="outline-2">
+<h2 id="org90f2f75"><span class="section-number-2">8</span> linux备份</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org85c1517" class="outline-3">
+<h3 id="org85c1517"><span class="section-number-3">8.1</span> 0. 权限问题</h3>
+<div class="outline-text-3" id="text-8-1">
+<pre class="example">
+ sudo gedit /etc/rsyncd.conf
+</pre>
+<p>
+将其中的
+</p>
+<pre class="example">
+uid = nobody
+gid = nobody
+</pre>
+<p>
+改为
+</p>
+<pre class="example">
+uid = root 
+gid = root
+</pre>
+
+<p>
+<b><b>备份结束之后一定要改回来！！</b></b>
+</p>
+</div>
+</div>
+<div id="outline-container-orgd6fe3cc" class="outline-3">
+<h3 id="orgd6fe3cc"><span class="section-number-3">8.2</span> 1. 备份</h3>
+<div class="outline-text-3" id="text-8-2">
+<pre class="example">
+sudo time rsync -Pa / /run/media/ray/Elements/LinuxBackup/2018_05_10 --exclude="/sys/*" --exclude="/proc/*" --exclude="/mnt/*" --exclude="/tmp/*" --exclude="/run/media/*"
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga28f37f" class="outline-3">
+<h3 id="orga28f37f"><span class="section-number-3">8.3</span> 2. 恢复</h3>
+<div class="outline-text-3" id="text-8-3">
+<pre class="example">
+sudo rsync -Pa /run/media/ray/Elements/LinuxBackup/2018_05_10 /
+</pre>
+
+<p>
+manjaro的teamviewer有一些问题，pacman装上之后会出现"Not ready,.."的情况，此时应该：
+</p>
+
+<pre class="example">
+sudo teamviewer --daemon enable
+</pre>
+
+<p>
+再打开teamviewer即可！
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org94e93b9" class="outline-2">
+<h2 id="org94e93b9"><span class="section-number-2">9</span> 连接鼠标</h2>
+<div class="outline-text-2" id="text-9">
+</div>
+<div id="outline-container-orgc34fc55" class="outline-3">
+<h3 id="orgc34fc55"><span class="section-number-3">9.1</span> 1. 蓝牙直连</h3>
+</div>
+
+<div id="outline-container-orgcc4d278" class="outline-3">
+<h3 id="orgcc4d278"><span class="section-number-3">9.2</span> 2. 有线连接，安装驱动</h3>
+<div class="outline-text-3" id="text-9-2">
+<div class="org-src-container">
+<pre class="src src-bash">ltunify unpair mouse
+ltunify pair
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeac5acf" class="outline-3">
+<h3 id="orgeac5acf"><span class="section-number-3">9.3</span> 每次打开终端时互换</h3>
+<div class="outline-text-3" id="text-9-3">
+<p>
+在 ~/.bashrc或者~/.zshrc中添加
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">setxkbmap -option ctrl:swapcaps
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdcce190" class="outline-3">
+<h3 id="orgdcce190"><span class="section-number-3">9.4</span> 服务器端：</h3>
+<div class="outline-text-3" id="text-9-4">
+<p>
+生成配置文件
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$ jupyter notebook --generate-config
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python">In [1]: <span class="org-keyword">from</span> IPython.lib <span class="org-keyword">import</span> passwd
+
+In [2]: passwd()
+Enter password: 
+Verify password: 
+Out[2]: <span class="org-string">'sha1:0e422dfccef2:84cfbcbb3ef95872fb8e23be3999c123f862d856'</span> 
+</pre>
+</div>
+
+<p>
+打开配置文件
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$<span class="org-variable-name">vim</span> ~/.jupyter/jupyter_notebook_config.py 
+</pre>
+</div>
+<p>
+修改：
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">c.NotebookApp.ip</span>=<span class="org-string">'*'</span>
+<span class="org-variable-name">c.NotebookApp.password</span> = u<span class="org-string">'sha:ce...&#21018;&#25165;&#22797;&#21046;&#30340;&#37027;&#20010;&#23494;&#25991;'</span>
+<span class="org-variable-name">c.NotebookApp.open_browser</span> = <span class="org-constant">False</span>
+<span class="org-variable-name">c.NotebookApp.port</span> =8888 <span class="org-comment-delimiter">#</span><span class="org-comment">&#38543;&#20415;&#25351;&#23450;&#19968;&#20010;&#31471;&#21475;</span>
+<span class="org-variable-name">c.NotebookApp.allow_remote_access</span> = <span class="org-constant">True</span>
+</pre>
+</div>
+
+<p>
+打开jupyter notebook
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3fce96c" class="outline-3">
+<h3 id="org3fce96c"><span class="section-number-3">9.5</span> 本地端</h3>
+<div class="outline-text-3" id="text-9-5">
+<p>
+网页输入 <a href="http://">http://</a> ip_address:8888
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 杨 睿</p>
+<p class="date">Created: 2022-12-30 Fri 10:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

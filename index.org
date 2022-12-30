@@ -14,22 +14,29 @@
 #+html: <p>&nbsp;</p>
 
 * 01_intro
-** [[file:./src/01_intro/why_this_page.org][ [2021-02-25] 为什么会有本站]]
-#+begin_verse
- **摘要** : 截至今天（2021年2月21日），如果从提前实习开始，已经工作两年多了。这两年自己做了什么，付出了什么，收获了什么？我想大概也只有钉钉年报的统计数据能告诉我了，是的，我自己也说不清楚。
-但我有很多想说的。
-有写技术博客的习惯，嗯，曾经有。5年前吧，博客园、github、gitee、石墨笔记等等平台。乱七八糟，ID 也是五花八门（yangruipis、yangruiutf-8、yangruigit、
-... ... 
-#+end_verse
-** [[file:./src/01_intro/about_me.org][ [2021-02-25] 个人简介]]
+** [[file:./src/01_intro/about_me.org][ [2022-12-30] 个人简介]]
 #+begin_verse
  **摘要** : | EMAIL    | yangruipis@163.com            |
 | EEL      | +86 188 182 31378             |
 | GITHUB   | [[https://github.com/Yangruipis][github.com/Yangruipis]]         |
 ... ... 
 #+end_verse
+** [[file:./src/01_intro/why_this_page.org][ [2022-12-30] 为什么会有本站]]
+#+begin_verse
+ **摘要** : 截至今天（2021年2月21日），如果从提前实习开始，已经工作两年多了。这两年自己做了什么，付出了什么，收获了什么？我想大概也只有钉钉年报的统计数据能告诉我了，是的，我自己也说不清楚。
+但我有很多想说的。
+有写技术博客的习惯，嗯，曾经有。5年前吧，博客园、github、gitee、石墨笔记等等平台。乱七八糟，ID 也是五花八门（yangruipis、yangruiutf-8、yangruigit、
+... ... 
+#+end_verse
 * 02_tools
-** [[file:./src/02_tools/manjaro_setup.org][ [2021-02-26] [MIGRATE]Majaro配置]]
+** [[file:./src/02_tools/cmake.org][ [2022-12-30] Cmake]]
+#+begin_verse
+ **摘要** : - 本文不是 cmake 教程
+- 本文仅是个人使用 cmake 的记录和心得
+在依图的时候，横贯整个 Res 和 Eng，都在 =ficus= 这个项目中开发，整个项目估计得有几百万行代码、几千个内部 lib，当时是使用 ~Scons~ 进行构建的，个人觉得 ~Scons~ 最大的优点有：
+... ... 
+#+end_verse
+** [[file:./src/02_tools/manjaro_setup.org][ [2022-12-30] [MIGRATE]Majaro配置]]
 #+begin_verse
  **摘要** : sudo pip install shadowsocks 
 我的位置是： ~/home/ray/Documents/shadowsocks/ss.json~
@@ -37,7 +44,12 @@
 ... ... 
 #+end_verse
 * 03_emacs
-** [[file:./src/03_emacs/org_gtd.org][ [2021-02-26] [MIGRATE]利用Emacs进行个人时间管理(GTD)]]
+** [[file:./src/03_emacs/ccls.org][ [2022-12-30] CCLS as cpp lsp backend]]
+#+begin_verse
+ **摘要** : 
+... ... 
+#+end_verse
+** [[file:./src/03_emacs/org_gtd.org][ [2022-12-30] [MIGRATE]利用Emacs进行个人时间管理(GTD)]]
 #+begin_verse
  **摘要** : Get Things Done(GTD)，是一套时间管理方法，面对生活中如下情况：
 - 有很多事情要做
@@ -45,28 +57,28 @@
 ... ... 
 #+end_verse
 * 04_algorithm
-** [[file:./src/04_algorithm/mcmc.org][ [2021-02-26] [MIGRATE] MCMC]]
+** [[file:./src/04_algorithm/pca.org][ [2022-12-30] [MIGRATE] PCA主成分分析]]
+#+begin_verse
+ **摘要** : 　　主成分分析（Principal Components Analysis）是一种对特征进行降维的方法。由于观测指标间存在相关性，将导致信息的重叠与低效，我们倾向于用少量的、尽可能多能反映原特征的新特征来替代他们，主成分分析因此产生。主成分分析可以看成是高维空间通过旋转坐标系找到最佳投影(几何上)，生成新维度，其中新坐标轴每一个维度都是原维度的线性组合 $\theta'X$ (数学上),满足：
+-
+... ... 
+#+end_verse
+** [[file:./src/04_algorithm/mcmc.org][ [2022-12-30] [MIGRATE] MCMC]]
 #+begin_verse
  **摘要** : 蒙特卡洛方法（Monte Carlo）是一种通过特定分布下的随机数（或伪随机数）进行模拟的方法。典型的例子有蒲丰投针、定积分计算等等，其基础是大数定律。
 蒙特卡洛方法有哪些优缺点如下：
 - 优点：计算准确性由采样的均匀程度决定；大大简化问题复杂性
 ... ... 
 #+end_verse
-** [[file:./src/04_algorithm/bayes_opt.org][ [2021-02-26] [MIGRATE]贝叶斯调参]]
+** [[file:./src/04_algorithm/bayes_opt.org][ [2022-12-30] [MIGRATE]贝叶斯调参]]
 #+begin_verse
  **摘要** : 他与常规的网格搜索或者随机搜索的区别是：
 - 贝叶斯调参采用高斯过程， **考虑之前的参数信息** ，不断地更新先验；网格搜索未考虑之前的参数信息
 - 贝叶斯调参 **迭代次数少，速度快** ；网格搜索速度慢,参数多时易导致维度爆炸
 ... ... 
 #+end_verse
-** [[file:./src/04_algorithm/pca.org][ [2021-02-28] [MIGRATE] PCA主成分分析]]
-#+begin_verse
- **摘要** : 　　主成分分析（Principal Components Analysis）是一种对特征进行降维的方法。由于观测指标间存在相关性，将导致信息的重叠与低效，我们倾向于用少量的、尽可能多能反映原特征的新特征来替代他们，主成分分析因此产生。主成分分析可以看成是高维空间通过旋转坐标系找到最佳投影(几何上)，生成新维度，其中新坐标轴每一个维度都是原维度的线性组合\\(\theta'X\\)(数学上),满足：
-... ... 
-#+end_verse
-* 05_engineer
 * 06_lang
-** [[file:./src/06_lang/shell.org][ [2021-02-25] Shell 脚本入门]]
+** [[file:./src/06_lang/shell.org][ [2022-12-30] Shell 脚本入门]]
 #+begin_verse
  **摘要** : - shell 不是一堆 bash 命令的集合
 - shell 是一个脚本语言，类似 python， 充当浇水
@@ -74,11 +86,10 @@
 ... ... 
 #+end_verse
 * 98_temp
-** [[file:./src/98_temp/org_test.org][ [2021-02-24] org 测试]]
+** [[file:./src/98_temp/org_test.org][ [2022-12-30] org 测试]]
 #+begin_verse
  **摘要** : 这是一级标题里的内容
 balabala
 - [X] Checked.
 ... ... 
 #+end_verse
-* 99_trash

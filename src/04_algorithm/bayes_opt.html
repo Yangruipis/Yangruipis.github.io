@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-12-30 Fri 10:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[MIGRATE]贝叶斯调参</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="杨 睿" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.css"/>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.min.js"></script>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">[MIGRATE]贝叶斯调参</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orge332820">1. 简介</a></li>
+<li><a href="#orgfba538e">2. 理论</a>
+<ul>
+<li><a href="#orgf23961a">2.1. 高斯过程</a>
+<ul>
+<li><a href="#org1042504">2.1.1. 高斯过程的估计（训练）方法</a></li>
+</ul>
+</li>
+<li><a href="#org1a12470">2.2. 贝叶斯优化理论</a>
+<ul>
+<li><a href="#orged32f8c">2.2.1. 基本思想</a></li>
+<li><a href="#org6b5b9d7">2.2.2. Acquistion Function</a>
+<ul>
+<li><a href="#orgd7dee52">2.2.2.1. POI(probability of improvement)</a></li>
+<li><a href="#org74cdf06">2.2.2.2. Expected Improvement</a></li>
+<li><a href="#org5f751af">2.2.2.3. Confidence bound criteria</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org5b40d0b">2.3. 缺点和不足</a></li>
+</ul>
+</li>
+<li><a href="#orgf556389">3. 例子</a>
+<ul>
+<li><a href="#org33ce443">3.1. 安装</a></li>
+<li><a href="#orgace8cbe">3.2. 前期准备</a></li>
+<li><a href="#orgf2304dd">3.3. bayes调参初探</a></li>
+<li><a href="#org0d4dcff">3.4. bayes调参进阶</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div align="right">
+<a href="javascript:history.back()">返回</a>
+</div>
+
+
+<div id="outline-container-orge332820" class="outline-2">
+<h2 id="orge332820"><span class="section-number-2">1</span> 简介</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b><b>贝叶斯优化</b></b> 用于机器学习调参由J. Snoek(2012)提出，主要思想是，给定优化的目标函数(广义的函数，只需指定输入和输出即可，无需知道内部结构以及数学性质)，通过不断地添加样本点来更新目标函数的后验分布(高斯过程,直到后验分布基本贴合于真实分布。简单的说，就是 **考虑了上一次参数的信息**，从而更好的调整当前的参数。
+</p>
+
+<p>
+他与常规的网格搜索或者随机搜索的区别是：
+</p>
+
+<ul class="org-ul">
+<li>贝叶斯调参采用高斯过程， <b><b>考虑之前的参数信息</b></b> ，不断地更新先验；网格搜索未考虑之前的参数信息</li>
+<li>贝叶斯调参 <b><b>迭代次数少，速度快</b></b> ；网格搜索速度慢,参数多时易导致维度爆炸</li>
+<li>贝叶斯调参针对非凸问题依然 <b><b>稳健</b></b> ；网格搜索针对非凸问题易得到局部优最</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfba538e" class="outline-2">
+<h2 id="orgfba538e"><span class="section-number-2">2</span> 理论</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+介绍贝叶斯优化调参，必须要从两个部分讲起：
+</p>
+
+<ul class="org-ul">
+<li>高斯过程，用以拟合优化目标函数</li>
+<li>贝叶斯优化，包括了“开采”和“勘探”，用以花最少的代价找到最优值</li>
+</ul>
+</div>
+
+<div id="outline-container-orgf23961a" class="outline-3">
+<h3 id="orgf23961a"><span class="section-number-3">2.1</span> 高斯过程</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+高斯过程可以用于非线性回归、非线性分类、参数寻优等等。以往的建模需要对 \(p(y|X)\) 建模，当用于预测时，则是 
+</p>
+
+\begin{equation}
+p(y_{N+1} | X_{N+1})
+\end{equation}
+
+<p>
+而高斯过程则， <b><b>还考虑了 \(y_N\) 和 \(y_{N+1}\) 之间的关系</b></b> ，即：
+</p>
+
+\begin{equation}
+p(y_{N+1} | X_{N+1}, y_{N})
+\end{equation}
+
+<p>
+高斯过程通过假设 \(Y\) 值服从联合正态分布，来考虑 \(y_N\) 和 \(y_{N+1}\) 之间的关系，因此需要给定参数包括：均值向量和协方差矩阵，即：
+</p>
+
+\begin{equation}
+\begin{bmatrix}
+y_1 \\
+y_2 \\
+... \\
+y_n \\
+\end{bmatrix} \sim
+N( \mathbf{0}, \begin{bmatrix}
+k(x_1, x_1) , k(x_1, x_2), ..., k(x_1, x_n) \\
+k(x_2, x_1) , k(x_2, x_2), ..., k(x_2, x_n) \\
+... \\
+k(x_n, x_1) , k(x_n, x_2), ..., k(x_n, x_n) 
+\end{bmatrix} )
+\end{equation}
+
+
+<p>
+其中协方差矩阵又叫做 <b><b>核矩阵</b></b>, 记为 \(\mathbf{K}\) ，仅和特征 \(x\) 有关，和 \(y\) 无关。
+</p>
+
+<p>
+高斯过程的思想是： 假设 \(Y\) 服从高维正态分布（先验），而根据训练集可以得到最优的核矩阵 ，从而得到后验以估计测试集 \(Y*\)
+</p>
+
+<p>
+我们有后验：
+</p>
+
+\begin{equation}
+p(y_*| \mathbf{y} \sim N(K_* K^{-1} \mathbf{y}, ~  K_{**} - K_* K^{-1} K_*^T)
+\end{equation}
+
+<p>
+其中，$K_*$为训练集的核向量，有如下关系：
+</p>
+
+\begin{equation}
+\begin{bmatrix}
+\mathbf{y} \\
+y_*
+\end{bmatrix} \sim
+N(\mathbf{0}, \begin{bmatrix}
+K, K_*^T \\
+K_*, K_{**} \\
+\end{bmatrix})
+\end{equation}
+
+<p>
+可以发现，在后验公式中，只有均值和训练集 \(Y\) 有关，方差则仅仅和核矩阵，也就是训练集和测试集的 \(X\) 有关，与训练集 \(Y\) 无关
+</p>
+</div>
+
+<div id="outline-container-org1042504" class="outline-4">
+<h4 id="org1042504"><span class="section-number-4">2.1.1</span> 高斯过程的估计（训练）方法</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+假设使用平方指数核(Squared Exponential Kernel)，那么有：
+</p>
+
+\begin{equation}
+k(x_1, x_2) = \sigma^2_f exp(\frac{-(x_1 - x_2)^2}{2 l^2})
+\end{equation}
+
+<p>
+那么所需要的确定的超参数 \(\theta = [\sigma^2_f, l]\) ，由于 \(Y\) 服从多维正态分布，因此似然函数为：
+</p>
+
+\begin{equation}
+L = log p(y| x, \theta) = - \frac{1}{2} log|\mathbf{K}| - \frac{1}{2} (y - \mu)^T \mathbf{K}^{-1} (y - \mu) - n*log(2\pi)/2
+\end{equation}
+
+<p>
+由于 \(K\) 是由 \(\theta\) 决定的，所以通过梯度下降即可求出超参数 $&theta;$，而根据核矩阵的计算方式也可以进行预测。
+</p>
+
+
+<div class="figure">
+<p><img src="../../assets/img/04_algo_bayes_opg_01.png" alt="04_algo_bayes_opg_01.png" />
+</p>
+</div>
+
+<p>
+上图是一张高斯分布拟合函数的示意图，可以看到，它只需要九个点，就可以大致拟合出整个函数形状（图片来自：<a href="https://github.com/fmfn/BayesianOptimization">https://github.com/fmfn/BayesianOptimization</a>）
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1a12470" class="outline-3">
+<h3 id="org1a12470"><span class="section-number-3">2.2</span> 贝叶斯优化理论</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+贝叶斯优化是一种逼近思想，当计算非常复杂、迭代次数较高时能起到很好的效果，多用于超参数确定
+</p>
+</div>
+
+<div id="outline-container-orged32f8c" class="outline-4">
+<h4 id="orged32f8c"><span class="section-number-4">2.2.1</span> 基本思想</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+是基于数据使用贝叶斯定理估计目标函数的后验分布，然后再根据分布选择下一个采样的超参数组合。它充分利用了前一个采样点的信息，其优化的工作方式是通过对目标函数形状的学习，并找到使结果向全局最大提升的参数
+</p>
+
+<p>
+<b><b>高斯过程</b></b> 用于在贝叶斯优化中对目标函数建模，得到其后验分布
+</p>
+
+<p>
+通过高斯过程建模之后，我们尝试抽样进行样本计算，而贝叶斯优化很容易在局部最优解上不断采样，这就涉及到了开发和探索之间的权衡。
+</p>
+
+<dl class="org-dl">
+<dt>开发 (exploitation)</dt><dd>根据后验分布，在最可能出现全局最优解的区域进行采样, 开发高意味着均值高</dd>
+<dt>探索 (exploration)</dt><dd>在还未取样的区域获取采样点，   探索高意味着方差高</dd>
+</dl>
+
+<p>
+而如何高效的采样，即开发和探索，我们需要用到 <b><b>Acquisition Function</b></b>, 它是用来寻找下一个 x 的函数。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6b5b9d7" class="outline-4">
+<h4 id="org6b5b9d7"><span class="section-number-4">2.2.2</span> Acquistion Function</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+一般形式的Acquisition Funtion是关于x的函数，映射到实数空间R，表示改点的目标函数值能够比当前最优值大多少的概率，目前主要有以下几种主流的Acquisition Function
+</p>
+</div>
+
+
+<div id="outline-container-orgd7dee52" class="outline-5">
+<h5 id="orgd7dee52"><span class="section-number-5">2.2.2.1</span> POI(probability of improvement)</h5>
+<div class="outline-text-5" id="text-2-2-2-1">
+\begin{equation}
+POI(X) = P(f(X) \ge f(X^+) + \xi) = \Phi(\frac{\mu(x) - f(X^+) - \xi}{\sigma(x)})
+\end{equation}
+
+<p>
+其中， \(f(X)\) 为X的目标函数值， \(f(X^+)\) 为 <b><b>到目前为止</b></b> 最优的X的目标函数值， \(\mu(x), \sigma(x)\) 分别是高斯过程所得到的目标函数的均值和方差，即 \(f(X)\) 的后验分布。 \(\xi\) 为trade-off系数,如果没有该系数，POI函数会倾向于取在 \(X^+\) 周围的点，即倾向于exploit而不是explore，因此加入该项进行权衡。
+</p>
+
+<p>
+而我们要做的，就是尝试新的X，使得 \(POI(X)\) 最大，则采取该\(X\) （因为$f(X)$的计算代价非常大），通常我们使用 <b><b>蒙特卡洛模拟</b></b> 的方法进行。
+</p>
+
+<p>
+详细情况见下图（图片来自 Ref[5])
+</p>
+
+
+<div class="figure">
+<p><img src="../../assets/img/04_algo_bayes_opg_02.png" alt="04_algo_bayes_opg_02.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org74cdf06" class="outline-5">
+<h5 id="org74cdf06"><span class="section-number-5">2.2.2.2</span> Expected Improvement</h5>
+<div class="outline-text-5" id="text-2-2-2-2">
+<p>
+POI是一个概率函数，因此只考虑了f(x) 比 \(f(x^+)\) 大的概率，而EI则是一个期望函数，因此考虑了 f(x) 比 \(f(x^+)\) 大多少。我们通过下式获取x
+</p>
+
+\begin{equation}
+x = argmax_x \ \  E(\max\{0, f_{t+1}(x) - f(X^+)\}| D_t)
+\end{equation}
+
+<p>
+其中 \(D_t\) 为前t个样本，在正态分布的假定下，最终得到:
+</p>
+
+\begin{equation}
+EI(x) = 
+\begin{cases}
+(\mu(x) - f(x^+)) \Phi(Z) + \sigma(x) \phi(Z), if \ \sigma(x) > 0 \\
+0, if \ \sigma(x) = 0
+\end{cases}
+\end{equation}
+
+<p>
+其中 \(Z= \frac{\mu(x) - f(x^+)}{\sigma(x)}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5f751af" class="outline-5">
+<h5 id="org5f751af"><span class="section-number-5">2.2.2.3</span> Confidence bound criteria</h5>
+<div class="outline-text-5" id="text-2-2-2-3">
+\begin{equation}
+LCB(x) = \mu(x) - \kappa \sigma(x)
+\end{equation}
+
+\begin{equation}
+UCB(x) = \mu(x) + \kappa \sigma(x) 
+\end{equation}
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5b40d0b" class="outline-3">
+<h3 id="org5b40d0b"><span class="section-number-3">2.3</span> 缺点和不足</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>高斯过程核矩阵不好选</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf556389" class="outline-2">
+<h2 id="orgf556389"><span class="section-number-2">3</span> 例子</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+目前可以做贝叶斯优化的包非常多,光是python就有:
+</p>
+
+<ul class="org-ul">
+<li>[BayesianOptimization](<a href="https://github.com/fmfn/BayesianOptimization">https://github.com/fmfn/BayesianOptimization</a>)</li>
+<li>[bayesopt](<a href="https://github.com/rmcantin/bayesopt">https://github.com/rmcantin/bayesopt</a>)</li>
+<li>[skopt](<a href="https://github.com/scikit-optimize/scikit-optimize/tree/master/skop">https://github.com/scikit-optimize/scikit-optimize/tree/master/skop</a>)</li>
+<li>&#x2026;</li>
+</ul>
+
+<p>
+本文使用BayesianOptimization为例，利用sklearn的随机森林模型进行分类
+</p>
+</div>
+
+<div id="outline-container-org33ce443" class="outline-3">
+<h3 id="org33ce443"><span class="section-number-3">3.1</span> 安装</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-bash">pip install bayesian-optimization
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgace8cbe" class="outline-3">
+<h3 id="orgace8cbe"><span class="section-number-3">3.2</span> 前期准备</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">from</span> sklearn.datasets <span class="org-keyword">import</span> make_classification
+<span class="org-keyword">from</span> sklearn.ensemble <span class="org-keyword">import</span> RandomForestClassifier
+<span class="org-keyword">from</span> sklearn.cross_validation <span class="org-keyword">import</span> cross_val_score
+<span class="org-keyword">from</span> bayes_opt <span class="org-keyword">import</span> BayesianOptimization
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#20135;&#29983;&#38543;&#26426;&#20998;&#31867;&#25968;&#25454;&#38598;&#65292;10&#20010;&#29305;&#24449;&#65292; 2&#20010;&#31867;&#21035;</span>
+<span class="org-variable-name">x</span>, <span class="org-variable-name">y</span> = make_classification(n_samples=1000,n_features=10,n_classes=2)
+</pre>
+</div>
+
+<p>
+我们先看看不调参的结果：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">rf</span> = RandomForestClassifier()
+<span class="org-keyword">print</span>(np.mean(cross_val_score(rf, x, y, cv=20, scoring=<span class="org-string">'roc_auc'</span>)))
+
+&gt;&gt;&gt; 0.965162
+</pre>
+</div>
+
+<p>
+可以看到，不调参的话模型20此交叉验证AUC均值是0.965162，算是一个不错的模型，那么如果用bayes调参结果会怎么样呢
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf2304dd" class="outline-3">
+<h3 id="orgf2304dd"><span class="section-number-3">3.3</span> bayes调参初探</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+我们先定义一个目标函数，里面放入我们希望优化的函数。比如此时，函数输入为随机森林的所有参数，输出为模型交叉验证5次的AUC均值，作为我们的目标函数。因为`bayes_opt`库只支持最大值，所以最后的输出如果是越小越好，那么需要在前面加上负号，以转为最大值。由于bayes优化只能优化连续超参数，因此要加上`int()`转为离散超参数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">def</span> <span class="org-function-name">rf_cv</span>(n_estimators, min_samples_split, max_features, max_depth):
+    <span class="org-variable-name">val</span> = cross_val_score(
+        RandomForestClassifier(n_estimators=<span class="org-builtin">int</span>(n_estimators),
+            min_samples_split=<span class="org-builtin">int</span>(min_samples_split),
+            max_features=<span class="org-builtin">min</span>(max_features, 0.999), <span class="org-comment-delimiter"># </span><span class="org-comment">float</span>
+            max_depth=<span class="org-builtin">int</span>(max_depth),
+            random_state=2
+        ),
+        x, y, scoring=<span class="org-string">'roc_auc'</span>, cv=5
+    ).mean()
+    <span class="org-keyword">return</span> val
+
+</pre>
+</div>
+
+<p>
+然后我们就可以实例化一个bayes优化对象了：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">rf_bo</span> = BayesianOptimization(
+       rf_cv,
+       {<span class="org-string">'n_estimators'</span>: (10, 250),
+       <span class="org-string">'min_samples_split'</span>: (2, 25),
+       <span class="org-string">'max_features'</span>: (0.1, 0.999),
+       <span class="org-string">'max_depth'</span>: (5, 15)}
+   )
+</pre>
+</div>
+
+<p>
+里面的第一个参数是我们的优化目标函数，第二个参数是我们所需要输入的超参数名称，以及其范围。超参数名称必须和目标函数的输入名称一一对应。
+</p>
+
+<p>
+完成上面两步之后，我们就可以运行bayes优化了！
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">rf_bo.maximize()
+</pre>
+</div>
+
+<p>
+完成的时候会不断地输出结果，如下图所示：
+</p>
+
+
+<div class="figure">
+<p><img src="../../assets/img/04_algo_bayes_opg_03.png" alt="04_algo_bayes_opg_03.png" />
+</p>
+</div>
+
+<p>
+等到程序结束，我们可以查看当前最优的参数和结果：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">rf_bo.res[<span class="org-string">'max'</span>]
+
+&gt;&gt;&gt; {<span class="org-string">'max_params'</span>: {<span class="org-string">'max_depth'</span>: 5.819908283575526,
+  <span class="org-string">'max_features'</span>: 0.4951745603509127,
+  <span class="org-string">'min_samples_split'</span>: 2.3110014720414958,
+  <span class="org-string">'n_estimators'</span>: 249.73529231990733},
+ <span class="org-string">'max_val'</span>: 0.9774079407940794}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0d4dcff" class="outline-3">
+<h3 id="org0d4dcff"><span class="section-number-3">3.4</span> bayes调参进阶</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+上面bayes算法得到的参数并不一定最优，当然我们会遇到一种情况，就是我们已经知道有一组或是几组参数是非常好的了，我们想知道其附近有没有更好的。这个操作相当于上文bayes优化中的Explore操作，而bayes_opt库给了我们实现此方法的函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">rf_bo.explore(
+    {<span class="org-string">'n_estimators'</span>: [10, 100, 200],
+        <span class="org-string">'min_samples_split'</span>: [2, 10, 20],
+        <span class="org-string">'max_features'</span>: [0.1, 0.5, 0.9],
+        <span class="org-string">'max_depth'</span>: [5, 10, 15]
+    }
+)
+</pre>
+</div>
+
+<p>
+这里我们添加了三组较优的超参数，让其在该参数基础上进行explore，可能会得到更好的结果。
+</p>
+
+<p>
+同时，我们还可以修改高斯过程的参数，高斯过程主要参数是核函数(`kernel`)，还有其他参数可以参考[sklearn.gaussianprocess](<a href="http://scikit-learn.org/stable/modules/generated/sklearn.gaussian_process.GaussianProcessRegressor.html">http://scikit-learn.org/stable/modules/generated/sklearn.gaussian_process.GaussianProcessRegressor.html</a>)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">gp_param</span>={<span class="org-string">'kernel'</span>:<span class="org-constant">None</span>}
+rf_bo.maximize(**gp_param)
+</pre>
+</div>
+
+<p>
+最终我们的到参数如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">{<span class="org-doc">'max_params'</span>: {<span class="org-doc">'max_depth'</span>: 5.819908283575526,
+  <span class="org-doc">'max_features'</span>: 0.4951745603509127,
+  <span class="org-doc">'min_samples_split'</span>: 2.3110014720414958,
+  <span class="org-doc">'n_estimators'</span>: 249.73529231990733},
+ <span class="org-doc">'max_val'</span>: 0.9774079407940794}
+</pre>
+</div>
+
+<p>
+运行交叉验证测试一下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">rf</span> = RandomForestClassifier(max_depth=6, max_features=0.39517, min_samples_split=2, n_estimators=250)
+np.mean(cross_val_score(rf, x, y, cv=20, scoring=<span class="org-string">'roc_auc'</span>))
+&gt;&gt;&gt; 0.9754953
+</pre>
+</div>
+
+<p>
+得到最终结果是0.9755，比之前的0.9652提高了约0.01，做过kaggle的朋友都懂，这在后期已经是非常大的提高了！到后面想提高0.001都极其困难，因此bayes优化真的非常强大！
+</p>
+
+<p>
+结束！
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 杨 睿</p>
+<p class="date">Created: 2022-12-30 Fri 10:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

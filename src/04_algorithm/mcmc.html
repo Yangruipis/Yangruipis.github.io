@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-12-30 Fri 10:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[MIGRATE] MCMC</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="杨 睿" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.css"/>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.min.js"></script>
+<script src="https://yangruigit.gitee.io/my_blogs/lib/themes/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://yangruigit.gitee.io/my_blogs/lib/themes/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">[MIGRATE] MCMC</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf65387f">1. MCMC 简介</a>
+<ul>
+<li><a href="#orge115a1b">1.1. Monte Carlo 蒙特卡洛</a></li>
+<li><a href="#org67e219a">1.2. 随机数生成算法简介</a>
+<ul>
+<li><a href="#orgc21cd44">1.2.1. 均匀分布随机数生成</a></li>
+<li><a href="#org927f0b2">1.2.2. 标准正态分布随机数生成</a></li>
+<li><a href="#org6f5a83d">1.2.3. 其他简单分布随机数生成</a></li>
+</ul>
+</li>
+<li><a href="#orgff5c25b">1.3. Markov Chain 马尔科夫链</a></li>
+</ul>
+</li>
+<li><a href="#org6faa18d">2. Sampling Algorithm 抽样算法</a>
+<ul>
+<li><a href="#org5f475da">2.1. MCMC与M-H算法</a></li>
+<li><a href="#org13e7a9d">2.2. Gibbs抽样</a></li>
+<li><a href="#orgcbb8505">2.3. Gibbs抽样实例</a></li>
+</ul>
+</li>
+<li><a href="#org800d7b8">3. 三、MCMC和线性回归模型</a></li>
+</ul>
+</div>
+</div>
+<div align="right">
+<a href="javascript:history.back()">返回</a>
+</div>
+
+<div id="outline-container-orgf65387f" class="outline-2">
+<h2 id="orgf65387f"><span class="section-number-2">1</span> MCMC 简介</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orge115a1b" class="outline-3">
+<h3 id="orge115a1b"><span class="section-number-3">1.1</span> Monte Carlo 蒙特卡洛</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+蒙特卡洛方法（Monte Carlo）是一种通过特定分布下的随机数（或伪随机数）进行模拟的方法。典型的例子有蒲丰投针、定积分计算等等，其基础是大数定律。
+</p>
+
+<p>
+蒙特卡洛方法有哪些优缺点如下：
+</p>
+<ul class="org-ul">
+<li>优点：计算准确性由采样的均匀程度决定；大大简化问题复杂性</li>
+<li>缺点：
+<ul class="org-ul">
+<li>由于要进行大量的抽样计算，对计算机速度依赖性强</li>
+<li>目前绝大多数随机数发生器均为伪随机数，一定程度上有偏</li>
+<li>定积分求解问题中，对于$\color{blue}{复杂或者高维的分布}$，利用蒙特卡洛方法生成随机样本非常困难</li>
+</ul></li>
+</ul>
+
+<p>
+　　蒙特卡罗方法在金融工程学，宏观经济学，生物医学，计算物理学(如粒子输运计算、量子热力学计算、空气动力学计算、核工程)等领域应用广泛。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org67e219a" class="outline-3">
+<h3 id="org67e219a"><span class="section-number-3">1.2</span> 随机数生成算法简介</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orgc21cd44" class="outline-4">
+<h4 id="orgc21cd44"><span class="section-number-4">1.2.1</span> 均匀分布随机数生成</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+均匀分布随机数生成最普遍的算法为线性同余算法(LCG)，他是一个伪随机数发生器，默认的初始种子为系统时间戳，算法递推公式如下：
+</p>
+\begin{equation}
+X_{i+1} = (A \times X_{i} + B) mod M
+\end{equation}
+
+<p>
+其中：
+</p>
+
+<ol class="org-ol">
+<li>$B, M$互质</li>
+<li>M的所有质因子的积能整除$(A-1)\(：比如M是3的倍数则\)(A-1)$也是</li>
+<li>$A, B, X_0$都比$M$小</li>
+<li>$A,B$是正整数</li>
+</ol>
+
+<p>
+python代码如下:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<span class="org-keyword">import</span> time
+<span class="org-keyword">import</span>  math
+<span class="org-keyword">def</span> <span class="org-function-name">random</span>(num = 2000):
+    <span class="org-variable-name">M</span> = 1000
+    <span class="org-variable-name">A</span> = 3^4
+    <span class="org-variable-name">B</span> = 1
+    <span class="org-variable-name">x_0</span> = time.time()
+    <span class="org-variable-name">result</span> = [x_0]
+    <span class="org-keyword">while</span> <span class="org-builtin">len</span>(result) &lt; num:
+      result.append((result[-1]*A+B) % M)
+    result.pop(0)
+    <span class="org-keyword">return</span> result
+
+<span class="org-variable-name">result</span> = random(2000)
+<span class="org-variable-name">xaixs</span> = [i <span class="org-keyword">for</span> i,j <span class="org-keyword">in</span> <span class="org-builtin">enumerate</span>(result)]
+<span class="org-keyword">print</span> result[:10]
+<span class="org-variable-name">f</span> = plt.figure(1)
+<span class="org-variable-name">p1</span> = plt.scatter(xaixs,result)
+<span class="org-comment-delimiter">#</span><span class="org-comment">p2 = plt.hist(result)</span>
+plt.show()
+</pre>
+</div>
+
+<p>
+目前纯的随机数生成算法非常的复杂，而且性能消耗非常的大，所以在此不做介绍。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org927f0b2" class="outline-4">
+<h4 id="org927f0b2"><span class="section-number-4">1.2.2</span> 标准正态分布随机数生成</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+已知均匀分布随机数如何生成，我么可以根据其生成标准正态分布随机数，Box和Muller(1958) (G. E. P. Box and Mervin E. Muller, A Note on the Generation of Random Normal Deviates, The Annals of Mathematical Statistics (1958), Vol. 29, No. 2 pp. 610–611)提出了产生$N(0,1)$随机数的简单方法：设$U_1,U_2$是独立同分布的$U(0,1)$变量，记:
+</p>
+
+\begin{equation}
+\begin{cases}
+X_1 = (-2 lnU_1)^{1/2}cos(2\pi U_2) \\
+X_2 = (-2 lnU_2)^{1/2}cos(2\pi U_1)
+\end{cases}
+\end{equation}
+
+<p>
+则$X_1$和$X_2$相互独立且均服从标准正态分布。python代码如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<span class="org-keyword">import</span> time
+<span class="org-keyword">import</span>  math
+
+<span class="org-keyword">def</span> <span class="org-function-name">rnorm</span>(num = 1000):
+    <span class="org-variable-name">uniform1</span> = random(num)
+    <span class="org-variable-name">uniform2</span> = random(num)
+    <span class="org-keyword">return</span> [math.sqrt(-2*math.log(i/1000,math.e))*math.cos(2*math.pi*j/1000) <span class="org-keyword">for</span> i,j <span class="org-keyword">in</span> <span class="org-builtin">zip</span>(uniform1,uniform2)]
+
+<span class="org-variable-name">result</span> = rnorm()
+<span class="org-variable-name">xaixs</span> = [i <span class="org-keyword">for</span> i,j <span class="org-keyword">in</span> <span class="org-builtin">enumerate</span>(result)]
+<span class="org-variable-name">f</span> = plt.figure(1)
+<span class="org-comment-delimiter">#</span><span class="org-comment">p1 = plt.scatter(xaixs,result)</span>
+<span class="org-variable-name">p2</span> = plt.hist(result)
+plt.show()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6f5a83d" class="outline-4">
+<h4 id="org6f5a83d"><span class="section-number-4">1.2.3</span> 其他简单分布随机数生成</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+对于已知pdf或是cdf的分布，可以根据cdf求反函数的方法来生成该分布的随机数。因为cdf值域为$[0,1]$，我们只需要获得均匀分布随机数$U_1 &sim; U(0,1)$，即可根据反函数$cdf^{-1}$得到此次抽得的随机数。对于再复杂一点的分布，我们可以通过构造包络分布进行Rejection Sampling，如ARS和ARMS算法等等。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgff5c25b" class="outline-3">
+<h3 id="orgff5c25b"><span class="section-number-3">1.3</span> Markov Chain 马尔科夫链</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+在蒙特卡洛模拟中，我们在后验分布中抽取样本，当这些样本独立时，利用大数定律样本均值会收敛到期望值。如果得到的样本是不独立的，那么就要借助于马尔科夫链进行抽样。马尔科夫链又称为马尔科夫过程是一种离散的随机过程，随机过程可以看做一个随时间变化的随机变量序列。
+</p>
+
+<p>
+对一个马尔科夫链来说，未来状态只与当前t时刻有关，而与t时刻之前的历史状态无关。马尔科夫链的每个状态的状态转移概率构成了其状态转移矩阵\(P\)
+</p>
+
+<p>
+<b><b>当步长$n$足够大时，一个非周期且任意状态联通的马氏链可以收敛到一个平稳分布\(\pi(x)\)</b></b> ，马氏链收敛定理是MCMC的基础。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6faa18d" class="outline-2">
+<h2 id="org6faa18d"><span class="section-number-2">2</span> Sampling Algorithm 抽样算法</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org5f475da" class="outline-3">
+<h3 id="org5f475da"><span class="section-number-3">2.1</span> MCMC与M-H算法</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+MCMC方法就是构造合适的马尔科夫链进行抽样而使用蒙特卡洛方法进行积分计算。 既然马尔科夫链可以收敛到平稳分布。我们可以建立一个以$&pi;$为平稳分布的马尔科夫链，对这个链运行足够长时间之后，可以达到平稳状态。此时马尔科夫链的值就相当于在分布$&pi;(x)$中抽取样本。利用马尔科夫链进行随机模拟的方法就是MCMC。
+</p>
+
+<p>
+MCMC的主要问题是：如何构造转移矩阵\(P\),使得平稳分布恰好是我们要的分布$&pi; (x)$。由此，我们首先有了M-H算法，它用到可马尔科夫链的另一个性质，如果具有转移矩阵$P$和分布$&pi;(x)$的马氏链对所有的状态$i,j$满足下面的等式：
+</p>
+
+\begin{equation}
+\pi(i)P(i,j) = \pi(j)P(j,i)
+\end{equation}
+
+<p>
+这个等式称为细致平衡方程，此时该马氏链的分布$&pi;(x)$是平稳的。一般情况下，任意给的$&pi;(x)$不一定平稳，那么可以构造函数\(\alpha(i,j)\),使得：
+</p>
+
+\begin{equation}
+\pi(i)P(i,j)\alpha(i,j) = \pi(j)P(j,i)\alpha(j,i)
+\end{equation}
+
+<p>
+此时取$&alpha;(i,j) = &pi;(j)P(j,i)$，$&alpha;(j,i) = &pi;(i)P(i,j)$时等式(2)必然成立。
+</p>
+
+<p>
+(2)式中的$&alpha;(i,j)$又叫接受率，是接受状态从$i$转移到$j$的概率。如果$&alpha;$过小，将会导致频繁拒绝转移，马氏链难以收敛，所以我们考虑放大$&alpha;$，使得$&alpha;(i,j)$和$&alpha;(j,i)$中大的值为$1$，小的值同比放大为$\frac{\pi(j)P(j,i)}{\pi(i)P(i,j)}$，那么$&alpha;(i,j) = min\{1,\frac{\pi(j)P(j,i)}{\pi(i)P(i,j)}\}$。在马尔科夫链状态转移过程中，我们以概率$&alpha;(i,j)$接受转移，从而得到最终的稳定分布，这种算法称为M-H算法。
+</p>
+
+<p>
+M-H算法需要提前构造提议分布(proposal distribution)$&pi;(x)$，然后经过提议分布采样后计算出接受概率，对采样进行接受或是拒绝，最后得到服从特定分布的样本。优点是通过构造精妙的马尔科夫链，提高了抽样的效率，尤其是面对条件分布抽样时。缺点是需要找到合适的提议分布，而且收敛速度可能较慢。
+</p>
+
+<p>
+现欲对自由度为5的t分布抽取10000个样本，我们分别用M-H算法和R语言自带的t分布抽样命令rt进行抽样，然后对比二者结果。
+</p>
+
+<p>
+对于M-H抽样，我们选择标准正态分布为其提议分布，进行10000次模拟，R语言代码和得到结果如下：
+</p>
+<div class="org-src-container">
+<pre class="src src-r">ptm &lt;- proc.time()
+#### M-H algorithm ####
+N = 10000  
+x = vector(length = N)  
+x[1] = 0  
+# uniform variable: u  
+u = runif(N)  
+sd = 1
+df = 5  
+# sample the student distrubution with 5 freedom
+for (i in 2:N)  {  
+  y = rnorm(1,mean = x[i-1],sd = sd)
+  p_accept = dt(y,df) * pnorm(x[i-1],y,sd) / pnorm(x[i-1],y,sd) / (dt(x[i-1],df))
+  if ((u[i] &lt;= p_accept))  
+  {  x[i] = y  }  
+  else  
+  { x[i] = x[i-1] }  
+}  
+HM_result &lt;- x
+proc.time()-ptm
+
+#plot(x,type = 'l')  
+test = rt(10000,5)
+par(mfrow=c(2,2)) 
+hist(test)
+plot(density(test),main = "density of test dataset")
+hist(HM_result)
+plot(density(HM_result),main = "density of MH result")
+</pre>
+</div>
+
+<p>
+　　　　<img src="http://images2015.cnblogs.com/blog/998084/201612/998084-20161213234135683-1009199840.png" alt="998084-20161213234135683-1009199840.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org13e7a9d" class="outline-3">
+<h3 id="org13e7a9d"><span class="section-number-3">2.2</span> Gibbs抽样</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+M-H抽样在较低维度值运算中是比较方便的，然而在维数较高时，选择适当的提议分布并非易事，而Gibbs抽样仅仅需要了解满条件分布(full conditi- onal　distribution)，因此在高维积分时更具有优势（朱慧明 等, 《贝叶斯计量经济模型》, 2009,科学出版社）。
+</p>
+
+<p>
+n维变量的Gibbs抽样方法如下:给定抽样初始点\(x^{(0)} = (x_1^{(0)},x_2^{(0)},...,x_n^{(0)}\) $)$，并假设第$t-1$次迭代的迭代值为$x^{(t-1)}$，则第$t$次迭代由以下步骤完成：
+</p>
+
+<ul class="org-ul">
+<li>由满条件分布$&pi;(x_1 | x_2^{(t-1)},&#x2026;,x_n^{(t-1)})$抽取\(x_1^{(t)}\)</li>
+<li>由满条件分布$&pi;(x_2 | x_1^{(t-1)},x_3^{(t-1)}&#x2026;,x_n^{(t-1)})$抽取\(x_2^{(t)}\)</li>
+<li>&#x2026; &#x2026;</li>
+<li>由满条件分布$&pi;(x_n | x_1^{(t-1)},&#x2026;,x_{n-1}^{(t-1)})$抽取\(x_n^{(t)}\)</li>
+</ul>
+
+<p>
+　　至此完成$t-1$到$t$的一次迭代，重复迭代直到$x^{(t)}$分布稳定后即可。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcbb8505" class="outline-3">
+<h3 id="orgcbb8505"><span class="section-number-3">2.3</span> Gibbs抽样实例</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+以二维正态分布抽样为例，不妨设$X = (X_1,X_2)$服从二元正态分布，即:
+</p>
+\begin{equation}
+\begin{eqnarray}
+x \sim N
+	\left(
+	 \begin{pmatrix}
+	 0 \\ 0
+	 \end{pmatrix}
+	 ,
+	 \begin{pmatrix}
+	 1 & \rho \\
+	 \rho & 1
+	 \end{pmatrix}
+\right),\ 0<\rho\le1
+\end{eqnarray}
+\end{equation}
+
+<p>
+则有:
+</p>
+<ul class="org-ul">
+<li>$x_2^{(t+1)}| x_1^{(t+1)} &sim; N(&rho; x_1^{t+1},1-&rho;^2) $</li>
+<li>\(x_1^{(t+1)} | x_2^{(t+1)} \sim N(\rho x_2^{t+1},1-\rho^2)\)</li>
+</ul>
+
+<p>
+　　并且可以证明：
+</p>
+
+\begin{equation}
+	\begin{eqnarray}
+	\begin{pmatrix}
+	x_1^{(t)} \\
+	x_2^{(t)}
+	\end{pmatrix}
+	\sim
+	N \left(
+	\begin{pmatrix}
+	\rho^{2t-1}x_1^{(0)} \\
+	\rho^{2t}x_2^{(0)} 
+	\end{pmatrix}
+	,
+	\begin{pmatrix}
+	1 - \rho^{4t-2} & \rho - \rho^{4t-1} \\ 
+	\rho - \rho^{4t-1} & 1 - \rho^{4t}
+	\end{pmatrix}
+	\right)
+	\end{eqnarray}
+\end{equation}  
+
+<p>
+　　当$t &rarr; &infin;\(时，\)(x_1^{t},x_2^{t})$的分布将收敛到目标分布。R语言代码和结果如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-R">n &lt;- 5000 #抽样个数
+n_1 &lt;- 2500 # 收敛个数
+X &lt;- matrix(0, n, 2)
+mu1 &lt;- 0 
+mu2 &lt;- 0
+sigma1 &lt;- 1
+sigma2 &lt;- 1
+rho &lt;- 0.5
+s1.c &lt;- sqrt(1 - rho^2) * sigma1
+s2.c &lt;- sqrt(1 - rho^2) * sigma2
+X[1, ] &lt;- c(mu1, mu2) #初始化
+for (i in 2:n) {
+  x2 &lt;- X[i - 1, 2]
+  m1.c &lt;- mu1 + rho * (x2 - mu2) * sigma1/sigma2
+  X[i, 1] &lt;- rnorm(1, m1.c, s1.c)
+  x1 &lt;- X[i, 1]
+  m2.c &lt;- mu2 + rho * (x1 - mu1) * sigma2/sigma1
+  X[i, 2] &lt;- rnorm(1, m2.c, s2.c)
+}
+b &lt;- n_1 + 1
+x.mcmc &lt;- X[b:n, ]
+library(MASS)
+MVN.kdensity &lt;- kde2d(x.mcmc[, 1], x.mcmc[, 2], h = 5) #估计核密度
+par(mfrow=c(2,2)) 
+plot(x.mcmc, col = "blue", xlab = "X1", ylab = "X2") #绘制二元正态分布等高线图
+contour(MVN.kdensity, add = TRUE)
+hist(x.mcmc[, 1],main = "histogram of x1")
+hist(x.mcmc[, 2],mian = "histogram of x2")
+x&lt;-y&lt;-seq(-4,4,length=20)
+f&lt;-function(x,y){(exp(-0.5*x^2-0.5*y^2))/(2*pi)}
+z&lt;-outer(x,y,f)
+persp(x,y,z,theta=45,phi=25,col='lightblue')
+</pre>
+</div>
+
+<p>
+　　<img src="http://images2015.cnblogs.com/blog/998084/201612/998084-20161213234707026-216559627.png" alt="998084-20161213234707026-216559627.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org800d7b8" class="outline-2">
+<h2 id="org800d7b8"><span class="section-number-2">3</span> 三、MCMC和线性回归模型</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+　　当我们讨论贝叶斯估计方法和线性回归模型时，会包括:
+</p>
+
+<ul class="org-ul">
+<li>$&beta;$的先验分布</li>
+<li>$&sigma;$的先验分布</li>
+</ul>
+
+<p>
+　　给定一元线性回归模型:
+\[
+Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
+\]
+</p>
+
+<p>
+　　我们将其中心化，变为：
+$$
+</p>
+\begin{eqnarray}
+Y_i &=& \beta_0^{*} + \beta_1 (X_i - \bar{X}) + \epsilon_i \\
+Y_i &=& \beta_0^{*}  - \beta_1 \bar{X} + \beta_1 X_i + \epsilon_i 
+\end{eqnarray}
+<p>
+\[
+　　这样变化后，我们发现$\beta_1$是不变的，由于$X$的扰动没变而$\bar{X}$无扰动。而$\beta_0$的期望相对增加了，有$E(\beta_0) = \bar{Y}$，且自变量$X_i - \bar{X}$均值为0。这样模型的极大似然值可以写成：
+\]
+y_i | x_i,&beta;_0,&beta;_1,&sigma;^2 &sim; N(&beta;_0 + &beta;_1(x_i - \bar{x}),&sigma;^2),i = 1,2,&#x2026;,n
+$$
+</p>
+
+<p>
+　　贝叶斯模型充分利用样本的先验信息，对于中心化一元线性模型(5)式，	我们有先验信息：
+\[
+p(\beta_0, \beta_1,\sigma^2)  \propto \frac{1}{\sigma^2},-\infty < \beta_0,\beta_1 < \infty,0<\sigma^2<\infty
+\]
+　　同时我们有三个充分统计量：
+$$
+</p>
+\begin{eqnarray}
+	\nonumber
+	\hat{\beta_0} &=& \bar{y} \\
+	\nonumber
+	\hat{\beta_1} &=& \frac{\sum_{i} (x_i - \bar{x})(y_i - \bar{y})}{\sum_i (x_i - \bar{x})^2} \\
+	\nonumber
+	s^2 & =& \frac{SSR}{n-2} = \frac{\sum_{i} (y_i - \hat{\beta_0} - \hat{\beta_1}(x_i - \bar{x})^2)}{n-2}
+	\end{eqnarray}
+<p>
+$$
+　　根据这三个充分统计量、先验分布、极大似然函数，我们可以求得联合后验分布$p(&beta;_0, &beta;_1,&sigma;^2|y)$\footnote{Applied Bayesian Statistics with R and OpenBUGS, 187-190}
+</p>
+
+<p>
+　　之后求得三个参数各自的边缘后验密度分布:
+$$
+</p>
+\begin{eqnarray}
+\beta_0|y &\sim& t(\hat{\beta_0},\frac{s^2}{n},n-2) \\
+\beta_1|y &\sim& t(\hat{\beta_1},\frac{s^2}{\sum (x_i - \bar{x})^2},n-2) \\
+\sigma^2 | y &\sim& IG (\frac{n-2}{2},\frac{(n-2)s^2}{2})
+\end{eqnarray}
+<p>
+$$
+　　其中$&beta;_0,&beta;_1$的后验分布服从含位置和尺度参数的t分布\footnote{if $X \sim t(\mu,\sigma^2,freedom)$,then $(X - \mu) / \sigma^2 \sim t(freedom)$}；而$&sigma;^2$服从逆伽马分布。
+　　得到参数的后验分布之后，我们就可以利用MCMC进行模拟并且收敛到最后的估计值。具体步骤如下：
+</p>
+<ol class="org-ol">
+<li>参数赋予初始值(直接影响收敛速度) \(\beta_0^{(0)},\beta_1^{(0)},\sigma^2{(0)}\)</li>
+<li>根据公式(5)更新$&beta;_0$，其中\(\sigma^2 = (n-2) s /n\)</li>
+<li>根据公式(6) 和公式(7)更新\(\beta_1,\sigma^2\)</li>
+<li>重复(2) - (4) N轮，并观察三个参数的收敛情况，从而得到稳健的估计值</li>
+</ol>
+
+<p>
+## 本博原创作品仅供品读,欢迎评论,未经本人同意谢绝转载。特此申明! ##
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 杨 睿</p>
+<p class="date">Created: 2022-12-30 Fri 10:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
